@@ -1,16 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
-
+@custom-variant dark (&:where(.dark, .dark *));
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
-  --color-primary-50: #eef1fb;
-  --color-primary-100: #dbe1f7;
-  --color-primary-200: #b3c0ee;
-  --color-primary-300: #8a9fe5;
-  --color-primary-400: #6f86dd;
-  --color-primary-500: #5972d4;
-  --color-primary-600: #4C5FE8;
-  --color-primary-700: #3d4cc4;
-  --color-primary-800: #323e9e;
-  --color-primary-900: #2a3480;
+
+  /* Primary accent — muted sage green */
+  --color-primary-50: #f1f6f1;
+  --color-primary-100: #dfeadf;
+  --color-primary-200: #bcd6bc;
+  --color-primary-300: #97c097;
+  --color-primary-400: #74a874;
+  --color-primary-500: #5a8f5a;
+  --color-primary-600: #4a7a4a;
+  --color-primary-700: #3d643d;
+  --color-primary-800: #335233;
+  --color-primary-900: #2b442b;
+
+  /* Warm neutral background/surface, replacing cold slate */
+  --color-surface-50: #fdfcfa;
+  --color-surface-100: #f7f4ef;
+  --color-surface-200: #ece6dc;
+  --color-surface-300: #ddd4c4;
+  --color-surface-400: #b8ab94;
+  --color-surface-500: #94886f;
+  --color-surface-600: #756b56;
+  --color-surface-700: #5c5544;
+  --color-surface-800: #423d32;
+  --color-surface-900: #2b2820;
 }

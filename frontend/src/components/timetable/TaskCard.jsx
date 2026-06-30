@@ -39,7 +39,7 @@ export default function TaskCard({ task, onToggleComplete, onEdit, onDelete, isB
             aria-hidden="true"
           />
           <p
-            className={`truncate text-sm font-medium text-slate-800 dark:text-slate-100 ${
+            className={`text-sm font-medium text-slate-800 dark:text-slate-100 ${
               isCompleted ? "line-through" : ""
             }`}
           >
