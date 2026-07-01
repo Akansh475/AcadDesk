@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id         String   @id @default(uuid())
+  name       String
+  email      String   @unique
+  password   String
+  role       Role     @default(STUDENT)
+  college_id String
+  created_at DateTime @default(now())
+
+  tasks Task[]
+
+  @@map("users")
+}
+
+model Task {
+  id          String     @id @default(uuid())
+  user_id     String
+  title       String
+  description String?
+  due_date    DateTime
+  priority    Priority   @default(MEDIUM)
+  status      TaskStatus @default(PENDING)
+  created_at  DateTime   @default(now())
+
+  user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@map("tasks")
+}
+
+model AcademicCalendarEvent {
+  id         String        @id @default(uuid())
+  college_id String
+  title      String
+  type       CalendarType
+  date       DateTime
+  course_id  String?
+  created_at DateTime      @default(now())
+
+  @@index([college_id])
+  @@index([date])
+  @@map("academic_calendar_events")
+}
+
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+enum Priority {
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum TaskStatus {
+  PENDING
+  COMPLETED
+}
+
+enum CalendarType {
+  EXAM
+  PRACTICAL
+  PBL
+  HOLIDAY
+}
