@@ -31,6 +31,15 @@ export type UserMinAggregateOutputType = {
   password: string | null
   role: $Enums.Role | null
   college_id: string | null
+  phone: string | null
+  profile_photo: string | null
+  university_roll_no: string | null
+  student_id: string | null
+  year: string | null
+  section: string | null
+  cgpa: string | null
+  course: string | null
+  branch: string | null
   created_at: Date | null
 }
 
@@ -41,6 +50,15 @@ export type UserMaxAggregateOutputType = {
   password: string | null
   role: $Enums.Role | null
   college_id: string | null
+  phone: string | null
+  profile_photo: string | null
+  university_roll_no: string | null
+  student_id: string | null
+  year: string | null
+  section: string | null
+  cgpa: string | null
+  course: string | null
+  branch: string | null
   created_at: Date | null
 }
 
@@ -51,6 +69,15 @@ export type UserCountAggregateOutputType = {
   password: number
   role: number
   college_id: number
+  phone: number
+  profile_photo: number
+  university_roll_no: number
+  student_id: number
+  year: number
+  section: number
+  cgpa: number
+  course: number
+  branch: number
   created_at: number
   _all: number
 }
@@ -63,6 +90,15 @@ export type UserMinAggregateInputType = {
   password?: true
   role?: true
   college_id?: true
+  phone?: true
+  profile_photo?: true
+  university_roll_no?: true
+  student_id?: true
+  year?: true
+  section?: true
+  cgpa?: true
+  course?: true
+  branch?: true
   created_at?: true
 }
 
@@ -73,6 +109,15 @@ export type UserMaxAggregateInputType = {
   password?: true
   role?: true
   college_id?: true
+  phone?: true
+  profile_photo?: true
+  university_roll_no?: true
+  student_id?: true
+  year?: true
+  section?: true
+  cgpa?: true
+  course?: true
+  branch?: true
   created_at?: true
 }
 
@@ -83,6 +128,15 @@ export type UserCountAggregateInputType = {
   password?: true
   role?: true
   college_id?: true
+  phone?: true
+  profile_photo?: true
+  university_roll_no?: true
+  student_id?: true
+  year?: true
+  section?: true
+  cgpa?: true
+  course?: true
+  branch?: true
   created_at?: true
   _all?: true
 }
@@ -166,6 +220,15 @@ export type UserGroupByOutputType = {
   password: string
   role: $Enums.Role
   college_id: string
+  phone: string | null
+  profile_photo: string | null
+  university_roll_no: string | null
+  student_id: string | null
+  year: string | null
+  section: string | null
+  cgpa: string | null
+  course: string | null
+  branch: string | null
   created_at: Date
   _count: UserCountAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
@@ -197,6 +260,15 @@ export type UserWhereInput = {
   password?: Prisma.StringFilter<"User"> | string
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   college_id?: Prisma.StringFilter<"User"> | string
+  phone?: Prisma.StringNullableFilter<"User"> | string | null
+  profile_photo?: Prisma.StringNullableFilter<"User"> | string | null
+  university_roll_no?: Prisma.StringNullableFilter<"User"> | string | null
+  student_id?: Prisma.StringNullableFilter<"User"> | string | null
+  year?: Prisma.StringNullableFilter<"User"> | string | null
+  section?: Prisma.StringNullableFilter<"User"> | string | null
+  cgpa?: Prisma.StringNullableFilter<"User"> | string | null
+  course?: Prisma.StringNullableFilter<"User"> | string | null
+  branch?: Prisma.StringNullableFilter<"User"> | string | null
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   tasks?: Prisma.TaskListRelationFilter
 }
@@ -208,6 +280,15 @@ export type UserOrderByWithRelationInput = {
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   college_id?: Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  profile_photo?: Prisma.SortOrderInput | Prisma.SortOrder
+  university_roll_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  student_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  year?: Prisma.SortOrderInput | Prisma.SortOrder
+  section?: Prisma.SortOrderInput | Prisma.SortOrder
+  cgpa?: Prisma.SortOrderInput | Prisma.SortOrder
+  course?: Prisma.SortOrderInput | Prisma.SortOrder
+  branch?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   tasks?: Prisma.TaskOrderByRelationAggregateInput
 }
@@ -222,6 +303,15 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   password?: Prisma.StringFilter<"User"> | string
   role?: Prisma.EnumRoleFilter<"User"> | $Enums.Role
   college_id?: Prisma.StringFilter<"User"> | string
+  phone?: Prisma.StringNullableFilter<"User"> | string | null
+  profile_photo?: Prisma.StringNullableFilter<"User"> | string | null
+  university_roll_no?: Prisma.StringNullableFilter<"User"> | string | null
+  student_id?: Prisma.StringNullableFilter<"User"> | string | null
+  year?: Prisma.StringNullableFilter<"User"> | string | null
+  section?: Prisma.StringNullableFilter<"User"> | string | null
+  cgpa?: Prisma.StringNullableFilter<"User"> | string | null
+  course?: Prisma.StringNullableFilter<"User"> | string | null
+  branch?: Prisma.StringNullableFilter<"User"> | string | null
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   tasks?: Prisma.TaskListRelationFilter
 }, "id" | "email">
@@ -233,6 +323,15 @@ export type UserOrderByWithAggregationInput = {
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   college_id?: Prisma.SortOrder
+  phone?: Prisma.SortOrderInput | Prisma.SortOrder
+  profile_photo?: Prisma.SortOrderInput | Prisma.SortOrder
+  university_roll_no?: Prisma.SortOrderInput | Prisma.SortOrder
+  student_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  year?: Prisma.SortOrderInput | Prisma.SortOrder
+  section?: Prisma.SortOrderInput | Prisma.SortOrder
+  cgpa?: Prisma.SortOrderInput | Prisma.SortOrder
+  course?: Prisma.SortOrderInput | Prisma.SortOrder
+  branch?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -249,6 +348,15 @@ export type UserScalarWhereWithAggregatesInput = {
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
   role?: Prisma.EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
   college_id?: Prisma.StringWithAggregatesFilter<"User"> | string
+  phone?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  profile_photo?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  university_roll_no?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  student_id?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  year?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  section?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  cgpa?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  course?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  branch?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
 
@@ -259,6 +367,15 @@ export type UserCreateInput = {
   password: string
   role?: $Enums.Role
   college_id: string
+  phone?: string | null
+  profile_photo?: string | null
+  university_roll_no?: string | null
+  student_id?: string | null
+  year?: string | null
+  section?: string | null
+  cgpa?: string | null
+  course?: string | null
+  branch?: string | null
   created_at?: Date | string
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
 }
@@ -270,6 +387,15 @@ export type UserUncheckedCreateInput = {
   password: string
   role?: $Enums.Role
   college_id: string
+  phone?: string | null
+  profile_photo?: string | null
+  university_roll_no?: string | null
+  student_id?: string | null
+  year?: string | null
+  section?: string | null
+  cgpa?: string | null
+  course?: string | null
+  branch?: string | null
   created_at?: Date | string
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
 }
@@ -281,6 +407,15 @@ export type UserUpdateInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
 }
@@ -292,6 +427,15 @@ export type UserUncheckedUpdateInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -303,6 +447,15 @@ export type UserCreateManyInput = {
   password: string
   role?: $Enums.Role
   college_id: string
+  phone?: string | null
+  profile_photo?: string | null
+  university_roll_no?: string | null
+  student_id?: string | null
+  year?: string | null
+  section?: string | null
+  cgpa?: string | null
+  course?: string | null
+  branch?: string | null
   created_at?: Date | string
 }
 
@@ -313,6 +466,15 @@ export type UserUpdateManyMutationInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -323,6 +485,15 @@ export type UserUncheckedUpdateManyInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -333,6 +504,15 @@ export type UserCountOrderByAggregateInput = {
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   college_id?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  profile_photo?: Prisma.SortOrder
+  university_roll_no?: Prisma.SortOrder
+  student_id?: Prisma.SortOrder
+  year?: Prisma.SortOrder
+  section?: Prisma.SortOrder
+  cgpa?: Prisma.SortOrder
+  course?: Prisma.SortOrder
+  branch?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -343,6 +523,15 @@ export type UserMaxOrderByAggregateInput = {
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   college_id?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  profile_photo?: Prisma.SortOrder
+  university_roll_no?: Prisma.SortOrder
+  student_id?: Prisma.SortOrder
+  year?: Prisma.SortOrder
+  section?: Prisma.SortOrder
+  cgpa?: Prisma.SortOrder
+  course?: Prisma.SortOrder
+  branch?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -353,6 +542,15 @@ export type UserMinOrderByAggregateInput = {
   password?: Prisma.SortOrder
   role?: Prisma.SortOrder
   college_id?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  profile_photo?: Prisma.SortOrder
+  university_roll_no?: Prisma.SortOrder
+  student_id?: Prisma.SortOrder
+  year?: Prisma.SortOrder
+  section?: Prisma.SortOrder
+  cgpa?: Prisma.SortOrder
+  course?: Prisma.SortOrder
+  branch?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -367,6 +565,10 @@ export type StringFieldUpdateOperationsInput = {
 
 export type EnumRoleFieldUpdateOperationsInput = {
   set?: $Enums.Role
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -394,6 +596,15 @@ export type UserCreateWithoutTasksInput = {
   password: string
   role?: $Enums.Role
   college_id: string
+  phone?: string | null
+  profile_photo?: string | null
+  university_roll_no?: string | null
+  student_id?: string | null
+  year?: string | null
+  section?: string | null
+  cgpa?: string | null
+  course?: string | null
+  branch?: string | null
   created_at?: Date | string
 }
 
@@ -404,6 +615,15 @@ export type UserUncheckedCreateWithoutTasksInput = {
   password: string
   role?: $Enums.Role
   college_id: string
+  phone?: string | null
+  profile_photo?: string | null
+  university_roll_no?: string | null
+  student_id?: string | null
+  year?: string | null
+  section?: string | null
+  cgpa?: string | null
+  course?: string | null
+  branch?: string | null
   created_at?: Date | string
 }
 
@@ -430,6 +650,15 @@ export type UserUpdateWithoutTasksInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -440,6 +669,15 @@ export type UserUncheckedUpdateWithoutTasksInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
   college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -481,6 +719,15 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   password?: boolean
   role?: boolean
   college_id?: boolean
+  phone?: boolean
+  profile_photo?: boolean
+  university_roll_no?: boolean
+  student_id?: boolean
+  year?: boolean
+  section?: boolean
+  cgpa?: boolean
+  course?: boolean
+  branch?: boolean
   created_at?: boolean
   tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -493,6 +740,15 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   password?: boolean
   role?: boolean
   college_id?: boolean
+  phone?: boolean
+  profile_photo?: boolean
+  university_roll_no?: boolean
+  student_id?: boolean
+  year?: boolean
+  section?: boolean
+  cgpa?: boolean
+  course?: boolean
+  branch?: boolean
   created_at?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -503,6 +759,15 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   password?: boolean
   role?: boolean
   college_id?: boolean
+  phone?: boolean
+  profile_photo?: boolean
+  university_roll_no?: boolean
+  student_id?: boolean
+  year?: boolean
+  section?: boolean
+  cgpa?: boolean
+  course?: boolean
+  branch?: boolean
   created_at?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -513,10 +778,19 @@ export type UserSelectScalar = {
   password?: boolean
   role?: boolean
   college_id?: boolean
+  phone?: boolean
+  profile_photo?: boolean
+  university_roll_no?: boolean
+  student_id?: boolean
+  year?: boolean
+  section?: boolean
+  cgpa?: boolean
+  course?: boolean
+  branch?: boolean
   created_at?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "college_id" | "created_at", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "college_id" | "phone" | "profile_photo" | "university_roll_no" | "student_id" | "year" | "section" | "cgpa" | "course" | "branch" | "created_at", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -536,6 +810,15 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     password: string
     role: $Enums.Role
     college_id: string
+    phone: string | null
+    profile_photo: string | null
+    university_roll_no: string | null
+    student_id: string | null
+    year: string | null
+    section: string | null
+    cgpa: string | null
+    course: string | null
+    branch: string | null
     created_at: Date
   }, ExtArgs["result"]["user"]>
   composites: {}
@@ -967,6 +1250,15 @@ export interface UserFieldRefs {
   readonly password: Prisma.FieldRef<"User", 'String'>
   readonly role: Prisma.FieldRef<"User", 'Role'>
   readonly college_id: Prisma.FieldRef<"User", 'String'>
+  readonly phone: Prisma.FieldRef<"User", 'String'>
+  readonly profile_photo: Prisma.FieldRef<"User", 'String'>
+  readonly university_roll_no: Prisma.FieldRef<"User", 'String'>
+  readonly student_id: Prisma.FieldRef<"User", 'String'>
+  readonly year: Prisma.FieldRef<"User", 'String'>
+  readonly section: Prisma.FieldRef<"User", 'String'>
+  readonly cgpa: Prisma.FieldRef<"User", 'String'>
+  readonly course: Prisma.FieldRef<"User", 'String'>
+  readonly branch: Prisma.FieldRef<"User", 'String'>
   readonly created_at: Prisma.FieldRef<"User", 'DateTime'>
 }
     

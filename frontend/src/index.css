@@ -28,3 +28,65 @@
   --color-surface-800: #423d32;
   --color-surface-900: #2b2820;
 }
+
+/* ── Login page animations ── */
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(20px, -30px) scale(1.05); }
+  66%       { transform: translate(-15px, 15px) scale(0.97); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes particle-float {
+  0%   { transform: translate(0, 0); opacity: var(--p-opacity, 0.5); }
+  50%  { transform: translate(var(--p-x, 15px), var(--p-y, -25px)); opacity: calc(var(--p-opacity, 0.5) * 0.4); }
+  100% { transform: translate(0, 0); opacity: var(--p-opacity, 0.5); }
+}
+
+.animate-blob {
+  animation: blob 7s ease-in-out infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out both;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+
+.animate-shake {
+  animation: shake 0.35s ease-in-out;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: white;
+  animation: particle-float linear infinite;
+  pointer-events: none;
+}

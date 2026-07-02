@@ -1,15 +1,35 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/shared/Layout";
+import { ProtectedRoute, PublicRoute } from "./components/shared/RouteGuards";
+import LoginPage from "./pages/LoginPage";
 import TimetableGoals from "./pages/TimetableGoals";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
     <Routes>
-      <Route element={<Layout />}>
+      <Route
+        path="/login"
+        element={
+          <PublicRoute>
+            <LoginPage />
+          </PublicRoute>
+        }
+      />
+
+      <Route
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
         <Route path="/" element={<Navigate to="/timetable" replace />} />
         <Route path="/timetable" element={<TimetableGoals />} />
-        {/* other routes (dashboard, attendance, etc.) get added here as those pages are built */}
+        <Route path="/profile" element={<ProfilePage />} />
       </Route>
+
+      <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );
 }

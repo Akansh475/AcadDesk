@@ -8,13 +8,22 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(uuid())
-  name       String
-  email      String   @unique
-  password   String
-  role       Role     @default(STUDENT)
-  college_id String
-  created_at DateTime @default(now())
+  id                 String   @id @default(uuid())
+  name               String
+  email              String   @unique
+  password           String
+  role               Role     @default(STUDENT)
+  college_id         String
+  phone              String?
+  profile_photo      String?
+  university_roll_no String?
+  student_id         String?
+  year               String?
+  section            String?
+  cgpa               String?
+  course             String?
+  branch             String?
+  created_at         DateTime @default(now())
 
   tasks Task[]
 
@@ -38,13 +47,13 @@ model Task {
 }
 
 model AcademicCalendarEvent {
-  id         String        @id @default(uuid())
+  id         String       @id @default(uuid())
   college_id String
   title      String
   type       CalendarType
   date       DateTime
   course_id  String?
-  created_at DateTime      @default(now())
+  created_at DateTime     @default(now())
 
   @@index([college_id])
   @@index([date])

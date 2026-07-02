@@ -79,6 +79,15 @@ export const UserScalarFieldEnum = {
   password: 'password',
   role: 'role',
   college_id: 'college_id',
+  phone: 'phone',
+  profile_photo: 'profile_photo',
+  university_roll_no: 'university_roll_no',
+  student_id: 'student_id',
+  year: 'year',
+  section: 'section',
+  cgpa: 'cgpa',
+  course: 'course',
+  branch: 'branch',
   created_at: 'created_at'
 } as const
 
