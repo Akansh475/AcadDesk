@@ -4,6 +4,7 @@ import { ProtectedRoute, PublicRoute } from "./components/shared/RouteGuards";
 import LoginPage from "./pages/LoginPage";
 import TimetableGoals from "./pages/TimetableGoals";
 import ProfilePage from "./pages/ProfilePage";
+import AttendancePage from "./pages/AttendancePage";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/" element={<Navigate to="/timetable" replace />} />
         <Route path="/timetable" element={<TimetableGoals />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/attendance" element={<AttendancePage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/login" replace />} />
