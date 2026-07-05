@@ -10,5 +10,7 @@
  */
 export type * from './models/User.ts'
 export type * from './models/Task.ts'
+export type * from './models/Subject.ts'
+export type * from './models/AttendanceRecord.ts'
 export type * from './models/AcademicCalendarEvent.ts'
 export type * from './commonInputTypes.ts'

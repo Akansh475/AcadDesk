@@ -25,7 +25,8 @@ model User {
   branch             String?
   created_at         DateTime @default(now())
 
-  tasks Task[]
+  tasks      Task[]
+  attendance AttendanceRecord[]
 
   @@map("users")
 }
@@ -44,6 +45,36 @@ model Task {
 
   @@index([user_id])
   @@map("tasks")
+}
+
+model Subject {
+  id         String   @id @default(uuid())
+  name       String
+  college_id String
+  course_id  String?
+  created_at DateTime @default(now())
+
+  attendance AttendanceRecord[]
+
+  @@index([college_id])
+  @@map("subjects")
+}
+
+model AttendanceRecord {
+  id         String           @id @default(uuid())
+  user_id    String
+  subject_id String
+  date       DateTime
+  status     AttendanceStatus
+  created_at DateTime         @default(now())
+
+  user    User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([subject_id])
+  @@index([date])
+  @@map("attendance_records")
 }
 
 model AcademicCalendarEvent {
@@ -81,4 +112,9 @@ enum CalendarType {
   PRACTICAL
   PBL
   HOLIDAY
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
 }

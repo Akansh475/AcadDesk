@@ -42,3 +42,11 @@ export const CalendarType = {
 } as const
 
 export type CalendarType = (typeof CalendarType)[keyof typeof CalendarType]
+
+
+export const AttendanceStatus = {
+  PRESENT: 'PRESENT',
+  ABSENT: 'ABSENT'
+} as const
+
+export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]

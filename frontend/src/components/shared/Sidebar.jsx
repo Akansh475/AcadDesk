@@ -9,7 +9,9 @@ import {
   ShieldCheck,
   Sun,
   Moon,
+  GraduationCap,
 } from "lucide-react";
+
 import { useTheme } from "../../hooks/useTheme";
 
 const NAV_ITEMS = [
@@ -27,11 +29,14 @@ export default function Sidebar() {
 
   return (
     <aside className="flex h-screen w-60 shrink-0 flex-col border-r border-slate-200 bg-white px-3 py-5 dark:border-slate-800 dark:bg-slate-950">
-      <div className="mb-6 px-2">
-        <span className="text-sm font-semibold tracking-tight text-slate-800 dark:text-slate-100">
-          AcadDesk
-        </span>
-      </div>
+      <div className="mb-6 flex items-center gap-2.5 px-2">
+  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-600">
+    <GraduationCap size={16} className="text-white" />
+  </div>
+  <span className="text-sm font-semibold tracking-tight text-slate-800 dark:text-slate-100">
+    AcadDesk
+  </span>
+</div>
 
       <nav className="flex flex-1 flex-col gap-0.5">
         {NAV_ITEMS.map(({ to, label, icon: Icon }) => (

@@ -28,6 +28,16 @@ export type User = Prisma.UserModel
  */
 export type Task = Prisma.TaskModel
 /**
+ * Model Subject
+ * 
+ */
+export type Subject = Prisma.SubjectModel
+/**
+ * Model AttendanceRecord
+ * 
+ */
+export type AttendanceRecord = Prisma.AttendanceRecordModel
+/**
  * Model AcademicCalendarEvent
  * 
  */

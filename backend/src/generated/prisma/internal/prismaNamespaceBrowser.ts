@@ -53,6 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Task: 'Task',
+  Subject: 'Subject',
+  AttendanceRecord: 'AttendanceRecord',
   AcademicCalendarEvent: 'AcademicCalendarEvent'
 } as const
 
@@ -106,6 +108,29 @@ export const TaskScalarFieldEnum = {
 } as const
 
 export type TaskScalarFieldEnum = (typeof TaskScalarFieldEnum)[keyof typeof TaskScalarFieldEnum]
+
+
+export const SubjectScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  college_id: 'college_id',
+  course_id: 'course_id',
+  created_at: 'created_at'
+} as const
+
+export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
+
+
+export const AttendanceRecordScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  subject_id: 'subject_id',
+  date: 'date',
+  status: 'status',
+  created_at: 'created_at'
+} as const
+
+export type AttendanceRecordScalarFieldEnum = (typeof AttendanceRecordScalarFieldEnum)[keyof typeof AttendanceRecordScalarFieldEnum]
 
 
 export const AcademicCalendarEventScalarFieldEnum = {
