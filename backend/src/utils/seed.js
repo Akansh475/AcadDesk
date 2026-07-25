@@ -70,15 +70,14 @@ async function seed() {
   }
 
   // ── Attendance Records ──
-  // Delete existing records for clean seed
   await prisma.attendanceRecord.deleteMany({ where: { user_id: student.id } });
 
   const attendanceData = [
-    { subjectIndex: 0, attended: 18, held: 25 }, // CN  72%
-    { subjectIndex: 1, attended: 14, held: 24 }, // OS  58%
-    { subjectIndex: 2, attended: 20, held: 25 }, // DBMS 80%
-    { subjectIndex: 3, attended: 8,  held: 10 }, // CN Lab 80%
-    { subjectIndex: 4, attended: 5,  held: 10 }, // OS Lab 50%
+    { subjectIndex: 0, attended: 18, held: 25 },
+    { subjectIndex: 1, attended: 14, held: 24 },
+    { subjectIndex: 2, attended: 20, held: 25 },
+    { subjectIndex: 3, attended: 8,  held: 10 },
+    { subjectIndex: 4, attended: 5,  held: 10 },
   ];
 
   const today = dayjs();
@@ -86,20 +85,75 @@ async function seed() {
   for (const item of attendanceData) {
     const subject = subjects[item.subjectIndex];
     const records = [];
-
     for (let i = 0; i < item.held; i++) {
       const date = today.subtract(item.held - i, "day").toDate();
       const status = i < item.attended ? "PRESENT" : "ABSENT";
-      records.push({
-        user_id: student.id,
-        subject_id: subject.id,
-        date,
-        status,
-      });
+      records.push({ user_id: student.id, subject_id: subject.id, date, status });
     }
-
     await prisma.attendanceRecord.createMany({ data: records });
   }
+
+  // ── Notifications ──
+  await prisma.notification.deleteMany({ where: { user_id: student.id } });
+
+  await prisma.notification.createMany({
+    data: [
+      {
+        user_id: student.id,
+        source: "ERP",
+        type: "EXAM",
+        title: "Mid Term Exam scheduled - 12 July",
+        message: "Mid term theory exams begin from 12th July. Check your timetable for subject-wise schedule.",
+        is_read: false,
+        created_at: dayjs().subtract(2, "hour").toDate(),
+      },
+      {
+        user_id: student.id,
+        source: "SYSTEM",
+        type: "ATTENDANCE",
+        title: "Attendance dropped below 70% in Operating Systems",
+        message: "Your attendance in Operating Systems is now 58%. Attend the next 10 classes to recover.",
+        is_read: false,
+        created_at: dayjs().subtract(5, "hour").toDate(),
+      },
+      {
+        user_id: student.id,
+        source: "SYSTEM",
+        type: "ATTENDANCE",
+        title: "Attendance at risk in OS Lab",
+        message: "Your OS Lab attendance is 50%. Immediate action required.",
+        is_read: false,
+        created_at: dayjs().subtract(1, "day").toDate(),
+      },
+      {
+        user_id: student.id,
+        source: "ERP",
+        type: "HOLIDAY",
+        title: "Republic Day Holiday - 26 January",
+        message: "The college will remain closed on 26th January on account of Republic Day.",
+        is_read: true,
+        created_at: dayjs().subtract(2, "day").toDate(),
+      },
+      {
+        user_id: student.id,
+        source: "ERP",
+        type: "EVENT",
+        title: "Hackathon registration open",
+        message: "TechFest Hackathon registrations are open. Last date to register is 20th July.",
+        is_read: true,
+        created_at: dayjs().subtract(3, "day").toDate(),
+      },
+      {
+        user_id: student.id,
+        source: "ERP",
+        type: "ANNOUNCEMENT",
+        title: "PBL submission deadline extended",
+        message: "The PBL submission deadline has been extended to 25th July due to popular demand.",
+        is_read: true,
+        created_at: dayjs().subtract(5, "day").toDate(),
+      },
+    ],
+  });
 
   console.log("✅ Seeding complete");
   console.log("   student@acaddesk.com / student123");

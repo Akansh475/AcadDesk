@@ -62,6 +62,11 @@ export type Subject = Prisma.SubjectModel
  */
 export type AttendanceRecord = Prisma.AttendanceRecordModel
 /**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
  * Model AcademicCalendarEvent
  * 
  */

@@ -50,3 +50,22 @@ export const AttendanceStatus = {
 } as const
 
 export type AttendanceStatus = (typeof AttendanceStatus)[keyof typeof AttendanceStatus]
+
+
+export const NotificationSource = {
+  ERP: 'ERP',
+  SYSTEM: 'SYSTEM'
+} as const
+
+export type NotificationSource = (typeof NotificationSource)[keyof typeof NotificationSource]
+
+
+export const NotificationType = {
+  EXAM: 'EXAM',
+  HOLIDAY: 'HOLIDAY',
+  EVENT: 'EVENT',
+  ANNOUNCEMENT: 'ANNOUNCEMENT',
+  ATTENDANCE: 'ATTENDANCE'
+} as const
+
+export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]

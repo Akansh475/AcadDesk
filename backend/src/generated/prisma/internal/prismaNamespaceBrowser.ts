@@ -55,6 +55,7 @@ export const ModelName = {
   Task: 'Task',
   Subject: 'Subject',
   AttendanceRecord: 'AttendanceRecord',
+  Notification: 'Notification',
   AcademicCalendarEvent: 'AcademicCalendarEvent'
 } as const
 
@@ -131,6 +132,20 @@ export const AttendanceRecordScalarFieldEnum = {
 } as const
 
 export type AttendanceRecordScalarFieldEnum = (typeof AttendanceRecordScalarFieldEnum)[keyof typeof AttendanceRecordScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  source: 'source',
+  type: 'type',
+  title: 'title',
+  message: 'message',
+  is_read: 'is_read',
+  created_at: 'created_at'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
 export const AcademicCalendarEventScalarFieldEnum = {
