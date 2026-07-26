@@ -6,6 +6,7 @@ import TimetableGoals from "./pages/TimetableGoals";
 import ProfilePage from "./pages/ProfilePage";
 import AttendancePage from "./pages/AttendancePage";
 import NotificationsPage from "./pages/NotificationsPage";
+import Dashboard from "./pages/Dashboard";
 
 
 <Route path="/notifications" element={<NotificationsPage />} />
@@ -34,6 +35,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/attendance" element={<AttendancePage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/login" replace />} />
