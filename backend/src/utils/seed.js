@@ -155,6 +155,70 @@ async function seed() {
     ],
   });
 
+  // ── Assignments ──
+  await prisma.assignment.deleteMany({ where: { user_id: student.id } });
+
+  await prisma.assignment.createMany({
+    data: [
+      {
+        user_id: student.id,
+        subject_id: subjects[2].id, // DBMS
+        title: "ER Diagram for Library System",
+        description: "Design a complete ER diagram for a library management system with all entities and relationships.",
+        due_date: dayjs().add(2, "day").toDate(),
+        status: "PENDING",
+      },
+      {
+        user_id: student.id,
+        subject_id: subjects[0].id, // Computer Networks
+        title: "Dijkstra's Algorithm Implementation",
+        description: "Implement Dijkstra's shortest path algorithm in C++ and demonstrate with sample input/output.",
+        due_date: dayjs().add(5, "day").toDate(),
+        status: "PENDING",
+      },
+      {
+        user_id: student.id,
+        subject_id: subjects[1].id, // Operating Systems
+        title: "Process Scheduling Report",
+        description: "Write a report comparing FCFS, SJF, and Round Robin scheduling algorithms with examples.",
+        due_date: dayjs().add(7, "day").toDate(),
+        status: "PENDING",
+      },
+    ],
+  });
+
+  // ── Exams ──
+  await prisma.exam.deleteMany({ where: { college_id: "c1" } });
+
+  await prisma.exam.createMany({
+    data: [
+      {
+        subject_id: subjects[0].id,
+        college_id: "c1",
+        date: dayjs().add(5, "day").toDate(),
+        time: "10:00 AM",
+        room: "Hall A",
+        syllabus: "Unit 1-3: OSI Model, TCP/IP, Routing Algorithms, Subnetting",
+      },
+      {
+        subject_id: subjects[1].id,
+        college_id: "c1",
+        date: dayjs().add(7, "day").toDate(),
+        time: "2:00 PM",
+        room: "Hall B",
+        syllabus: "Unit 1-4: Process Management, Memory Management, Deadlocks, File Systems",
+      },
+      {
+        subject_id: subjects[2].id,
+        college_id: "c1",
+        date: dayjs().add(10, "day").toDate(),
+        time: "10:00 AM",
+        room: "Hall A",
+        syllabus: "Unit 1-3: ER Model, Normalization, SQL, Transactions",
+      },
+    ],
+  });
+
   console.log("✅ Seeding complete");
   console.log("   student@acaddesk.com / student123");
   console.log("   admin@acaddesk.com   / admin123");
@@ -167,3 +231,8 @@ seed().catch((err) => {
   prisma.$disconnect();
   process.exit(1);
 });
+
+
+
+
+

@@ -7,6 +7,8 @@ import calendarRoutes from "./modules/calendar/calendar.routes.js";
 import userRoutes from "./modules/users/users.routes.js";
 import attendanceRoutes from "./modules/attendance/attendance.routes.js";
 import notificationRoutes from "./modules/notifications/notifications.routes.js";
+import assignmentRoutes from "./modules/assignments/assignments.routes.js";
+import examRoutes from "./modules/exams/exams.routes.js";
 
 dotenv.config();
 
@@ -22,6 +24,8 @@ app.use("/api/tasks", taskRoutes);
 app.use("/api/calendar", calendarRoutes);
 app.use("/api/attendance", attendanceRoutes);
 app.use("/api/notifications", notificationRoutes);
+app.use("/api/assignments", assignmentRoutes);
+app.use("/api/exams", examRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {

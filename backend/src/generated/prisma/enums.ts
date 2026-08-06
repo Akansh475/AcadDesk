@@ -34,6 +34,14 @@ export const TaskStatus = {
 export type TaskStatus = (typeof TaskStatus)[keyof typeof TaskStatus]
 
 
+export const AssignmentStatus = {
+  PENDING: 'PENDING',
+  SUBMITTED: 'SUBMITTED'
+} as const
+
+export type AssignmentStatus = (typeof AssignmentStatus)[keyof typeof AssignmentStatus]
+
+
 export const CalendarType = {
   EXAM: 'EXAM',
   PRACTICAL: 'PRACTICAL',

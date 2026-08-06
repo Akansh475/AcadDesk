@@ -55,6 +55,8 @@ export const ModelName = {
   Task: 'Task',
   Subject: 'Subject',
   AttendanceRecord: 'AttendanceRecord',
+  Assignment: 'Assignment',
+  Exam: 'Exam',
   Notification: 'Notification',
   AcademicCalendarEvent: 'AcademicCalendarEvent'
 } as const
@@ -132,6 +134,34 @@ export const AttendanceRecordScalarFieldEnum = {
 } as const
 
 export type AttendanceRecordScalarFieldEnum = (typeof AttendanceRecordScalarFieldEnum)[keyof typeof AttendanceRecordScalarFieldEnum]
+
+
+export const AssignmentScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  subject_id: 'subject_id',
+  title: 'title',
+  description: 'description',
+  due_date: 'due_date',
+  status: 'status',
+  created_at: 'created_at'
+} as const
+
+export type AssignmentScalarFieldEnum = (typeof AssignmentScalarFieldEnum)[keyof typeof AssignmentScalarFieldEnum]
+
+
+export const ExamScalarFieldEnum = {
+  id: 'id',
+  subject_id: 'subject_id',
+  college_id: 'college_id',
+  date: 'date',
+  time: 'time',
+  room: 'room',
+  syllabus: 'syllabus',
+  created_at: 'created_at'
+} as const
+
+export type ExamScalarFieldEnum = (typeof ExamScalarFieldEnum)[keyof typeof ExamScalarFieldEnum]
 
 
 export const NotificationScalarFieldEnum = {

@@ -28,6 +28,7 @@ model User {
   tasks         Task[]
   attendance    AttendanceRecord[]
   notifications Notification[]
+  assignments   Assignment[]
 
   @@map("users")
 }
@@ -55,7 +56,9 @@ model Subject {
   course_id  String?
   created_at DateTime @default(now())
 
-  attendance AttendanceRecord[]
+  attendance  AttendanceRecord[]
+  assignments Assignment[]
+  exams       Exam[]
 
   @@index([college_id])
   @@map("subjects")
@@ -76,6 +79,41 @@ model AttendanceRecord {
   @@index([subject_id])
   @@index([date])
   @@map("attendance_records")
+}
+
+model Assignment {
+  id          String           @id @default(uuid())
+  user_id     String
+  subject_id  String
+  title       String
+  description String?
+  due_date    DateTime
+  status      AssignmentStatus @default(PENDING)
+  created_at  DateTime         @default(now())
+
+  user    User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([due_date])
+  @@map("assignments")
+}
+
+model Exam {
+  id         String   @id @default(uuid())
+  subject_id String
+  college_id String
+  date       DateTime
+  time       String
+  room       String
+  syllabus   String?
+  created_at DateTime @default(now())
+
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  @@index([college_id])
+  @@index([date])
+  @@map("exams")
 }
 
 model Notification {
@@ -123,6 +161,11 @@ enum Priority {
 enum TaskStatus {
   PENDING
   COMPLETED
+}
+
+enum AssignmentStatus {
+  PENDING
+  SUBMITTED
 }
 
 enum CalendarType {

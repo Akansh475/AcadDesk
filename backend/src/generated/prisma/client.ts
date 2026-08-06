@@ -62,6 +62,16 @@ export type Subject = Prisma.SubjectModel
  */
 export type AttendanceRecord = Prisma.AttendanceRecordModel
 /**
+ * Model Assignment
+ * 
+ */
+export type Assignment = Prisma.AssignmentModel
+/**
+ * Model Exam
+ * 
+ */
+export type Exam = Prisma.ExamModel
+/**
  * Model Notification
  * 
  */

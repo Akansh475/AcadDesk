@@ -6,18 +6,22 @@ import {
   fetchUpcomingAssignments,
   fetchUpcomingExams,
 } from "../api/dashboardApi";
+import { fetchUser } from "../api/userApi";
 import { useNotifications } from "./useNotifications";
 
-const USER_ID = (() => {
-  try {
-    return JSON.parse(localStorage.getItem("user"))?.id ?? "u1";
-  } catch {
-    return "u1";
-  }
+const storedUser = (() => {
+  try { return JSON.parse(localStorage.getItem("user")); } catch { return null; }
 })();
+
+const USER_ID = storedUser?.id ?? "u1";
 
 export function useDashboard() {
   // ── Data queries ──
+  const userQuery = useQuery({
+    queryKey: ["user", USER_ID],
+    queryFn: () => fetchUser(USER_ID),
+  });
+
   const timetableQuery = useQuery({
     queryKey: ["timetable-today", USER_ID],
     queryFn: () => fetchTodayTimetable(USER_ID),
@@ -42,7 +46,7 @@ export function useDashboard() {
 
   // ── Drawer state ──
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [drawerType, setDrawerType] = useState(null); // "attendance" | "assignment" | "exam" | "notification"
+  const [drawerType, setDrawerType] = useState(null);
   const [drawerData, setDrawerData] = useState(null);
 
   const openDrawer = (type, data) => {
@@ -59,12 +63,9 @@ export function useDashboard() {
     }, 300);
   };
 
-  const user = (() => {
-    try { return JSON.parse(localStorage.getItem("user")); } catch { return null; }
-  })();
-
   return {
-    user,
+    user: userQuery.data ?? storedUser,
+
     timetable: timetableQuery.data ?? [],
     timetableLoading: timetableQuery.isLoading,
 
