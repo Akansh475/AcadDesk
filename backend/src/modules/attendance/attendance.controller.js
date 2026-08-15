@@ -1,42 +1,19 @@
 import prisma from "../../config/prisma.js";
+import { getAttendanceData } from "../../integrations/erp/erpAdapter.js";
 import dayjs from "dayjs";
 
 export async function getAttendance(req, res) {
   try {
     const { userId } = req.params;
 
-    const records = await prisma.attendanceRecord.findMany({
-      where: { user_id: userId },
-      include: { subject: true },
-      orderBy: { date: "asc" },
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { college_id: true },
     });
 
-    if (records.length === 0) {
-      return res.json({ summary: null, subjects: [] });
-    }
+    if (!user) return res.status(404).json({ error: "User not found" });
 
-    // Group records by subject
-    const subjectMap = {};
-    for (const record of records) {
-      const sid = record.subject_id;
-      if (!subjectMap[sid]) {
-        subjectMap[sid] = {
-          subject_id: sid,
-          subject_name: record.subject.name,
-          classes_attended: 0,
-          classes_held: 0,
-        };
-      }
-      subjectMap[sid].classes_held += 1;
-      if (record.status === "PRESENT") {
-        subjectMap[sid].classes_attended += 1;
-      }
-    }
-
-    const subjects = Object.values(subjectMap).map((s) => ({
-      ...s,
-      percentage: Math.round((s.classes_attended / s.classes_held) * 100),
-    }));
+    const subjects = await getAttendanceData(user.college_id);
 
     const total_classes_done = subjects.reduce((sum, s) => sum + s.classes_attended, 0);
     const total_classes_held = subjects.reduce((sum, s) => sum + s.classes_held, 0);
@@ -49,9 +26,15 @@ export async function getAttendance(req, res) {
         total_classes_done,
         total_classes_held,
         overall_percentage,
-        classes_remaining: 60, // static for now, comes from ERP later
+        classes_remaining: 60,
       },
-      subjects,
+      subjects: subjects.map((s, i) => ({
+        subject_id: String(i + 1),
+        subject_name: s.subject_name,
+        classes_attended: s.classes_attended,
+        classes_held: s.classes_held,
+        percentage: s.percentage,
+      })),
     });
   } catch (err) {
     console.error("getAttendance error:", err);
@@ -62,52 +45,27 @@ export async function getAttendance(req, res) {
 export async function getSubjectBreakdown(req, res) {
   try {
     const { userId, subjectId } = req.params;
+    const today = dayjs();
 
-    const records = await prisma.attendanceRecord.findMany({
-      where: { user_id: userId, subject_id: subjectId },
-      include: { subject: true },
-      orderBy: { date: "asc" },
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { college_id: true },
     });
 
-    if (records.length === 0) {
-      return res.json({
-        subject_id: subjectId,
-        subject_name: "",
-        overall: { attended: 0, held: 0, percentage: 0 },
-        monthly_breakdown: [],
-      });
-    }
+    const subjects = await getAttendanceData(user.college_id);
+    const subject = subjects[parseInt(subjectId) - 1];
 
-    const attended = records.filter((r) => r.status === "PRESENT").length;
-    const held = records.length;
-    const percentage = Math.round((attended / held) * 100);
-
-    // Group by month
-    const monthMap = {};
-    for (const record of records) {
-      const month = dayjs(record.date).format("MMMM");
-      const dateLabel = dayjs(record.date).format("D MMM");
-      if (!monthMap[month]) {
-        monthMap[month] = {
-          month,
-          dates_held: [],
-          dates_attended: [],
-          dates_absent: [],
-        };
-      }
-      monthMap[month].dates_held.push(dateLabel);
-      if (record.status === "PRESENT") {
-        monthMap[month].dates_attended.push(dateLabel);
-      } else {
-        monthMap[month].dates_absent.push(dateLabel);
-      }
-    }
+    if (!subject) return res.status(404).json({ error: "Subject not found" });
 
     res.json({
       subject_id: subjectId,
-      subject_name: records[0].subject.name,
-      overall: { attended, held, percentage },
-      monthly_breakdown: Object.values(monthMap),
+      subject_name: subject.subject_name,
+      overall: {
+        attended: subject.classes_attended,
+        held: subject.classes_held,
+        percentage: subject.percentage,
+      },
+      monthly_breakdown: [],
     });
   } catch (err) {
     console.error("getSubjectBreakdown error:", err);

@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  "dev": "nodemon --exec tsx src/server.js",
-  "start": "node src/server.js",
-  "seed": "tsx src/utils/seed.js"
-},
+    "dev": "nodemon --exec tsx src/server.js",
+    "start": "node src/server.js",
+    "seed": "tsx src/utils/seed.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -16,6 +16,7 @@
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
     "@prisma/config": "^7.8.0",
+    "axios": "^1.19.0",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dayjs": "^1.11.21",
