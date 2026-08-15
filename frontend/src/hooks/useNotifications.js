@@ -1,13 +1,17 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchNotifications, markAsRead, fetchUnreadCount } from "../api/notificationsApi";
 
-const USER_ID = (() => {
-  try {
-    return JSON.parse(localStorage.getItem("user"))?.id ?? "u1";
-  } catch {
-    return "u1";
-  }
-})();
+export function useAttendance() {
+  const USER_ID = (() => {
+    try {
+      return JSON.parse(localStorage.getItem("user"))?.id ?? "u1";
+    } catch {
+      return "u1";
+    }
+  })();
+  
+  // rest of hook...
+}
 
 const NOTIFICATIONS_KEY = ["notifications", USER_ID];
 const UNREAD_COUNT_KEY  = ["notifications-unread", USER_ID];

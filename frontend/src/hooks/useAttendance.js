@@ -2,13 +2,17 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { fetchAttendance, fetchSubjectBreakdown } from "../api/attendanceApi";
 
-const USER_ID = (() => {
-  try {
-    return JSON.parse(localStorage.getItem("user"))?.id ?? "u1";
-  } catch {
-    return "u1";
-  }
-})();
+export function useAttendance() {
+  const USER_ID = (() => {
+    try {
+      return JSON.parse(localStorage.getItem("user"))?.id ?? "u1";
+    } catch {
+      return "u1";
+    }
+  })();
+  
+  // rest of hook...
+}
 
 export function useAttendance() {
   const attendanceQuery = useQuery({
