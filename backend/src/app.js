@@ -9,6 +9,10 @@ import attendanceRoutes from "./modules/attendance/attendance.routes.js";
 import notificationRoutes from "./modules/notifications/notifications.routes.js";
 import assignmentRoutes from "./modules/assignments/assignments.routes.js";
 import examRoutes from "./modules/exams/exams.routes.js";
+import timetableRoutes from "./modules/timetable/timetable.routes.js";
+
+// add with other routes:
+
 
 dotenv.config();
 
@@ -26,7 +30,7 @@ app.use("/api/attendance", attendanceRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/assignments", assignmentRoutes);
 app.use("/api/exams", examRoutes);
-
+app.use("/api/timetable", timetableRoutes);
 // Health check
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "AcadDesk API is running" });

@@ -12,3 +12,8 @@ export async function getAttendanceData(collegeId) {
   const { data } = await axios.get(`${MOCKAPI_BASE}/attendance`);
   return data.filter((e) => e.college_id === collegeId);
 }
+
+export async function getTodayTimetable(collegeId) {
+  const { data } = await axios.get(`${MOCKAPI_BASE}/timetable`);
+  return data.filter((e) => e.college_id === collegeId);
+}
