@@ -10,11 +10,7 @@ export function useAttendance() {
       return "u1";
     }
   })();
-  
-  // rest of hook...
-}
 
-export function useAttendance() {
   const attendanceQuery = useQuery({
     queryKey: ["attendance", USER_ID],
     queryFn: () => fetchAttendance(USER_ID),
@@ -36,7 +32,7 @@ export function useAttendance() {
 
   const closeDrawer = () => {
     setDrawerOpen(false);
-    setTimeout(() => setActiveSubject(null), 300); // wait for close animation
+    setTimeout(() => setActiveSubject(null), 300);
   };
 
   const summary = attendanceQuery.data?.summary ?? null;
@@ -49,14 +45,12 @@ export function useAttendance() {
     allSafe,
     isLoading: attendanceQuery.isLoading,
     isError: attendanceQuery.isError,
-
     drawerOpen,
     activeSubject,
     breakdown: breakdownQuery.data ?? null,
     breakdownLoading: breakdownQuery.isLoading,
     breakdownError: breakdownQuery.isError,
     refetchBreakdown: breakdownQuery.refetch,
-
     openDrawer,
     closeDrawer,
   };
