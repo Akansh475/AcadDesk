@@ -391,7 +391,9 @@ export const ModelName = {
   Assignment: 'Assignment',
   Exam: 'Exam',
   Notification: 'Notification',
-  AcademicCalendarEvent: 'AcademicCalendarEvent'
+  AcademicCalendarEvent: 'AcademicCalendarEvent',
+  Goal: 'Goal',
+  RoadmapWeek: 'RoadmapWeek'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -407,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "task" | "subject" | "attendanceRecord" | "assignment" | "exam" | "notification" | "academicCalendarEvent"
+    modelProps: "user" | "task" | "subject" | "attendanceRecord" | "assignment" | "exam" | "notification" | "academicCalendarEvent" | "goal" | "roadmapWeek"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1003,6 +1005,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Goal: {
+      payload: Prisma.$GoalPayload<ExtArgs>
+      fields: Prisma.GoalFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GoalFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GoalFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        findFirst: {
+          args: Prisma.GoalFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GoalFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        findMany: {
+          args: Prisma.GoalFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>[]
+        }
+        create: {
+          args: Prisma.GoalCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        createMany: {
+          args: Prisma.GoalCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GoalCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>[]
+        }
+        delete: {
+          args: Prisma.GoalDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        update: {
+          args: Prisma.GoalUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        deleteMany: {
+          args: Prisma.GoalDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GoalUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GoalUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>[]
+        }
+        upsert: {
+          args: Prisma.GoalUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GoalPayload>
+        }
+        aggregate: {
+          args: Prisma.GoalAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGoal>
+        }
+        groupBy: {
+          args: Prisma.GoalGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoalGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GoalCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GoalCountAggregateOutputType> | number
+        }
+      }
+    }
+    RoadmapWeek: {
+      payload: Prisma.$RoadmapWeekPayload<ExtArgs>
+      fields: Prisma.RoadmapWeekFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.RoadmapWeekFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapWeekPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.RoadmapWeekFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapWeekPayload>
+        }
+        findFirst: {
+          args: Prisma.RoadmapWeekFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapWeekPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.RoadmapWeekFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapWeekPayload>
+        }
+        findMany: {
+          args: Prisma.RoadmapWeekFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapWeekPayload>[]
+        }
+        create: {
+          args: Prisma.RoadmapWeekCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapWeekPayload>
+        }
+        createMany: {
+          args: Prisma.RoadmapWeekCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.RoadmapWeekCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapWeekPayload>[]
+        }
+        delete: {
+          args: Prisma.RoadmapWeekDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapWeekPayload>
+        }
+        update: {
+          args: Prisma.RoadmapWeekUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapWeekPayload>
+        }
+        deleteMany: {
+          args: Prisma.RoadmapWeekDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.RoadmapWeekUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.RoadmapWeekUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapWeekPayload>[]
+        }
+        upsert: {
+          args: Prisma.RoadmapWeekUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$RoadmapWeekPayload>
+        }
+        aggregate: {
+          args: Prisma.RoadmapWeekAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRoadmapWeek>
+        }
+        groupBy: {
+          args: Prisma.RoadmapWeekGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RoadmapWeekGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.RoadmapWeekCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.RoadmapWeekCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1154,6 +1304,30 @@ export const AcademicCalendarEventScalarFieldEnum = {
 } as const
 
 export type AcademicCalendarEventScalarFieldEnum = (typeof AcademicCalendarEventScalarFieldEnum)[keyof typeof AcademicCalendarEventScalarFieldEnum]
+
+
+export const GoalScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  title: 'title',
+  category: 'category',
+  deadline: 'deadline',
+  created_at: 'created_at'
+} as const
+
+export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
+
+
+export const RoadmapWeekScalarFieldEnum = {
+  id: 'id',
+  goal_id: 'goal_id',
+  week_number: 'week_number',
+  focus: 'focus',
+  tasks: 'tasks',
+  created_at: 'created_at'
+} as const
+
+export type RoadmapWeekScalarFieldEnum = (typeof RoadmapWeekScalarFieldEnum)[keyof typeof RoadmapWeekScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1346,6 +1520,20 @@ export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'In
 export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
+
+/**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -1464,6 +1652,8 @@ export type GlobalOmitConfig = {
   exam?: Prisma.ExamOmit
   notification?: Prisma.NotificationOmit
   academicCalendarEvent?: Prisma.AcademicCalendarEventOmit
+  goal?: Prisma.GoalOmit
+  roadmapWeek?: Prisma.RoadmapWeekOmit
 }
 
 /* Types for Logging */

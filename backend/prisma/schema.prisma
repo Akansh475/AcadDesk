@@ -29,6 +29,7 @@ model User {
   attendance    AttendanceRecord[]
   notifications Notification[]
   assignments   Assignment[]
+  goals         Goal[]
 
   @@map("users")
 }
@@ -145,6 +146,35 @@ model AcademicCalendarEvent {
   @@index([college_id])
   @@index([date])
   @@map("academic_calendar_events")
+}
+
+model Goal {
+  id         String   @id @default(uuid())
+  user_id    String
+  title      String
+  category   String
+  deadline   DateTime
+  created_at DateTime @default(now())
+
+  user     User          @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  roadmap  RoadmapWeek[]
+
+  @@index([user_id])
+  @@map("goals")
+}
+
+model RoadmapWeek {
+  id          String   @id @default(uuid())
+  goal_id     String
+  week_number Int
+  focus       String
+  tasks       String[]
+  created_at  DateTime @default(now())
+
+  goal Goal @relation(fields: [goal_id], references: [id], onDelete: Cascade)
+
+  @@index([goal_id])
+  @@map("roadmap_weeks")
 }
 
 enum Role {

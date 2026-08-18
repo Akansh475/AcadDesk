@@ -57,3 +57,13 @@ export type Notification = Prisma.NotificationModel
  * 
  */
 export type AcademicCalendarEvent = Prisma.AcademicCalendarEventModel
+/**
+ * Model Goal
+ * 
+ */
+export type Goal = Prisma.GoalModel
+/**
+ * Model RoadmapWeek
+ * 
+ */
+export type RoadmapWeek = Prisma.RoadmapWeekModel

@@ -58,7 +58,9 @@ export const ModelName = {
   Assignment: 'Assignment',
   Exam: 'Exam',
   Notification: 'Notification',
-  AcademicCalendarEvent: 'AcademicCalendarEvent'
+  AcademicCalendarEvent: 'AcademicCalendarEvent',
+  Goal: 'Goal',
+  RoadmapWeek: 'RoadmapWeek'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -189,6 +191,30 @@ export const AcademicCalendarEventScalarFieldEnum = {
 } as const
 
 export type AcademicCalendarEventScalarFieldEnum = (typeof AcademicCalendarEventScalarFieldEnum)[keyof typeof AcademicCalendarEventScalarFieldEnum]
+
+
+export const GoalScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  title: 'title',
+  category: 'category',
+  deadline: 'deadline',
+  created_at: 'created_at'
+} as const
+
+export type GoalScalarFieldEnum = (typeof GoalScalarFieldEnum)[keyof typeof GoalScalarFieldEnum]
+
+
+export const RoadmapWeekScalarFieldEnum = {
+  id: 'id',
+  goal_id: 'goal_id',
+  week_number: 'week_number',
+  focus: 'focus',
+  tasks: 'tasks',
+  created_at: 'created_at'
+} as const
+
+export type RoadmapWeekScalarFieldEnum = (typeof RoadmapWeekScalarFieldEnum)[keyof typeof RoadmapWeekScalarFieldEnum]
 
 
 export const SortOrder = {

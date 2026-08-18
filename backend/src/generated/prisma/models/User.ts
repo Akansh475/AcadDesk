@@ -274,6 +274,7 @@ export type UserWhereInput = {
   attendance?: Prisma.AttendanceRecordListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
+  goals?: Prisma.GoalListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -297,6 +298,7 @@ export type UserOrderByWithRelationInput = {
   attendance?: Prisma.AttendanceRecordOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
   assignments?: Prisma.AssignmentOrderByRelationAggregateInput
+  goals?: Prisma.GoalOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -323,6 +325,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   attendance?: Prisma.AttendanceRecordListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
+  goals?: Prisma.GoalListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -390,6 +393,7 @@ export type UserCreateInput = {
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -413,6 +417,7 @@ export type UserUncheckedCreateInput = {
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -436,6 +441,7 @@ export type UserUpdateInput = {
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -459,6 +465,7 @@ export type UserUncheckedUpdateInput = {
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -652,6 +659,20 @@ export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationsInput, Prisma.UserUpdateWithoutNotificationsInput>, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
 }
 
+export type UserCreateNestedOneWithoutGoalsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGoalsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutGoalsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGoalsInput
+  upsert?: Prisma.UserUpsertWithoutGoalsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutGoalsInput, Prisma.UserUpdateWithoutGoalsInput>, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+}
+
 export type UserCreateWithoutTasksInput = {
   id?: string
   name: string
@@ -672,6 +693,7 @@ export type UserCreateWithoutTasksInput = {
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutTasksInput = {
@@ -694,6 +716,7 @@ export type UserUncheckedCreateWithoutTasksInput = {
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutTasksInput = {
@@ -732,6 +755,7 @@ export type UserUpdateWithoutTasksInput = {
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTasksInput = {
@@ -754,6 +778,7 @@ export type UserUncheckedUpdateWithoutTasksInput = {
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAttendanceInput = {
@@ -776,6 +801,7 @@ export type UserCreateWithoutAttendanceInput = {
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAttendanceInput = {
@@ -798,6 +824,7 @@ export type UserUncheckedCreateWithoutAttendanceInput = {
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAttendanceInput = {
@@ -836,6 +863,7 @@ export type UserUpdateWithoutAttendanceInput = {
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttendanceInput = {
@@ -858,6 +886,7 @@ export type UserUncheckedUpdateWithoutAttendanceInput = {
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAssignmentsInput = {
@@ -880,6 +909,7 @@ export type UserCreateWithoutAssignmentsInput = {
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAssignmentsInput = {
@@ -902,6 +932,7 @@ export type UserUncheckedCreateWithoutAssignmentsInput = {
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAssignmentsInput = {
@@ -940,6 +971,7 @@ export type UserUpdateWithoutAssignmentsInput = {
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignmentsInput = {
@@ -962,6 +994,7 @@ export type UserUncheckedUpdateWithoutAssignmentsInput = {
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -984,6 +1017,7 @@ export type UserCreateWithoutNotificationsInput = {
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -1006,6 +1040,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -1044,6 +1079,7 @@ export type UserUpdateWithoutNotificationsInput = {
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -1066,6 +1102,115 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutGoalsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  college_id: string
+  phone?: string | null
+  profile_photo?: string | null
+  university_roll_no?: string | null
+  student_id?: string | null
+  year?: string | null
+  section?: string | null
+  cgpa?: string | null
+  course?: string | null
+  branch?: string | null
+  created_at?: Date | string
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutGoalsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  college_id: string
+  phone?: string | null
+  profile_photo?: string | null
+  university_roll_no?: string | null
+  student_id?: string | null
+  year?: string | null
+  section?: string | null
+  cgpa?: string | null
+  course?: string | null
+  branch?: string | null
+  created_at?: Date | string
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutGoalsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+}
+
+export type UserUpsertWithoutGoalsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutGoalsInput, Prisma.UserUncheckedCreateWithoutGoalsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutGoalsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutGoalsInput, Prisma.UserUncheckedUpdateWithoutGoalsInput>
+}
+
+export type UserUpdateWithoutGoalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutGoalsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -1078,6 +1223,7 @@ export type UserCountOutputType = {
   attendance: number
   notifications: number
   assignments: number
+  goals: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1085,6 +1231,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   attendance?: boolean | UserCountOutputTypeCountAttendanceArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   assignments?: boolean | UserCountOutputTypeCountAssignmentsArgs
+  goals?: boolean | UserCountOutputTypeCountGoalsArgs
 }
 
 /**
@@ -1125,6 +1272,13 @@ export type UserCountOutputTypeCountAssignmentsArgs<ExtArgs extends runtime.Type
   where?: Prisma.AssignmentWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountGoalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.GoalWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1147,6 +1301,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   attendance?: boolean | Prisma.User$attendanceArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   assignments?: boolean | Prisma.User$assignmentsArgs<ExtArgs>
+  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1213,6 +1368,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   attendance?: boolean | Prisma.User$attendanceArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   assignments?: boolean | Prisma.User$assignmentsArgs<ExtArgs>
+  goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1225,6 +1381,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     attendance: Prisma.$AttendanceRecordPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
     assignments: Prisma.$AssignmentPayload<ExtArgs>[]
+    goals: Prisma.$GoalPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1641,6 +1798,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   attendance<T extends Prisma.User$attendanceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$attendanceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignments<T extends Prisma.User$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  goals<T extends Prisma.User$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2172,6 +2330,30 @@ export type User$assignmentsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.AssignmentScalarFieldEnum | Prisma.AssignmentScalarFieldEnum[]
+}
+
+/**
+ * User.goals
+ */
+export type User$goalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Goal
+   */
+  select?: Prisma.GoalSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Goal
+   */
+  omit?: Prisma.GoalOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GoalInclude<ExtArgs> | null
+  where?: Prisma.GoalWhereInput
+  orderBy?: Prisma.GoalOrderByWithRelationInput | Prisma.GoalOrderByWithRelationInput[]
+  cursor?: Prisma.GoalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.GoalScalarFieldEnum | Prisma.GoalScalarFieldEnum[]
 }
 
 /**
