@@ -13,17 +13,7 @@ const storedUser = (() => {
   try { return JSON.parse(localStorage.getItem("user")); } catch { return null; }
 })();
 
-export function useAttendance() {
-  const USER_ID = (() => {
-    try {
-      return JSON.parse(localStorage.getItem("user"))?.id ?? "u1";
-    } catch {
-      return "u1";
-    }
-  })();
-  
-  // rest of hook...
-}
+const USER_ID = storedUser?.id ?? "u1";
 
 export function useDashboard() {
   // ── Data queries ──
