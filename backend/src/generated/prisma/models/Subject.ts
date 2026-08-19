@@ -185,6 +185,7 @@ export type SubjectWhereInput = {
   attendance?: Prisma.AttendanceRecordListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
   exams?: Prisma.ExamListRelationFilter
+  chat_sessions?: Prisma.ChatSessionListRelationFilter
 }
 
 export type SubjectOrderByWithRelationInput = {
@@ -196,6 +197,7 @@ export type SubjectOrderByWithRelationInput = {
   attendance?: Prisma.AttendanceRecordOrderByRelationAggregateInput
   assignments?: Prisma.AssignmentOrderByRelationAggregateInput
   exams?: Prisma.ExamOrderByRelationAggregateInput
+  chat_sessions?: Prisma.ChatSessionOrderByRelationAggregateInput
 }
 
 export type SubjectWhereUniqueInput = Prisma.AtLeast<{
@@ -210,6 +212,7 @@ export type SubjectWhereUniqueInput = Prisma.AtLeast<{
   attendance?: Prisma.AttendanceRecordListRelationFilter
   assignments?: Prisma.AssignmentListRelationFilter
   exams?: Prisma.ExamListRelationFilter
+  chat_sessions?: Prisma.ChatSessionListRelationFilter
 }, "id">
 
 export type SubjectOrderByWithAggregationInput = {
@@ -243,6 +246,7 @@ export type SubjectCreateInput = {
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutSubjectInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutSubjectInput
   exams?: Prisma.ExamCreateNestedManyWithoutSubjectInput
+  chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutSubjectInput
 }
 
 export type SubjectUncheckedCreateInput = {
@@ -254,6 +258,7 @@ export type SubjectUncheckedCreateInput = {
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutSubjectInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutSubjectInput
   exams?: Prisma.ExamUncheckedCreateNestedManyWithoutSubjectInput
+  chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutSubjectInput
 }
 
 export type SubjectUpdateInput = {
@@ -265,6 +270,7 @@ export type SubjectUpdateInput = {
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutSubjectNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutSubjectNestedInput
   exams?: Prisma.ExamUpdateManyWithoutSubjectNestedInput
+  chat_sessions?: Prisma.ChatSessionUpdateManyWithoutSubjectNestedInput
 }
 
 export type SubjectUncheckedUpdateInput = {
@@ -276,6 +282,7 @@ export type SubjectUncheckedUpdateInput = {
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutSubjectNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutSubjectNestedInput
   exams?: Prisma.ExamUncheckedUpdateManyWithoutSubjectNestedInput
+  chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutSubjectNestedInput
 }
 
 export type SubjectCreateManyInput = {
@@ -331,6 +338,11 @@ export type SubjectScalarRelationFilter = {
   isNot?: Prisma.SubjectWhereInput
 }
 
+export type SubjectNullableScalarRelationFilter = {
+  is?: Prisma.SubjectWhereInput | null
+  isNot?: Prisma.SubjectWhereInput | null
+}
+
 export type SubjectCreateNestedOneWithoutAttendanceInput = {
   create?: Prisma.XOR<Prisma.SubjectCreateWithoutAttendanceInput, Prisma.SubjectUncheckedCreateWithoutAttendanceInput>
   connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutAttendanceInput
@@ -373,6 +385,22 @@ export type SubjectUpdateOneRequiredWithoutExamsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.SubjectUpdateToOneWithWhereWithoutExamsInput, Prisma.SubjectUpdateWithoutExamsInput>, Prisma.SubjectUncheckedUpdateWithoutExamsInput>
 }
 
+export type SubjectCreateNestedOneWithoutChat_sessionsInput = {
+  create?: Prisma.XOR<Prisma.SubjectCreateWithoutChat_sessionsInput, Prisma.SubjectUncheckedCreateWithoutChat_sessionsInput>
+  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutChat_sessionsInput
+  connect?: Prisma.SubjectWhereUniqueInput
+}
+
+export type SubjectUpdateOneWithoutChat_sessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.SubjectCreateWithoutChat_sessionsInput, Prisma.SubjectUncheckedCreateWithoutChat_sessionsInput>
+  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutChat_sessionsInput
+  upsert?: Prisma.SubjectUpsertWithoutChat_sessionsInput
+  disconnect?: Prisma.SubjectWhereInput | boolean
+  delete?: Prisma.SubjectWhereInput | boolean
+  connect?: Prisma.SubjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SubjectUpdateToOneWithWhereWithoutChat_sessionsInput, Prisma.SubjectUpdateWithoutChat_sessionsInput>, Prisma.SubjectUncheckedUpdateWithoutChat_sessionsInput>
+}
+
 export type SubjectCreateWithoutAttendanceInput = {
   id?: string
   name: string
@@ -381,6 +409,7 @@ export type SubjectCreateWithoutAttendanceInput = {
   created_at?: Date | string
   assignments?: Prisma.AssignmentCreateNestedManyWithoutSubjectInput
   exams?: Prisma.ExamCreateNestedManyWithoutSubjectInput
+  chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutSubjectInput
 }
 
 export type SubjectUncheckedCreateWithoutAttendanceInput = {
@@ -391,6 +420,7 @@ export type SubjectUncheckedCreateWithoutAttendanceInput = {
   created_at?: Date | string
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutSubjectInput
   exams?: Prisma.ExamUncheckedCreateNestedManyWithoutSubjectInput
+  chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutSubjectInput
 }
 
 export type SubjectCreateOrConnectWithoutAttendanceInput = {
@@ -417,6 +447,7 @@ export type SubjectUpdateWithoutAttendanceInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.AssignmentUpdateManyWithoutSubjectNestedInput
   exams?: Prisma.ExamUpdateManyWithoutSubjectNestedInput
+  chat_sessions?: Prisma.ChatSessionUpdateManyWithoutSubjectNestedInput
 }
 
 export type SubjectUncheckedUpdateWithoutAttendanceInput = {
@@ -427,6 +458,7 @@ export type SubjectUncheckedUpdateWithoutAttendanceInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutSubjectNestedInput
   exams?: Prisma.ExamUncheckedUpdateManyWithoutSubjectNestedInput
+  chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutSubjectNestedInput
 }
 
 export type SubjectCreateWithoutAssignmentsInput = {
@@ -437,6 +469,7 @@ export type SubjectCreateWithoutAssignmentsInput = {
   created_at?: Date | string
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutSubjectInput
   exams?: Prisma.ExamCreateNestedManyWithoutSubjectInput
+  chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutSubjectInput
 }
 
 export type SubjectUncheckedCreateWithoutAssignmentsInput = {
@@ -447,6 +480,7 @@ export type SubjectUncheckedCreateWithoutAssignmentsInput = {
   created_at?: Date | string
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutSubjectInput
   exams?: Prisma.ExamUncheckedCreateNestedManyWithoutSubjectInput
+  chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutSubjectInput
 }
 
 export type SubjectCreateOrConnectWithoutAssignmentsInput = {
@@ -473,6 +507,7 @@ export type SubjectUpdateWithoutAssignmentsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutSubjectNestedInput
   exams?: Prisma.ExamUpdateManyWithoutSubjectNestedInput
+  chat_sessions?: Prisma.ChatSessionUpdateManyWithoutSubjectNestedInput
 }
 
 export type SubjectUncheckedUpdateWithoutAssignmentsInput = {
@@ -483,6 +518,7 @@ export type SubjectUncheckedUpdateWithoutAssignmentsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutSubjectNestedInput
   exams?: Prisma.ExamUncheckedUpdateManyWithoutSubjectNestedInput
+  chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutSubjectNestedInput
 }
 
 export type SubjectCreateWithoutExamsInput = {
@@ -493,6 +529,7 @@ export type SubjectCreateWithoutExamsInput = {
   created_at?: Date | string
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutSubjectInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutSubjectInput
+  chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutSubjectInput
 }
 
 export type SubjectUncheckedCreateWithoutExamsInput = {
@@ -503,6 +540,7 @@ export type SubjectUncheckedCreateWithoutExamsInput = {
   created_at?: Date | string
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutSubjectInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutSubjectInput
+  chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutSubjectInput
 }
 
 export type SubjectCreateOrConnectWithoutExamsInput = {
@@ -529,6 +567,7 @@ export type SubjectUpdateWithoutExamsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutSubjectNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutSubjectNestedInput
+  chat_sessions?: Prisma.ChatSessionUpdateManyWithoutSubjectNestedInput
 }
 
 export type SubjectUncheckedUpdateWithoutExamsInput = {
@@ -539,6 +578,67 @@ export type SubjectUncheckedUpdateWithoutExamsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutSubjectNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutSubjectNestedInput
+  chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutSubjectNestedInput
+}
+
+export type SubjectCreateWithoutChat_sessionsInput = {
+  id?: string
+  name: string
+  college_id: string
+  course_id?: string | null
+  created_at?: Date | string
+  attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutSubjectInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutSubjectInput
+  exams?: Prisma.ExamCreateNestedManyWithoutSubjectInput
+}
+
+export type SubjectUncheckedCreateWithoutChat_sessionsInput = {
+  id?: string
+  name: string
+  college_id: string
+  course_id?: string | null
+  created_at?: Date | string
+  attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutSubjectInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutSubjectInput
+  exams?: Prisma.ExamUncheckedCreateNestedManyWithoutSubjectInput
+}
+
+export type SubjectCreateOrConnectWithoutChat_sessionsInput = {
+  where: Prisma.SubjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.SubjectCreateWithoutChat_sessionsInput, Prisma.SubjectUncheckedCreateWithoutChat_sessionsInput>
+}
+
+export type SubjectUpsertWithoutChat_sessionsInput = {
+  update: Prisma.XOR<Prisma.SubjectUpdateWithoutChat_sessionsInput, Prisma.SubjectUncheckedUpdateWithoutChat_sessionsInput>
+  create: Prisma.XOR<Prisma.SubjectCreateWithoutChat_sessionsInput, Prisma.SubjectUncheckedCreateWithoutChat_sessionsInput>
+  where?: Prisma.SubjectWhereInput
+}
+
+export type SubjectUpdateToOneWithWhereWithoutChat_sessionsInput = {
+  where?: Prisma.SubjectWhereInput
+  data: Prisma.XOR<Prisma.SubjectUpdateWithoutChat_sessionsInput, Prisma.SubjectUncheckedUpdateWithoutChat_sessionsInput>
+}
+
+export type SubjectUpdateWithoutChat_sessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attendance?: Prisma.AttendanceRecordUpdateManyWithoutSubjectNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutSubjectNestedInput
+  exams?: Prisma.ExamUpdateManyWithoutSubjectNestedInput
+}
+
+export type SubjectUncheckedUpdateWithoutChat_sessionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  course_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutSubjectNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutSubjectNestedInput
+  exams?: Prisma.ExamUncheckedUpdateManyWithoutSubjectNestedInput
 }
 
 
@@ -550,12 +650,14 @@ export type SubjectCountOutputType = {
   attendance: number
   assignments: number
   exams: number
+  chat_sessions: number
 }
 
 export type SubjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   attendance?: boolean | SubjectCountOutputTypeCountAttendanceArgs
   assignments?: boolean | SubjectCountOutputTypeCountAssignmentsArgs
   exams?: boolean | SubjectCountOutputTypeCountExamsArgs
+  chat_sessions?: boolean | SubjectCountOutputTypeCountChat_sessionsArgs
 }
 
 /**
@@ -589,6 +691,13 @@ export type SubjectCountOutputTypeCountExamsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.ExamWhereInput
 }
 
+/**
+ * SubjectCountOutputType without action
+ */
+export type SubjectCountOutputTypeCountChat_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ChatSessionWhereInput
+}
+
 
 export type SubjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -599,6 +708,7 @@ export type SubjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   attendance?: boolean | Prisma.Subject$attendanceArgs<ExtArgs>
   assignments?: boolean | Prisma.Subject$assignmentsArgs<ExtArgs>
   exams?: boolean | Prisma.Subject$examsArgs<ExtArgs>
+  chat_sessions?: boolean | Prisma.Subject$chat_sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.SubjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subject"]>
 
@@ -631,6 +741,7 @@ export type SubjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   attendance?: boolean | Prisma.Subject$attendanceArgs<ExtArgs>
   assignments?: boolean | Prisma.Subject$assignmentsArgs<ExtArgs>
   exams?: boolean | Prisma.Subject$examsArgs<ExtArgs>
+  chat_sessions?: boolean | Prisma.Subject$chat_sessionsArgs<ExtArgs>
   _count?: boolean | Prisma.SubjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SubjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -642,6 +753,7 @@ export type $SubjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     attendance: Prisma.$AttendanceRecordPayload<ExtArgs>[]
     assignments: Prisma.$AssignmentPayload<ExtArgs>[]
     exams: Prisma.$ExamPayload<ExtArgs>[]
+    chat_sessions: Prisma.$ChatSessionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1046,6 +1158,7 @@ export interface Prisma__SubjectClient<T, Null = never, ExtArgs extends runtime.
   attendance<T extends Prisma.Subject$attendanceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subject$attendanceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendanceRecordPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   assignments<T extends Prisma.Subject$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subject$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   exams<T extends Prisma.Subject$examsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subject$examsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ExamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  chat_sessions<T extends Prisma.Subject$chat_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subject$chat_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1542,6 +1655,30 @@ export type Subject$examsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.ExamScalarFieldEnum | Prisma.ExamScalarFieldEnum[]
+}
+
+/**
+ * Subject.chat_sessions
+ */
+export type Subject$chat_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ChatSession
+   */
+  select?: Prisma.ChatSessionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ChatSession
+   */
+  omit?: Prisma.ChatSessionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ChatSessionInclude<ExtArgs> | null
+  where?: Prisma.ChatSessionWhereInput
+  orderBy?: Prisma.ChatSessionOrderByWithRelationInput | Prisma.ChatSessionOrderByWithRelationInput[]
+  cursor?: Prisma.ChatSessionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ChatSessionScalarFieldEnum | Prisma.ChatSessionScalarFieldEnum[]
 }
 
 /**

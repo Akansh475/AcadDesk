@@ -77,3 +77,11 @@ export const NotificationType = {
 } as const
 
 export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
+
+
+export const MessageRole = {
+  USER: 'USER',
+  ASSISTANT: 'ASSISTANT'
+} as const
+
+export type MessageRole = (typeof MessageRole)[keyof typeof MessageRole]

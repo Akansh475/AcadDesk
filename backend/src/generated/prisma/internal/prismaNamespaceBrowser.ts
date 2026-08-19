@@ -60,7 +60,9 @@ export const ModelName = {
   Notification: 'Notification',
   AcademicCalendarEvent: 'AcademicCalendarEvent',
   Goal: 'Goal',
-  RoadmapWeek: 'RoadmapWeek'
+  RoadmapWeek: 'RoadmapWeek',
+  ChatSession: 'ChatSession',
+  ChatMessage: 'ChatMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -215,6 +217,28 @@ export const RoadmapWeekScalarFieldEnum = {
 } as const
 
 export type RoadmapWeekScalarFieldEnum = (typeof RoadmapWeekScalarFieldEnum)[keyof typeof RoadmapWeekScalarFieldEnum]
+
+
+export const ChatSessionScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  subject_id: 'subject_id',
+  subject_name: 'subject_name',
+  created_at: 'created_at'
+} as const
+
+export type ChatSessionScalarFieldEnum = (typeof ChatSessionScalarFieldEnum)[keyof typeof ChatSessionScalarFieldEnum]
+
+
+export const ChatMessageScalarFieldEnum = {
+  id: 'id',
+  session_id: 'session_id',
+  role: 'role',
+  content: 'content',
+  created_at: 'created_at'
+} as const
+
+export type ChatMessageScalarFieldEnum = (typeof ChatMessageScalarFieldEnum)[keyof typeof ChatMessageScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -11,6 +11,7 @@ import assignmentRoutes from "./modules/assignments/assignments.routes.js";
 import examRoutes from "./modules/exams/exams.routes.js";
 import timetableRoutes from "./modules/timetable/timetable.routes.js";
 import goalRoutes from "./modules/goals/goals.routes.js";
+import chatRoutes from "./modules/chat/chat.routes.js";
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use("/api/assignments", assignmentRoutes);
 app.use("/api/exams", examRoutes);
 app.use("/api/timetable", timetableRoutes);
 app.use("/api/goals", goalRoutes);
+app.use("/api/chat", chatRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {

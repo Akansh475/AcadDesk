@@ -91,3 +91,13 @@ export type Goal = Prisma.GoalModel
  * 
  */
 export type RoadmapWeek = Prisma.RoadmapWeekModel
+/**
+ * Model ChatSession
+ * 
+ */
+export type ChatSession = Prisma.ChatSessionModel
+/**
+ * Model ChatMessage
+ * 
+ */
+export type ChatMessage = Prisma.ChatMessageModel
