@@ -21,6 +21,7 @@ export default function StudySession() {
   } = useGoals();
 
   const [goalFormOpen, setGoalFormOpen] = useState(false);
+  const [showHistory, setShowHistory] = useState(true);
 
   // ── AI Study Chat state & hooks ──
   const {
@@ -133,13 +134,20 @@ export default function StudySession() {
 
           <div className="flex h-[680px] overflow-hidden rounded-2xl border border-surface-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
             {/* Sidebar: Session History */}
-            <div className="hidden w-56 shrink-0 border-r border-surface-200 dark:border-slate-800 sm:flex sm:flex-col">
+            <div
+              className={`hidden border-r border-surface-200 transition-all duration-300 ease-in-out dark:border-slate-800 sm:flex sm:flex-col ${
+                showHistory
+                  ? "w-56 shrink-0 opacity-100"
+                  : "w-0 overflow-hidden border-r-0 opacity-0 pointer-events-none"
+              }`}
+            >
               <SessionList
                 sessions={sessions}
                 activeSessionId={activeSessionId}
                 onSelect={selectSession}
                 onNew={() => selectSession(null)}
                 isLoading={sessionsLoading}
+                onToggleHistory={() => setShowHistory(false)}
               />
             </div>
 
@@ -163,6 +171,8 @@ export default function StudySession() {
                   onDelete={deleteSession}
                   isDeleting={isDeletingSession}
                   attendancePercentage={currentAttendancePct}
+                  showHistory={showHistory}
+                  onToggleHistory={() => setShowHistory((prev) => !prev)}
                 />
               )}
 

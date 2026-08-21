@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import { BookOpen, Plus, MessageSquare } from "lucide-react";
+import { BookOpen, Plus, MessageSquare, PanelLeftClose } from "lucide-react";
 
 export default function SessionList({
   sessions,
@@ -7,13 +7,26 @@ export default function SessionList({
   onSelect,
   onNew,
   isLoading,
+  onToggleHistory,
 }) {
   return (
     <div className="flex h-full flex-col">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-surface-200 dark:border-slate-800">
-        <h3 className="text-xs font-semibold uppercase tracking-wide text-surface-500 dark:text-slate-400">
-          Sessions
-        </h3>
+      <div className="flex items-center justify-between px-3 py-3 border-b border-surface-200 dark:border-slate-800">
+        <div className="flex items-center gap-1.5">
+          {onToggleHistory && (
+            <button
+              type="button"
+              onClick={onToggleHistory}
+              className="rounded-lg p-1 text-surface-400 hover:bg-surface-100 hover:text-surface-600 dark:hover:bg-slate-800 dark:hover:text-slate-200 transition-colors"
+              title="Hide session history"
+            >
+              <PanelLeftClose size={15} />
+            </button>
+          )}
+          <h3 className="text-xs font-semibold uppercase tracking-wide text-surface-500 dark:text-slate-400">
+            Sessions
+          </h3>
+        </div>
         <button
           type="button"
           onClick={onNew}

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Loader2, BookOpen, Trash2 } from "lucide-react";
+import { Send, Loader2, BookOpen, Trash2, PanelLeftOpen } from "lucide-react";
 import ChatMessage from "./ChatMessage";
 
 export default function ChatWindow({
@@ -10,13 +10,20 @@ export default function ChatWindow({
   onDelete,
   isDeleting,
   attendancePercentage,
+  showHistory,
+  onToggleHistory,
 }) {
   const [input, setInput] = useState("");
-  const bottomRef = useRef(null);
+  const messagesContainerRef = useRef(null);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTo({
+        top: messagesContainerRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, [messages, isSending]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,8 +43,18 @@ export default function ChatWindow({
     <div className="flex h-full flex-col">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-surface-200 px-5 py-3 dark:border-slate-800">
-        <div className="flex items-center gap-2">
-          <BookOpen size={15} className="text-primary-600" />
+        <div className="flex items-center gap-2.5">
+          {onToggleHistory && !showHistory && (
+            <button
+              type="button"
+              onClick={onToggleHistory}
+              className="rounded-lg p-1 text-surface-400 hover:bg-surface-100 hover:text-surface-700 dark:hover:bg-slate-800 dark:hover:text-slate-200 transition-colors"
+              title="Show session history"
+            >
+              <PanelLeftOpen size={16} />
+            </button>
+          )}
+          <BookOpen size={15} className="text-primary-600 shrink-0" />
           <div>
             <p className="text-sm font-semibold text-surface-800 dark:text-slate-100">
               {session?.subject_name}
@@ -57,7 +74,10 @@ export default function ChatWindow({
       </div>
 
       {/* Messages */}
-      <div className="flex-1 space-y-4 overflow-y-auto px-5 py-4">
+      <div
+        ref={messagesContainerRef}
+        className="flex-1 space-y-4 overflow-y-auto px-5 py-4"
+      >
         {messages.length === 0 && (
           <div className="flex h-full items-center justify-center">
             <div className="text-center">
@@ -89,7 +109,6 @@ export default function ChatWindow({
             </div>
           </div>
         )}
-        <div ref={bottomRef} />
       </div>
 
       {/* Input */}
