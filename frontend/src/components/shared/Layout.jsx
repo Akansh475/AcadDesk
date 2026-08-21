@@ -4,7 +4,8 @@ import Header from "./Header";
 
 const PAGE_TITLES = {
   "/dashboard": "Dashboard",
-  "/timetable": "Timetable & Goals",
+  "/timetable": "Timetable & Tasks",
+  "/study": "Study Session",
   "/attendance": "Attendance",
   "/assignments": "Assignments & Exams",
   "/notifications": "Notifications",

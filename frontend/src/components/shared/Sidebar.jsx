@@ -10,13 +10,15 @@ import {
   Sun,
   Moon,
   GraduationCap,
+  Sparkles,
 } from "lucide-react";
 
 import { useTheme } from "../../hooks/useTheme";
 
 const NAV_ITEMS = [
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/timetable", label: "Timetable & Goals", icon: CalendarClock },
+  { to: "/timetable", label: "Timetable & Tasks", icon: CalendarClock },
+  { to: "/study", label: "Study Session", icon: Sparkles },
   { to: "/attendance", label: "Attendance", icon: ClipboardCheck },
   { to: "/assignments", label: "Assignments & Exams", icon: BookOpenCheck },
   { to: "/notifications", label: "Notifications", icon: Bell },

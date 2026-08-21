@@ -6,7 +6,8 @@ import BellIcon from "./BellIcon";
 
 const PAGE_SUBTITLES = {
   "/dashboard": "Here's what's happening today",
-  "/timetable": "Manage your goals and academic calendar",
+  "/timetable": "Manage your tasks and academic calendar",
+  "/study": "AI Socratic tutor and personal study roadmaps",
   "/attendance": "Track your subject-wise attendance",
   "/assignments": "Your upcoming assignments and exams",
   "/notifications": "Your recent alerts and updates",

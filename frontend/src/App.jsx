@@ -8,10 +8,7 @@ import AttendancePage from "./pages/AttendancePage";
 import NotificationsPage from "./pages/NotificationsPage";
 import Dashboard from "./pages/Dashboard";
 import AssignmentsExams from "./pages/AssignmentsExams";
-
-
-// inside protected Layout route:
-
+import StudySession from "./pages/StudySession";
 
 function App() {
   return (
@@ -34,12 +31,12 @@ function App() {
       >
         <Route path="/" element={<Navigate to="/timetable" replace />} />
         <Route path="/timetable" element={<TimetableGoals />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/study" element={<StudySession />} />
         <Route path="/attendance" element={<AttendancePage />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/assignments" element={<AssignmentsExams />} />
         <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/login" replace />} />
