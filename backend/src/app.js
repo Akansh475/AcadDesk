@@ -12,6 +12,7 @@ import examRoutes from "./modules/exams/exams.routes.js";
 import timetableRoutes from "./modules/timetable/timetable.routes.js";
 import goalRoutes from "./modules/goals/goals.routes.js";
 import chatRoutes from "./modules/chat/chat.routes.js";
+import adminRoutes from "./modules/admin/admin.routes.js";
 
 dotenv.config();
 
@@ -32,6 +33,7 @@ app.use("/api/exams", examRoutes);
 app.use("/api/timetable", timetableRoutes);
 app.use("/api/goals", goalRoutes);
 app.use("/api/chat", chatRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Health check
 app.get("/api/health", (req, res) => {

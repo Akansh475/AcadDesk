@@ -22,6 +22,7 @@ export async function getUpcomingAssignments(req, res) {
       due_date: a.due_date,
       status: a.status,
       description: a.description,
+      marks: a.marks,
     }));
 
     res.json(result);

@@ -167,6 +167,7 @@ async function seed() {
         description: "Design a complete ER diagram for a library management system with all entities and relationships.",
         due_date: dayjs().add(2, "day").toDate(),
         status: "PENDING",
+        marks: 15,
       },
       {
         user_id: student.id,
@@ -175,6 +176,7 @@ async function seed() {
         description: "Implement Dijkstra's shortest path algorithm in C++ and demonstrate with sample input/output.",
         due_date: dayjs().add(5, "day").toDate(),
         status: "PENDING",
+        marks: 20,
       },
       {
         user_id: student.id,
@@ -183,6 +185,7 @@ async function seed() {
         description: "Write a report comparing FCFS, SJF, and Round Robin scheduling algorithms with examples.",
         due_date: dayjs().add(7, "day").toDate(),
         status: "PENDING",
+        marks: 10,
       },
     ],
   });

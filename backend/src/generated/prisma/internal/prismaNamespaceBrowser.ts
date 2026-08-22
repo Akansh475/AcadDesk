@@ -148,6 +148,7 @@ export const AssignmentScalarFieldEnum = {
   description: 'description',
   due_date: 'due_date',
   status: 'status',
+  marks: 'marks',
   created_at: 'created_at'
 } as const
 

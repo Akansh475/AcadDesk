@@ -20,8 +20,18 @@ export type AssignmentModel = runtime.Types.Result.DefaultSelection<Prisma.$Assi
 
 export type AggregateAssignment = {
   _count: AssignmentCountAggregateOutputType | null
+  _avg: AssignmentAvgAggregateOutputType | null
+  _sum: AssignmentSumAggregateOutputType | null
   _min: AssignmentMinAggregateOutputType | null
   _max: AssignmentMaxAggregateOutputType | null
+}
+
+export type AssignmentAvgAggregateOutputType = {
+  marks: number | null
+}
+
+export type AssignmentSumAggregateOutputType = {
+  marks: number | null
 }
 
 export type AssignmentMinAggregateOutputType = {
@@ -32,6 +42,7 @@ export type AssignmentMinAggregateOutputType = {
   description: string | null
   due_date: Date | null
   status: $Enums.AssignmentStatus | null
+  marks: number | null
   created_at: Date | null
 }
 
@@ -43,6 +54,7 @@ export type AssignmentMaxAggregateOutputType = {
   description: string | null
   due_date: Date | null
   status: $Enums.AssignmentStatus | null
+  marks: number | null
   created_at: Date | null
 }
 
@@ -54,10 +66,19 @@ export type AssignmentCountAggregateOutputType = {
   description: number
   due_date: number
   status: number
+  marks: number
   created_at: number
   _all: number
 }
 
+
+export type AssignmentAvgAggregateInputType = {
+  marks?: true
+}
+
+export type AssignmentSumAggregateInputType = {
+  marks?: true
+}
 
 export type AssignmentMinAggregateInputType = {
   id?: true
@@ -67,6 +88,7 @@ export type AssignmentMinAggregateInputType = {
   description?: true
   due_date?: true
   status?: true
+  marks?: true
   created_at?: true
 }
 
@@ -78,6 +100,7 @@ export type AssignmentMaxAggregateInputType = {
   description?: true
   due_date?: true
   status?: true
+  marks?: true
   created_at?: true
 }
 
@@ -89,6 +112,7 @@ export type AssignmentCountAggregateInputType = {
   description?: true
   due_date?: true
   status?: true
+  marks?: true
   created_at?: true
   _all?: true
 }
@@ -131,6 +155,18 @@ export type AssignmentAggregateArgs<ExtArgs extends runtime.Types.Extensions.Int
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: AssignmentAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: AssignmentSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: AssignmentMinAggregateInputType
@@ -161,6 +197,8 @@ export type AssignmentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
   take?: number
   skip?: number
   _count?: AssignmentCountAggregateInputType | true
+  _avg?: AssignmentAvgAggregateInputType
+  _sum?: AssignmentSumAggregateInputType
   _min?: AssignmentMinAggregateInputType
   _max?: AssignmentMaxAggregateInputType
 }
@@ -173,8 +211,11 @@ export type AssignmentGroupByOutputType = {
   description: string | null
   due_date: Date
   status: $Enums.AssignmentStatus
+  marks: number | null
   created_at: Date
   _count: AssignmentCountAggregateOutputType | null
+  _avg: AssignmentAvgAggregateOutputType | null
+  _sum: AssignmentSumAggregateOutputType | null
   _min: AssignmentMinAggregateOutputType | null
   _max: AssignmentMaxAggregateOutputType | null
 }
@@ -205,6 +246,7 @@ export type AssignmentWhereInput = {
   description?: Prisma.StringNullableFilter<"Assignment"> | string | null
   due_date?: Prisma.DateTimeFilter<"Assignment"> | Date | string
   status?: Prisma.EnumAssignmentStatusFilter<"Assignment"> | $Enums.AssignmentStatus
+  marks?: Prisma.IntNullableFilter<"Assignment"> | number | null
   created_at?: Prisma.DateTimeFilter<"Assignment"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
@@ -218,6 +260,7 @@ export type AssignmentOrderByWithRelationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   due_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  marks?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   subject?: Prisma.SubjectOrderByWithRelationInput
@@ -234,6 +277,7 @@ export type AssignmentWhereUniqueInput = Prisma.AtLeast<{
   description?: Prisma.StringNullableFilter<"Assignment"> | string | null
   due_date?: Prisma.DateTimeFilter<"Assignment"> | Date | string
   status?: Prisma.EnumAssignmentStatusFilter<"Assignment"> | $Enums.AssignmentStatus
+  marks?: Prisma.IntNullableFilter<"Assignment"> | number | null
   created_at?: Prisma.DateTimeFilter<"Assignment"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
@@ -247,10 +291,13 @@ export type AssignmentOrderByWithAggregationInput = {
   description?: Prisma.SortOrderInput | Prisma.SortOrder
   due_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  marks?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   _count?: Prisma.AssignmentCountOrderByAggregateInput
+  _avg?: Prisma.AssignmentAvgOrderByAggregateInput
   _max?: Prisma.AssignmentMaxOrderByAggregateInput
   _min?: Prisma.AssignmentMinOrderByAggregateInput
+  _sum?: Prisma.AssignmentSumOrderByAggregateInput
 }
 
 export type AssignmentScalarWhereWithAggregatesInput = {
@@ -264,6 +311,7 @@ export type AssignmentScalarWhereWithAggregatesInput = {
   description?: Prisma.StringNullableWithAggregatesFilter<"Assignment"> | string | null
   due_date?: Prisma.DateTimeWithAggregatesFilter<"Assignment"> | Date | string
   status?: Prisma.EnumAssignmentStatusWithAggregatesFilter<"Assignment"> | $Enums.AssignmentStatus
+  marks?: Prisma.IntNullableWithAggregatesFilter<"Assignment"> | number | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Assignment"> | Date | string
 }
 
@@ -273,6 +321,7 @@ export type AssignmentCreateInput = {
   description?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
+  marks?: number | null
   created_at?: Date | string
   user: Prisma.UserCreateNestedOneWithoutAssignmentsInput
   subject: Prisma.SubjectCreateNestedOneWithoutAssignmentsInput
@@ -286,6 +335,7 @@ export type AssignmentUncheckedCreateInput = {
   description?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
+  marks?: number | null
   created_at?: Date | string
 }
 
@@ -295,6 +345,7 @@ export type AssignmentUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutAssignmentsNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutAssignmentsNestedInput
@@ -308,6 +359,7 @@ export type AssignmentUncheckedUpdateInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -319,6 +371,7 @@ export type AssignmentCreateManyInput = {
   description?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
+  marks?: number | null
   created_at?: Date | string
 }
 
@@ -328,6 +381,7 @@ export type AssignmentUpdateManyMutationInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -339,6 +393,7 @@ export type AssignmentUncheckedUpdateManyInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -360,7 +415,12 @@ export type AssignmentCountOrderByAggregateInput = {
   description?: Prisma.SortOrder
   due_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  marks?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+}
+
+export type AssignmentAvgOrderByAggregateInput = {
+  marks?: Prisma.SortOrder
 }
 
 export type AssignmentMaxOrderByAggregateInput = {
@@ -371,6 +431,7 @@ export type AssignmentMaxOrderByAggregateInput = {
   description?: Prisma.SortOrder
   due_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  marks?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -382,7 +443,12 @@ export type AssignmentMinOrderByAggregateInput = {
   description?: Prisma.SortOrder
   due_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  marks?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+}
+
+export type AssignmentSumOrderByAggregateInput = {
+  marks?: Prisma.SortOrder
 }
 
 export type AssignmentCreateNestedManyWithoutUserInput = {
@@ -473,12 +539,21 @@ export type EnumAssignmentStatusFieldUpdateOperationsInput = {
   set?: $Enums.AssignmentStatus
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type AssignmentCreateWithoutUserInput = {
   id?: string
   title: string
   description?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
+  marks?: number | null
   created_at?: Date | string
   subject: Prisma.SubjectCreateNestedOneWithoutAssignmentsInput
 }
@@ -490,6 +565,7 @@ export type AssignmentUncheckedCreateWithoutUserInput = {
   description?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
+  marks?: number | null
   created_at?: Date | string
 }
 
@@ -530,6 +606,7 @@ export type AssignmentScalarWhereInput = {
   description?: Prisma.StringNullableFilter<"Assignment"> | string | null
   due_date?: Prisma.DateTimeFilter<"Assignment"> | Date | string
   status?: Prisma.EnumAssignmentStatusFilter<"Assignment"> | $Enums.AssignmentStatus
+  marks?: Prisma.IntNullableFilter<"Assignment"> | number | null
   created_at?: Prisma.DateTimeFilter<"Assignment"> | Date | string
 }
 
@@ -539,6 +616,7 @@ export type AssignmentCreateWithoutSubjectInput = {
   description?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
+  marks?: number | null
   created_at?: Date | string
   user: Prisma.UserCreateNestedOneWithoutAssignmentsInput
 }
@@ -550,6 +628,7 @@ export type AssignmentUncheckedCreateWithoutSubjectInput = {
   description?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
+  marks?: number | null
   created_at?: Date | string
 }
 
@@ -586,6 +665,7 @@ export type AssignmentCreateManyUserInput = {
   description?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
+  marks?: number | null
   created_at?: Date | string
 }
 
@@ -595,6 +675,7 @@ export type AssignmentUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subject?: Prisma.SubjectUpdateOneRequiredWithoutAssignmentsNestedInput
 }
@@ -606,6 +687,7 @@ export type AssignmentUncheckedUpdateWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -616,6 +698,7 @@ export type AssignmentUncheckedUpdateManyWithoutUserInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -626,6 +709,7 @@ export type AssignmentCreateManySubjectInput = {
   description?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
+  marks?: number | null
   created_at?: Date | string
 }
 
@@ -635,6 +719,7 @@ export type AssignmentUpdateWithoutSubjectInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutAssignmentsNestedInput
 }
@@ -646,6 +731,7 @@ export type AssignmentUncheckedUpdateWithoutSubjectInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -656,6 +742,7 @@ export type AssignmentUncheckedUpdateManyWithoutSubjectInput = {
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
+  marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -669,6 +756,7 @@ export type AssignmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   description?: boolean
   due_date?: boolean
   status?: boolean
+  marks?: boolean
   created_at?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -682,6 +770,7 @@ export type AssignmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   description?: boolean
   due_date?: boolean
   status?: boolean
+  marks?: boolean
   created_at?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -695,6 +784,7 @@ export type AssignmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   description?: boolean
   due_date?: boolean
   status?: boolean
+  marks?: boolean
   created_at?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -708,10 +798,11 @@ export type AssignmentSelectScalar = {
   description?: boolean
   due_date?: boolean
   status?: boolean
+  marks?: boolean
   created_at?: boolean
 }
 
-export type AssignmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "subject_id" | "title" | "description" | "due_date" | "status" | "created_at", ExtArgs["result"]["assignment"]>
+export type AssignmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "subject_id" | "title" | "description" | "due_date" | "status" | "marks" | "created_at", ExtArgs["result"]["assignment"]>
 export type AssignmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -739,6 +830,7 @@ export type $AssignmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     description: string | null
     due_date: Date
     status: $Enums.AssignmentStatus
+    marks: number | null
     created_at: Date
   }, ExtArgs["result"]["assignment"]>
   composites: {}
@@ -1172,6 +1264,7 @@ export interface AssignmentFieldRefs {
   readonly description: Prisma.FieldRef<"Assignment", 'String'>
   readonly due_date: Prisma.FieldRef<"Assignment", 'DateTime'>
   readonly status: Prisma.FieldRef<"Assignment", 'AssignmentStatus'>
+  readonly marks: Prisma.FieldRef<"Assignment", 'Int'>
   readonly created_at: Prisma.FieldRef<"Assignment", 'DateTime'>
 }
     

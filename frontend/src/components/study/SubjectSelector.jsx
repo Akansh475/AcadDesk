@@ -34,8 +34,8 @@ export default function SubjectSelector({ subjects, onStart, isStarting }) {
   };
 
   return (
-    <div className="flex h-full flex-col items-center justify-center px-6 py-12">
-      <div className="w-full max-w-sm">
+    <div className="flex h-full flex-col items-center justify-center px-6 py-12 overflow-y-auto">
+      <div className="w-full max-w-lg">
         <div className="mb-6 flex flex-col items-center gap-2 text-center">
           <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-100 dark:bg-primary-500/20">
             <BookOpen size={22} className="text-primary-600 dark:text-primary-400" />
@@ -43,14 +43,14 @@ export default function SubjectSelector({ subjects, onStart, isStarting }) {
           <h2 className="text-base font-semibold text-surface-800 dark:text-slate-100">
             Start a Study Session
           </h2>
-          <p className="text-xs text-surface-400">
+          <p className="text-xs text-surface-400 max-w-sm">
             Pick a subject and your AI tutor will guide you through doubts using the Socratic method.
           </p>
         </div>
 
         <div className="space-y-3">
           {!showCustom && (
-            <div className="grid grid-cols-1 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {subjectList.map((s) => {
                 const name = s.subject_name ?? s;
                 const pct = s.percentage ?? null;

@@ -90,8 +90,12 @@ model Assignment {
   subject_id  String
   title       String
   description String?
+  file_url    String?
+  file_name   String?
+  file_size   String?
   due_date    DateTime
   status      AssignmentStatus @default(PENDING)
+  marks       Int?
   created_at  DateTime         @default(now())
 
   user    User    @relation(fields: [user_id], references: [id], onDelete: Cascade)

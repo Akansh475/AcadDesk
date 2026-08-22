@@ -12,6 +12,7 @@ const mockAssignments = [
     due_date: dayjs().add(3, "day").toISOString(),
     erp_link: "https://erp.gehu.ac.in/assignments/a1",
     status: "Pending",
+    marks: 20,
   },
   {
     id: "a2",
@@ -21,6 +22,7 @@ const mockAssignments = [
     due_date: dayjs().add(7, "day").toISOString(),
     erp_link: null,
     status: "Pending",
+    marks: 10,
   },
   {
     id: "a3",
@@ -30,6 +32,7 @@ const mockAssignments = [
     due_date: dayjs().subtract(2, "day").toISOString(),
     erp_link: "https://erp.gehu.ac.in/assignments/a3",
     status: "Overdue",
+    marks: 15,
   },
   {
     id: "a4",
@@ -39,6 +42,7 @@ const mockAssignments = [
     due_date: dayjs().add(5, "day").toISOString(),
     erp_link: "https://erp.gehu.ac.in/assignments/a4",
     status: "Submitted",
+    marks: 20,
   },
   {
     id: "a5",
@@ -48,6 +52,7 @@ const mockAssignments = [
     due_date: dayjs().add(1, "day").toISOString(),
     erp_link: "https://erp.gehu.ac.in/assignments/a5",
     status: "Pending",
+    marks: 15,
   },
   {
     id: "a6",
@@ -57,6 +62,7 @@ const mockAssignments = [
     due_date: dayjs().subtract(5, "day").toISOString(),
     erp_link: "https://erp.gehu.ac.in/assignments/a6",
     status: "Submitted",
+    marks: 10,
   },
 ];
 

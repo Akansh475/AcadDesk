@@ -1409,6 +1409,7 @@ export const AssignmentScalarFieldEnum = {
   description: 'description',
   due_date: 'due_date',
   status: 'status',
+  marks: 'marks',
   created_at: 'created_at'
 } as const
 
@@ -1631,6 +1632,20 @@ export type ListEnumAssignmentStatusFieldRefInput<$PrismaModel> = FieldRefInputT
 
 
 /**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
  * Reference to a field of type 'NotificationSource'
  */
 export type EnumNotificationSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationSource'>
@@ -1676,20 +1691,6 @@ export type EnumCalendarTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$Pri
  * Reference to a field of type 'CalendarType[]'
  */
 export type ListEnumCalendarTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CalendarType[]'>
-    
-
-
-/**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 

@@ -9,6 +9,7 @@ import NotificationsPage from "./pages/NotificationsPage";
 import Dashboard from "./pages/Dashboard";
 import AssignmentsExams from "./pages/AssignmentsExams";
 import StudySession from "./pages/StudySession";
+import AdminPanel from "./pages/AdminPanel";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/notifications" element={<NotificationsPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/admin" element={<AdminPanel />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/login" replace />} />
