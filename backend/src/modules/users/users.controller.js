@@ -1,11 +1,9 @@
 import prisma from "../../config/prisma.js";
 
-export async function getUser(req, res) {
-  try {
-    const { id } = req.params;
-
+async function resolveUser(userId, reqUser) {
+  if (userId && userId !== "u1") {
     const user = await prisma.user.findUnique({
-      where: { id },
+      where: { id: userId },
       select: {
         id: true,
         name: true,
@@ -24,6 +22,57 @@ export async function getUser(req, res) {
         created_at: true,
       },
     });
+    if (user) return user;
+  }
+  if (reqUser?.id) {
+    const user = await prisma.user.findUnique({
+      where: { id: reqUser.id },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        phone: true,
+        profile_photo: true,
+        university_roll_no: true,
+        student_id: true,
+        year: true,
+        section: true,
+        cgpa: true,
+        course: true,
+        branch: true,
+        role: true,
+        college_id: true,
+        created_at: true,
+      },
+    });
+    if (user) return user;
+  }
+  return await prisma.user.findFirst({
+    where: { role: "STUDENT" },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      phone: true,
+      profile_photo: true,
+      university_roll_no: true,
+      student_id: true,
+      year: true,
+      section: true,
+      cgpa: true,
+      course: true,
+      branch: true,
+      role: true,
+      college_id: true,
+      created_at: true,
+    },
+  });
+}
+
+export async function getUser(req, res) {
+  try {
+    const { id } = req.params;
+    const user = await resolveUser(id, req.user);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });

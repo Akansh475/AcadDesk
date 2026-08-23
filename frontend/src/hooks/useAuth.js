@@ -1,20 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import apiClient from "../utils/apiClient";
 
 async function loginApi(email, password) {
-  const res = await fetch("https://acaddesk.onrender.com/api/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password }),
-  });
-
-  const data = await res.json();
-
-  if (res.status === 404) throw { code: "NO_ACCOUNT" };
-  if (res.status === 401) throw { code: "WRONG_CREDENTIALS" };
-  if (!res.ok) throw { code: "SERVER_ERROR" };
-
-  return data;
+  try {
+    const { data } = await apiClient.post("/api/auth/login", { email, password });
+    return data;
+  } catch (err) {
+    if (err.response?.status === 404) throw { code: "NO_ACCOUNT" };
+    if (err.response?.status === 401) throw { code: "WRONG_CREDENTIALS" };
+    throw { code: "SERVER_ERROR" };
+  }
 }
 
 const ERROR_MESSAGES = {

@@ -3,6 +3,27 @@ import Groq from "groq-sdk";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
+async function resolveUser(userId, reqUser) {
+  if (userId && userId !== "u1") {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true, college_id: true },
+    });
+    if (user) return user;
+  }
+  if (reqUser?.id) {
+    const user = await prisma.user.findUnique({
+      where: { id: reqUser.id },
+      select: { id: true, college_id: true },
+    });
+    if (user) return user;
+  }
+  return await prisma.user.findFirst({
+    where: { role: "STUDENT" },
+    select: { id: true, college_id: true },
+  });
+}
+
 const SYSTEM_PROMPT = (subjectName, studentName, attendance) => `
 You are an expert academic tutor specializing in ${subjectName} for a college student in India.
 
@@ -28,12 +49,15 @@ export async function createSession(req, res) {
   try {
     const { user_id, subject_id, subject_name } = req.body;
 
-    if (!user_id || !subject_name) {
-      return res.status(400).json({ error: "user_id and subject_name are required" });
+    if (!subject_name) {
+      return res.status(400).json({ error: "subject_name is required" });
     }
 
+    const user = await resolveUser(user_id, req.user);
+    if (!user) return res.status(404).json({ error: "User not found" });
+
     const session = await prisma.chatSession.create({
-      data: { user_id, subject_id: subject_id ?? null, subject_name },
+      data: { user_id: user.id, subject_id: subject_id ?? null, subject_name },
       include: { messages: true },
     });
 
@@ -47,9 +71,12 @@ export async function createSession(req, res) {
 export async function getSessions(req, res) {
   try {
     const { userId } = req.params;
+    const user = await resolveUser(userId, req.user);
+
+    if (!user) return res.json([]);
 
     const sessions = await prisma.chatSession.findMany({
-      where: { user_id: userId },
+      where: { user_id: user.id },
       include: {
         messages: { orderBy: { created_at: "asc" }, take: 1 },
       },

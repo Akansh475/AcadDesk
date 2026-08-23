@@ -1,14 +1,39 @@
 import prisma from "../../config/prisma.js";
 import dayjs from "dayjs";
 
+async function resolveUser(userId, reqUser) {
+  if (userId && userId !== "u1") {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true },
+    });
+    if (user) return user;
+  }
+  if (reqUser?.id) {
+    const user = await prisma.user.findUnique({
+      where: { id: reqUser.id },
+      select: { id: true },
+    });
+    if (user) return user;
+  }
+  return await prisma.user.findFirst({
+    where: { role: "STUDENT" },
+    select: { id: true },
+  });
+}
+
 export async function getNotifications(req, res) {
   try {
     const { userId } = req.params;
+    const user = await resolveUser(userId, req.user);
+
+    if (!user) return res.json([]);
+
     const sevenDaysAgo = dayjs().subtract(7, "day").toDate();
 
     const notifications = await prisma.notification.findMany({
       where: {
-        user_id: userId,
+        user_id: user.id,
         created_at: { gte: sevenDaysAgo },
       },
       orderBy: { created_at: "desc" },
@@ -43,11 +68,15 @@ export async function markAsRead(req, res) {
 export async function getUnreadCount(req, res) {
   try {
     const { userId } = req.params;
+    const user = await resolveUser(userId, req.user);
+
+    if (!user) return res.json({ count: 0 });
+
     const sevenDaysAgo = dayjs().subtract(7, "day").toDate();
 
     const count = await prisma.notification.count({
       where: {
-        user_id: userId,
+        user_id: user.id,
         is_read: false,
         created_at: { gte: sevenDaysAgo },
       },

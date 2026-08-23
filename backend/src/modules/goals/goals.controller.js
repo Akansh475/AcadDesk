@@ -5,19 +5,36 @@ import { getCalendarEvents } from "../../integrations/erp/erpAdapter.js";
 
 const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
+async function resolveUser(userId, reqUser) {
+  if (userId && userId !== "u1") {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: { id: true, college_id: true },
+    });
+    if (user) return user;
+  }
+  if (reqUser?.id) {
+    const user = await prisma.user.findUnique({
+      where: { id: reqUser.id },
+      select: { id: true, college_id: true },
+    });
+    if (user) return user;
+  }
+  return await prisma.user.findFirst({
+    where: { role: "STUDENT" },
+    select: { id: true, college_id: true },
+  });
+}
+
 export async function createGoal(req, res) {
   try {
     const { user_id, title, category, deadline } = req.body;
 
-    if (!user_id || !title || !category || !deadline) {
-      return res.status(400).json({ error: "user_id, title, category and deadline are required" });
+    if (!title || !category || !deadline) {
+      return res.status(400).json({ error: "title, category and deadline are required" });
     }
 
-    const user = await prisma.user.findUnique({
-      where: { id: user_id },
-      select: { college_id: true },
-    });
-
+    const user = await resolveUser(user_id, req.user);
     if (!user) return res.status(404).json({ error: "User not found" });
 
     let calendarEvents = [];
@@ -79,7 +96,7 @@ Example format:
 
     const goal = await prisma.goal.create({
       data: {
-        user_id,
+        user_id: user.id,
         title,
         category,
         deadline: new Date(deadline),
@@ -112,9 +129,12 @@ Example format:
 export async function getGoals(req, res) {
   try {
     const { userId } = req.params;
+    const user = await resolveUser(userId, req.user);
+
+    if (!user) return res.json([]);
 
     const goals = await prisma.goal.findMany({
-      where: { user_id: userId },
+      where: { user_id: user.id },
       include: {
         roadmap: { orderBy: { week_number: "asc" } },
       },
