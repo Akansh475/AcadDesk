@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Sparkles, Bot } from "lucide-react";
+import { Plus, Sparkles, Bot, HelpCircle } from "lucide-react";
 import { useGoals } from "../hooks/useGoals";
 import { useChat } from "../hooks/useChat";
 import { useAttendance } from "../hooks/useAttendance";
@@ -8,6 +8,7 @@ import GoalForm from "../components/timetable/GoalForm";
 import SessionList from "../components/study/SessionList";
 import SubjectSelector from "../components/study/SubjectSelector";
 import ChatWindow from "../components/study/ChatWindow";
+import QuestionGeneratorTab from "../components/study/QuestionGeneratorTab";
 
 export default function StudySession() {
   const [activeTab, setActiveTab] = useState("chat"); // 'chat' | 'roadmap'
@@ -68,7 +69,7 @@ export default function StudySession() {
             Study Session
           </h1>
           <p className="mt-0.5 text-xs text-surface-500 dark:text-slate-400">
-            Learn through AI Socratic tutoring or plan academic milestones with week-by-week roadmaps.
+            Learn through AI Socratic tutoring, plan milestone roadmaps, or generate theoretical exam questions from lecture notes.
           </p>
         </div>
 
@@ -103,6 +104,19 @@ export default function StudySession() {
                 {goals.length}
               </span>
             )}
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setActiveTab("questions")}
+            className={`flex items-center gap-2 rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all ${
+              activeTab === "questions"
+                ? "bg-white text-surface-900 shadow-sm dark:bg-slate-900 dark:text-white"
+                : "text-surface-600 hover:text-surface-900 dark:text-slate-400 dark:hover:text-slate-200"
+            }`}
+          >
+            <HelpCircle size={15} className={activeTab === "questions" ? "text-primary-600 dark:text-primary-400" : ""} />
+            <span>Exam Questions</span>
           </button>
         </div>
       </div>
@@ -230,6 +244,11 @@ export default function StudySession() {
             />
           )}
         </div>
+      )}
+
+      {/* ── VIEW 3: AI EXAM QUESTIONS GENERATOR ── */}
+      {activeTab === "questions" && (
+        <QuestionGeneratorTab subjects={subjects} />
       )}
 
       {/* Goal Creation Modal */}
