@@ -41,3 +41,47 @@ export const STATUS_STYLES = {
   Submitted: "bg-green-100 text-green-700 dark:bg-green-500/15 dark:text-green-400",
   Overdue: "bg-red-100 text-red-700 dark:bg-red-500/15 dark:text-red-400",
 };
+
+/**
+ * Calculates the delay penalty for an assignment.
+ * Policy: 2% deduction from total marks for every 1 day of delay.
+ *
+ * @param {number|string|null|undefined} marks - Total marks for assignment
+ * @param {string|Date} dueDate - Due date of the assignment
+ * @param {string} status - Current status ('Pending', 'Overdue', 'Submitted', etc.)
+ */
+export function calculateAssignmentPenalty(marks, dueDate, status) {
+  const isSubmitted = status === "Submitted" || status === "SUBMITTED";
+  const daysDiff = dayjs(dueDate).startOf("day").diff(dayjs().startOf("day"), "day");
+  const isOverdue = !isSubmitted && (status === "Overdue" || status === "OVERDUE" || daysDiff < 0);
+  const daysOverdue = isOverdue ? Math.max(1, Math.abs(daysDiff)) : 0;
+  const penaltyRatePerDay = 2; // 2% per day
+  const totalMarks = marks != null ? Number(marks) : null;
+
+  if (totalMarks === null || isNaN(totalMarks)) {
+    return {
+      isOverdue,
+      daysOverdue,
+      deductionPercentage: isOverdue ? daysOverdue * penaltyRatePerDay : 0,
+      deductedMarks: 0,
+      obtainableMarks: null,
+      totalMarks: null,
+      penaltyRatePerDay,
+    };
+  }
+
+  const deductionPercentage = isOverdue ? Math.min(100, daysOverdue * penaltyRatePerDay) : 0;
+  const rawDeducted = (totalMarks * deductionPercentage) / 100;
+  const deductedMarks = Number(rawDeducted.toFixed(2));
+  const obtainableMarks = Number(Math.max(0, totalMarks - rawDeducted).toFixed(2));
+
+  return {
+    isOverdue,
+    daysOverdue,
+    deductionPercentage,
+    deductedMarks,
+    obtainableMarks,
+    totalMarks,
+    penaltyRatePerDay,
+  };
+}
