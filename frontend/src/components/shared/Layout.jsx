@@ -49,15 +49,18 @@ export default function Layout() {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-slate-50 dark:bg-slate-950">
+    <div className="flex h-screen h-[100dvh] w-full overflow-hidden bg-slate-50 dark:bg-slate-950 font-sans antialiased">
+      {/* Sidebar navigation */}
       <Sidebar isCollapsed={isCollapsed} toggleSidebar={toggleSidebar} />
-      <div className="flex flex-1 flex-col min-w-0 transition-all duration-300">
+
+      {/* Main content column with header and scrollable view */}
+      <div className="flex flex-1 flex-col h-full min-w-0 overflow-hidden transition-all duration-300">
         <Header
           title={title}
           isSidebarCollapsed={isCollapsed}
           toggleSidebar={toggleSidebar}
         />
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden min-h-0 custom-scrollbar focus:outline-none">
           <Outlet />
         </main>
       </div>
