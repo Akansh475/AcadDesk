@@ -2,16 +2,23 @@ import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { fetchUser, updateUser } from "../api/userApi";
 
-const stored = localStorage.getItem("user");
-const USER_ID = stored ? JSON.parse(stored).id : null;
+function getStoredUserId() {
+  try {
+    const stored = localStorage.getItem("user");
+    return stored ? JSON.parse(stored).id : null;
+  } catch {
+    return null;
+  }
+}
 
 export function useProfile() {
   const queryClient = useQueryClient();
-  const queryKey = ["user", USER_ID];
+  const userId = getStoredUserId();
+  const queryKey = ["user", userId];
 
   const profileQuery = useQuery({
     queryKey,
-    queryFn: () => fetchUser(USER_ID),
+    queryFn: () => fetchUser(userId),
   });
 
   const [toast, setToast] = useState(null);
@@ -22,9 +29,19 @@ export function useProfile() {
   };
 
   const updateMutation = useMutation({
-    mutationFn: (payload) => updateUser(USER_ID, payload),
-    onSuccess: () => {
+    mutationFn: (payload) => updateUser(userId, payload),
+    onSuccess: (updatedData) => {
       queryClient.invalidateQueries({ queryKey });
+      try {
+        const stored = localStorage.getItem("user");
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          localStorage.setItem("user", JSON.stringify({ ...parsed, ...updatedData }));
+          window.dispatchEvent(new Event("userUpdated"));
+        }
+      } catch (e) {
+        console.error("Failed to sync localStorage user:", e);
+      }
       showToast("Profile updated successfully", "success");
     },
     onError: () => {
@@ -34,7 +51,7 @@ export function useProfile() {
 
   const validatePhone = (phone) => {
     if (!/^\d{10}$/.test(phone)) {
-      return "Enter a valid 10 digit phone number";
+      return "Enter a valid 10-digit phone number";
     }
     return null;
   };
@@ -62,21 +79,37 @@ export function useProfile() {
     const reader = new FileReader();
     return new Promise((resolve) => {
       reader.onload = async (e) => {
-        await updateMutation.mutateAsync({ profile_photo: e.target.result });
-        resolve(null);
+        try {
+          await updateMutation.mutateAsync({ profile_photo: e.target.result });
+          resolve(null);
+        } catch (err) {
+          resolve("Failed to upload photo");
+        }
       };
+      reader.onerror = () => resolve("Failed to read file");
       reader.readAsDataURL(file);
     });
+  };
+
+  const removePhoto = async () => {
+    try {
+      await updateMutation.mutateAsync({ profile_photo: null });
+      return null;
+    } catch (err) {
+      return "Failed to remove photo";
+    }
   };
 
   return {
     user: profileQuery.data,
     isLoading: profileQuery.isLoading,
     isError: profileQuery.isError,
+    refetch: profileQuery.refetch,
     isSaving: updateMutation.isPending,
     toast,
     savePhone,
     savePhoto,
+    removePhoto,
     validatePhone,
   };
 }
