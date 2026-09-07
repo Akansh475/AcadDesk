@@ -281,7 +281,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-primary-600 py-2.5 text-sm font-medium text-white shadow-md transition-all hover:bg-primary-700 hover:shadow-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70"
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-primary-600 py-2.5 text-sm font-medium text-white shadow-md transition-all hover:bg-primary-700 hover:shadow-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-70 cursor-pointer"
             >
               {isLoading ? (
                 <>
@@ -294,7 +294,36 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <p className="mt-8 text-center text-xs text-surface-400">
+          {/* Quick demo credentials */}
+          <div className="mt-6 rounded-2xl border border-surface-200/80 bg-surface-50/70 p-3.5 text-xs dark:border-slate-800 dark:bg-slate-900/60">
+            <p className="font-semibold text-surface-600 dark:text-slate-400 mb-2">Quick Demo Fill:</p>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setEmail("student@acaddesk.com");
+                  setPassword("student123");
+                  setFieldErrors({});
+                }}
+                className="flex-1 rounded-xl border border-surface-200/80 bg-white py-2 px-3 text-xs font-semibold text-surface-700 shadow-2xs hover:border-primary-300 hover:text-primary-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-primary-500 transition-colors cursor-pointer text-center"
+              >
+                Student Demo
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setEmail("admin@acaddesk.com");
+                  setPassword("admin123");
+                  setFieldErrors({});
+                }}
+                className="flex-1 rounded-xl border border-surface-200/80 bg-white py-2 px-3 text-xs font-semibold text-surface-700 shadow-2xs hover:border-primary-300 hover:text-primary-700 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-primary-500 transition-colors cursor-pointer text-center"
+              >
+                Admin Demo
+              </button>
+            </div>
+          </div>
+
+          <p className="mt-6 text-center text-xs text-surface-400">
             No account? Contact your college administrator.
           </p>
         </div>

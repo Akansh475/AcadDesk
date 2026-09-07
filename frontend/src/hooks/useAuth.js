@@ -9,14 +9,17 @@ async function loginApi(email, password) {
   } catch (err) {
     if (err.response?.status === 404) throw { code: "NO_ACCOUNT" };
     if (err.response?.status === 401) throw { code: "WRONG_CREDENTIALS" };
-    throw { code: "SERVER_ERROR" };
+    if (!err.response) throw { code: "NETWORK_ERROR" };
+    const serverMsg = err.response?.data?.error;
+    throw { code: "SERVER_ERROR", message: serverMsg };
   }
 }
 
 const ERROR_MESSAGES = {
   NO_ACCOUNT: "No account found with this email.",
   WRONG_CREDENTIALS: "Invalid email or password.",
-  SERVER_ERROR: "Something went wrong. Try again.",
+  NETWORK_ERROR: "Cannot connect to the server. Please ensure the backend server is running on port 5000.",
+  SERVER_ERROR: "Something went wrong. Please try again.",
   EMPTY_FIELDS: "Please fill in all fields.",
 };
 
@@ -46,7 +49,7 @@ export function useAuth() {
         navigate("/timetable");
       }
     } catch (err) {
-      setError(ERROR_MESSAGES[err.code] ?? ERROR_MESSAGES.SERVER_ERROR);
+      setError(err.message || ERROR_MESSAGES[err.code] || ERROR_MESSAGES.SERVER_ERROR);
     } finally {
       setIsLoading(false);
     }
