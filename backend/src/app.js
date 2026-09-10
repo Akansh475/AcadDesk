@@ -45,7 +45,7 @@ app.get("/api/health", async (req, res) => {
   let dbError = null;
 
   try {
-    const rawUrl = process.env.DATABASE_URL || "";
+    const rawUrl = (process.env.DATABASE_URL || "").trim().replace(/\s+/g, "");
     if (rawUrl) {
       const match = rawUrl.match(/@([^/:?]+)/);
       dbHost = match ? match[1] : "unknown";
