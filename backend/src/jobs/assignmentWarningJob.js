@@ -92,7 +92,39 @@ export async function processAssignmentWarnings() {
       }
     }
 
-    console.log(`[AssignmentWarningJob] Processed ${assignments.length} upcoming and ${overdueAssignments.length} overdue assignments.`);
+    // Process overdue pending goals/tasks (-3 pts)
+    const overdueTasks = await prisma.task.findMany({
+      where: {
+        status: "PENDING",
+        overdue_deducted: false,
+        due_date: { lt: todayStart },
+      },
+    });
+
+    for (const t of overdueTasks) {
+      await prisma.task.update({
+        where: { id: t.id },
+        data: { overdue_deducted: true },
+      });
+      await prisma.user.update({
+        where: { id: t.user_id },
+        data: { points: { decrement: 3 } },
+      });
+      await prisma.notification.create({
+        data: {
+          user_id: t.user_id,
+          source: "SYSTEM",
+          type: "ANNOUNCEMENT",
+          title: `Goal Overdue: ${t.title}`,
+          message: `⚠️ Your goal '${t.title}' is overdue. -3 points have been deducted from your accountability score.`,
+          is_read: false,
+        },
+      }).catch(() => {});
+    }
+
+    console.log(
+      `[AssignmentWarningJob] Processed ${assignments.length} upcoming and ${overdueAssignments.length} overdue assignments, plus ${overdueTasks.length} overdue tasks.`
+    );
   } catch (error) {
     console.error("[AssignmentWarningJob] Error running assignment warning job:", error);
   }

@@ -4,12 +4,12 @@ import { getCountdownMeta, PRIORITY_DOT_CLASSES } from "../../utils/taskHelpers"
 
 export default function TaskCard({ task, onToggleComplete, onEdit, onDelete, isBusy }) {
   const [confirmingDelete, setConfirmingDelete] = useState(false);
-  const isCompleted = task.status === "Completed";
+  const isCompleted = task.status === "Completed" || task.status === "COMPLETED";
   const countdown = getCountdownMeta(task.due_date);
 
   const countdownClasses =
     countdown.tone === "danger" && !isCompleted
-      ? "text-red-600 dark:text-red-400"
+      ? "text-red-600 dark:text-red-400 font-medium"
       : "text-slate-500 dark:text-slate-400";
 
   return (
@@ -23,10 +23,10 @@ export default function TaskCard({ task, onToggleComplete, onEdit, onDelete, isB
         aria-label={isCompleted ? "Mark as pending" : "Mark as complete"}
         onClick={() => onToggleComplete(task)}
         disabled={isBusy}
-        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-colors ${
+        className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-colors cursor-pointer ${
           isCompleted
             ? "border-primary-600 bg-primary-600 text-white"
-            : "border-slate-300 dark:border-slate-600"
+            : "border-slate-300 hover:border-primary-400 dark:border-slate-600 dark:hover:border-primary-500"
         }`}
       >
         {isCompleted && <Check size={13} strokeWidth={3} />}
@@ -35,18 +35,34 @@ export default function TaskCard({ task, onToggleComplete, onEdit, onDelete, isB
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2">
           <span
-            className={`h-2 w-2 shrink-0 rounded-full ${PRIORITY_DOT_CLASSES[task.priority]}`}
+            className={`h-2 w-2 shrink-0 rounded-full ${PRIORITY_DOT_CLASSES[task.priority] ?? "bg-slate-400"}`}
             aria-hidden="true"
           />
           <p
             className={`text-sm font-medium text-slate-800 dark:text-slate-100 ${
-              isCompleted ? "line-through" : ""
+              isCompleted ? "line-through text-slate-400 dark:text-slate-500" : ""
             }`}
           >
             {task.title}
           </p>
         </div>
-        <p className={`mt-1 text-xs ${countdownClasses}`}>{countdown.label}</p>
+        <div className="mt-1.5 flex flex-wrap items-center gap-1.5 text-xs">
+          <span className={countdownClasses}>{countdown.label}</span>
+          <span className="text-[10px] text-slate-300 dark:text-slate-700">•</span>
+          {isCompleted ? (
+            <span className="inline-flex items-center gap-0.5 rounded-md bg-emerald-50 px-1.5 py-0.5 text-[10px] font-bold text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-300">
+              +5 pts earned
+            </span>
+          ) : countdown.daysLeft < 0 ? (
+            <span className="inline-flex items-center gap-0.5 rounded-md bg-rose-50 px-1.5 py-0.5 text-[10px] font-bold text-rose-700 dark:bg-rose-950/50 dark:text-rose-300">
+              -3 pts overdue
+            </span>
+          ) : (
+            <span className="inline-flex items-center gap-0.5 rounded-md bg-amber-50 px-1.5 py-0.5 text-[10px] font-semibold text-amber-700 dark:bg-amber-950/50 dark:text-amber-300">
+              +5 pts
+            </span>
+          )}
+        </div>
       </div>
 
       {confirmingDelete ? (

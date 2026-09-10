@@ -32,6 +32,7 @@ export type TaskMinAggregateOutputType = {
   due_date: Date | null
   priority: $Enums.Priority | null
   status: $Enums.TaskStatus | null
+  overdue_deducted: boolean | null
   created_at: Date | null
 }
 
@@ -43,6 +44,7 @@ export type TaskMaxAggregateOutputType = {
   due_date: Date | null
   priority: $Enums.Priority | null
   status: $Enums.TaskStatus | null
+  overdue_deducted: boolean | null
   created_at: Date | null
 }
 
@@ -54,6 +56,7 @@ export type TaskCountAggregateOutputType = {
   due_date: number
   priority: number
   status: number
+  overdue_deducted: number
   created_at: number
   _all: number
 }
@@ -67,6 +70,7 @@ export type TaskMinAggregateInputType = {
   due_date?: true
   priority?: true
   status?: true
+  overdue_deducted?: true
   created_at?: true
 }
 
@@ -78,6 +82,7 @@ export type TaskMaxAggregateInputType = {
   due_date?: true
   priority?: true
   status?: true
+  overdue_deducted?: true
   created_at?: true
 }
 
@@ -89,6 +94,7 @@ export type TaskCountAggregateInputType = {
   due_date?: true
   priority?: true
   status?: true
+  overdue_deducted?: true
   created_at?: true
   _all?: true
 }
@@ -173,6 +179,7 @@ export type TaskGroupByOutputType = {
   due_date: Date
   priority: $Enums.Priority
   status: $Enums.TaskStatus
+  overdue_deducted: boolean
   created_at: Date
   _count: TaskCountAggregateOutputType | null
   _min: TaskMinAggregateOutputType | null
@@ -205,6 +212,7 @@ export type TaskWhereInput = {
   due_date?: Prisma.DateTimeFilter<"Task"> | Date | string
   priority?: Prisma.EnumPriorityFilter<"Task"> | $Enums.Priority
   status?: Prisma.EnumTaskStatusFilter<"Task"> | $Enums.TaskStatus
+  overdue_deducted?: Prisma.BoolFilter<"Task"> | boolean
   created_at?: Prisma.DateTimeFilter<"Task"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
@@ -217,6 +225,7 @@ export type TaskOrderByWithRelationInput = {
   due_date?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  overdue_deducted?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
 }
@@ -232,6 +241,7 @@ export type TaskWhereUniqueInput = Prisma.AtLeast<{
   due_date?: Prisma.DateTimeFilter<"Task"> | Date | string
   priority?: Prisma.EnumPriorityFilter<"Task"> | $Enums.Priority
   status?: Prisma.EnumTaskStatusFilter<"Task"> | $Enums.TaskStatus
+  overdue_deducted?: Prisma.BoolFilter<"Task"> | boolean
   created_at?: Prisma.DateTimeFilter<"Task"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
@@ -244,6 +254,7 @@ export type TaskOrderByWithAggregationInput = {
   due_date?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  overdue_deducted?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   _count?: Prisma.TaskCountOrderByAggregateInput
   _max?: Prisma.TaskMaxOrderByAggregateInput
@@ -261,6 +272,7 @@ export type TaskScalarWhereWithAggregatesInput = {
   due_date?: Prisma.DateTimeWithAggregatesFilter<"Task"> | Date | string
   priority?: Prisma.EnumPriorityWithAggregatesFilter<"Task"> | $Enums.Priority
   status?: Prisma.EnumTaskStatusWithAggregatesFilter<"Task"> | $Enums.TaskStatus
+  overdue_deducted?: Prisma.BoolWithAggregatesFilter<"Task"> | boolean
   created_at?: Prisma.DateTimeWithAggregatesFilter<"Task"> | Date | string
 }
 
@@ -271,6 +283,7 @@ export type TaskCreateInput = {
   due_date: Date | string
   priority?: $Enums.Priority
   status?: $Enums.TaskStatus
+  overdue_deducted?: boolean
   created_at?: Date | string
   user: Prisma.UserCreateNestedOneWithoutTasksInput
 }
@@ -283,6 +296,7 @@ export type TaskUncheckedCreateInput = {
   due_date: Date | string
   priority?: $Enums.Priority
   status?: $Enums.TaskStatus
+  overdue_deducted?: boolean
   created_at?: Date | string
 }
 
@@ -293,6 +307,7 @@ export type TaskUpdateInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   status?: Prisma.EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
+  overdue_deducted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutTasksNestedInput
 }
@@ -305,6 +320,7 @@ export type TaskUncheckedUpdateInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   status?: Prisma.EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
+  overdue_deducted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -316,6 +332,7 @@ export type TaskCreateManyInput = {
   due_date: Date | string
   priority?: $Enums.Priority
   status?: $Enums.TaskStatus
+  overdue_deducted?: boolean
   created_at?: Date | string
 }
 
@@ -326,6 +343,7 @@ export type TaskUpdateManyMutationInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   status?: Prisma.EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
+  overdue_deducted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -337,6 +355,7 @@ export type TaskUncheckedUpdateManyInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   status?: Prisma.EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
+  overdue_deducted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -358,6 +377,7 @@ export type TaskCountOrderByAggregateInput = {
   due_date?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  overdue_deducted?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -369,6 +389,7 @@ export type TaskMaxOrderByAggregateInput = {
   due_date?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  overdue_deducted?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -380,6 +401,7 @@ export type TaskMinOrderByAggregateInput = {
   due_date?: Prisma.SortOrder
   priority?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  overdue_deducted?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -433,6 +455,10 @@ export type EnumTaskStatusFieldUpdateOperationsInput = {
   set?: $Enums.TaskStatus
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type TaskCreateWithoutUserInput = {
   id?: string
   title: string
@@ -440,6 +466,7 @@ export type TaskCreateWithoutUserInput = {
   due_date: Date | string
   priority?: $Enums.Priority
   status?: $Enums.TaskStatus
+  overdue_deducted?: boolean
   created_at?: Date | string
 }
 
@@ -450,6 +477,7 @@ export type TaskUncheckedCreateWithoutUserInput = {
   due_date: Date | string
   priority?: $Enums.Priority
   status?: $Enums.TaskStatus
+  overdue_deducted?: boolean
   created_at?: Date | string
 }
 
@@ -490,6 +518,7 @@ export type TaskScalarWhereInput = {
   due_date?: Prisma.DateTimeFilter<"Task"> | Date | string
   priority?: Prisma.EnumPriorityFilter<"Task"> | $Enums.Priority
   status?: Prisma.EnumTaskStatusFilter<"Task"> | $Enums.TaskStatus
+  overdue_deducted?: Prisma.BoolFilter<"Task"> | boolean
   created_at?: Prisma.DateTimeFilter<"Task"> | Date | string
 }
 
@@ -500,6 +529,7 @@ export type TaskCreateManyUserInput = {
   due_date: Date | string
   priority?: $Enums.Priority
   status?: $Enums.TaskStatus
+  overdue_deducted?: boolean
   created_at?: Date | string
 }
 
@@ -510,6 +540,7 @@ export type TaskUpdateWithoutUserInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   status?: Prisma.EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
+  overdue_deducted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -520,6 +551,7 @@ export type TaskUncheckedUpdateWithoutUserInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   status?: Prisma.EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
+  overdue_deducted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -530,6 +562,7 @@ export type TaskUncheckedUpdateManyWithoutUserInput = {
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   priority?: Prisma.EnumPriorityFieldUpdateOperationsInput | $Enums.Priority
   status?: Prisma.EnumTaskStatusFieldUpdateOperationsInput | $Enums.TaskStatus
+  overdue_deducted?: Prisma.BoolFieldUpdateOperationsInput | boolean
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -543,6 +576,7 @@ export type TaskSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   due_date?: boolean
   priority?: boolean
   status?: boolean
+  overdue_deducted?: boolean
   created_at?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["task"]>
@@ -555,6 +589,7 @@ export type TaskSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   due_date?: boolean
   priority?: boolean
   status?: boolean
+  overdue_deducted?: boolean
   created_at?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["task"]>
@@ -567,6 +602,7 @@ export type TaskSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   due_date?: boolean
   priority?: boolean
   status?: boolean
+  overdue_deducted?: boolean
   created_at?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["task"]>
@@ -579,10 +615,11 @@ export type TaskSelectScalar = {
   due_date?: boolean
   priority?: boolean
   status?: boolean
+  overdue_deducted?: boolean
   created_at?: boolean
 }
 
-export type TaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "title" | "description" | "due_date" | "priority" | "status" | "created_at", ExtArgs["result"]["task"]>
+export type TaskOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "title" | "description" | "due_date" | "priority" | "status" | "overdue_deducted" | "created_at", ExtArgs["result"]["task"]>
 export type TaskInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -606,6 +643,7 @@ export type $TaskPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     due_date: Date
     priority: $Enums.Priority
     status: $Enums.TaskStatus
+    overdue_deducted: boolean
     created_at: Date
   }, ExtArgs["result"]["task"]>
   composites: {}
@@ -1038,6 +1076,7 @@ export interface TaskFieldRefs {
   readonly due_date: Prisma.FieldRef<"Task", 'DateTime'>
   readonly priority: Prisma.FieldRef<"Task", 'Priority'>
   readonly status: Prisma.FieldRef<"Task", 'TaskStatus'>
+  readonly overdue_deducted: Prisma.FieldRef<"Task", 'Boolean'>
   readonly created_at: Prisma.FieldRef<"Task", 'DateTime'>
 }
     

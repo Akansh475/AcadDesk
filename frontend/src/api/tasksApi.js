@@ -1,52 +1,41 @@
 import apiClient from "../utils/apiClient";
-import { mockTasks } from "../utils/mockData";
-
-// Mock store lives in module scope so it persists across calls during
-// this session. Swap each function body for the commented apiClient
-// call once the backend is live — the hook layer won't need to change.
-let tasks = [...mockTasks];
-const MOCK_DELAY_MS = 300;
-
-const delay = (value) =>
-  new Promise((resolve) => setTimeout(() => resolve(value), MOCK_DELAY_MS));
 
 export async function fetchTasks(userId) {
-  // const { data } = await apiClient.get(`/api/tasks/${userId}`);
-  // return data;
-  return delay(tasks.filter((t) => t.user_id === userId));
+  const { data } = await apiClient.get(`/api/tasks/${userId}`);
+  if (data && typeof data.points === "number") {
+    try {
+      const stored = JSON.parse(localStorage.getItem("user") || "{}");
+      stored.points = data.points;
+      localStorage.setItem("user", JSON.stringify(stored));
+      window.dispatchEvent(new CustomEvent("userUpdated", { detail: { points: data.points } }));
+    } catch {}
+  }
+  return data;
 }
 
 export async function createTask(payload) {
-  // const { data } = await apiClient.post("/api/tasks", payload);
-  // return data;
-  const newTask = {
-    id: `t${Date.now()}`,
-    status: "Pending",
-    created_at: new Date().toISOString(),
-    ...payload,
-  };
-  tasks = [...tasks, newTask];
-  return delay(newTask);
+  const { data } = await apiClient.post("/api/tasks", payload);
+  return data;
 }
 
 export async function updateTask(id, payload) {
-  // const { data } = await apiClient.patch(`/api/tasks/${id}`, payload);
-  // return data;
-  let updated = null;
-  tasks = tasks.map((t) => {
-    if (t.id === id) {
-      updated = { ...t, ...payload };
-      return updated;
-    }
-    return t;
-  });
-  if (!updated) throw new Error("Task not found");
-  return delay(updated);
+  const { data } = await apiClient.patch(`/api/tasks/${id}`, payload);
+  if (data && typeof data.userPoints === "number") {
+    try {
+      const stored = JSON.parse(localStorage.getItem("user") || "{}");
+      stored.points = data.userPoints;
+      localStorage.setItem("user", JSON.stringify(stored));
+      window.dispatchEvent(
+        new CustomEvent("userUpdated", {
+          detail: { points: data.userPoints, delta: data.pointsDelta },
+        })
+      );
+    } catch {}
+  }
+  return data;
 }
 
 export async function deleteTask(id) {
-  // const { data } = await apiClient.delete(`/api/tasks/${id}`);
-  // return data;
-  tasks = tasks.filter((t) => t.id !== id);
-  return delay({ success: true });
+  const { data } = await apiClient.delete(`/api/tasks/${id}`);
+  return data;
 }

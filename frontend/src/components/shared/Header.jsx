@@ -1,5 +1,6 @@
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { PanelLeft, PanelLeftOpen } from "lucide-react";
+import { PanelLeft, PanelLeftOpen, Zap } from "lucide-react";
 import BellIcon from "./BellIcon";
 
 const PAGE_SUBTITLES = {
@@ -17,6 +18,29 @@ export default function Header({ title, isSidebarCollapsed, toggleSidebar }) {
   const location = useLocation();
   const navigate = useNavigate();
   const subtitle = PAGE_SUBTITLES[location.pathname];
+
+  const [points, setPoints] = useState(() => {
+    try {
+      return JSON.parse(localStorage.getItem("user"))?.points ?? 0;
+    } catch {
+      return 0;
+    }
+  });
+
+  useEffect(() => {
+    const handleUserUpdated = (e) => {
+      try {
+        if (typeof e?.detail?.points === "number") {
+          setPoints(e.detail.points);
+        } else {
+          const u = JSON.parse(localStorage.getItem("user"));
+          if (u && typeof u.points === "number") setPoints(u.points);
+        }
+      } catch {}
+    };
+    window.addEventListener("userUpdated", handleUserUpdated);
+    return () => window.removeEventListener("userUpdated", handleUserUpdated);
+  }, []);
 
   const user = (() => {
     try {
@@ -60,8 +84,27 @@ export default function Header({ title, isSidebarCollapsed, toggleSidebar }) {
         )}
       </div>
 
-      {/* Right side — bell + avatar */}
-      <div className="flex items-center gap-2.5">
+      {/* Right side — points + bell + avatar */}
+      <div className="flex items-center gap-2 sm:gap-2.5">
+        <div
+          className={`flex items-center gap-1.5 rounded-xl border px-2.5 py-1 text-xs font-bold shadow-2xs transition-all ${
+            points >= 0
+              ? "border-amber-200/90 bg-amber-50/90 text-amber-700 dark:border-amber-800/40 dark:bg-amber-950/40 dark:text-amber-300"
+              : "border-rose-200/90 bg-rose-50/90 text-rose-700 dark:border-rose-800/40 dark:bg-rose-950/40 dark:text-rose-300"
+          }`}
+          title="Your Accountability Score: +5 pts completed on time, -3 pts overdue"
+        >
+          <Zap
+            size={13}
+            className={
+              points >= 0
+                ? "fill-amber-500 text-amber-500 shrink-0"
+                : "fill-rose-500 text-rose-500 shrink-0"
+            }
+          />
+          <span>{points} pts</span>
+        </div>
+
         <BellIcon />
 
         <button

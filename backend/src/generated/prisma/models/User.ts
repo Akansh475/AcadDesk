@@ -20,8 +20,18 @@ export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayloa
 
 export type AggregateUser = {
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
+}
+
+export type UserAvgAggregateOutputType = {
+  points: number | null
+}
+
+export type UserSumAggregateOutputType = {
+  points: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -40,6 +50,7 @@ export type UserMinAggregateOutputType = {
   cgpa: string | null
   course: string | null
   branch: string | null
+  points: number | null
   created_at: Date | null
 }
 
@@ -59,6 +70,7 @@ export type UserMaxAggregateOutputType = {
   cgpa: string | null
   course: string | null
   branch: string | null
+  points: number | null
   created_at: Date | null
 }
 
@@ -78,10 +90,19 @@ export type UserCountAggregateOutputType = {
   cgpa: number
   course: number
   branch: number
+  points: number
   created_at: number
   _all: number
 }
 
+
+export type UserAvgAggregateInputType = {
+  points?: true
+}
+
+export type UserSumAggregateInputType = {
+  points?: true
+}
 
 export type UserMinAggregateInputType = {
   id?: true
@@ -99,6 +120,7 @@ export type UserMinAggregateInputType = {
   cgpa?: true
   course?: true
   branch?: true
+  points?: true
   created_at?: true
 }
 
@@ -118,6 +140,7 @@ export type UserMaxAggregateInputType = {
   cgpa?: true
   course?: true
   branch?: true
+  points?: true
   created_at?: true
 }
 
@@ -137,6 +160,7 @@ export type UserCountAggregateInputType = {
   cgpa?: true
   course?: true
   branch?: true
+  points?: true
   created_at?: true
   _all?: true
 }
@@ -179,6 +203,18 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: UserAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: UserSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserMinAggregateInputType
@@ -209,6 +245,8 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: UserCountAggregateInputType | true
+  _avg?: UserAvgAggregateInputType
+  _sum?: UserSumAggregateInputType
   _min?: UserMinAggregateInputType
   _max?: UserMaxAggregateInputType
 }
@@ -229,8 +267,11 @@ export type UserGroupByOutputType = {
   cgpa: string | null
   course: string | null
   branch: string | null
+  points: number
   created_at: Date
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
@@ -269,6 +310,7 @@ export type UserWhereInput = {
   cgpa?: Prisma.StringNullableFilter<"User"> | string | null
   course?: Prisma.StringNullableFilter<"User"> | string | null
   branch?: Prisma.StringNullableFilter<"User"> | string | null
+  points?: Prisma.IntFilter<"User"> | number
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   tasks?: Prisma.TaskListRelationFilter
   attendance?: Prisma.AttendanceRecordListRelationFilter
@@ -294,6 +336,7 @@ export type UserOrderByWithRelationInput = {
   cgpa?: Prisma.SortOrderInput | Prisma.SortOrder
   course?: Prisma.SortOrderInput | Prisma.SortOrder
   branch?: Prisma.SortOrderInput | Prisma.SortOrder
+  points?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   tasks?: Prisma.TaskOrderByRelationAggregateInput
   attendance?: Prisma.AttendanceRecordOrderByRelationAggregateInput
@@ -322,6 +365,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   cgpa?: Prisma.StringNullableFilter<"User"> | string | null
   course?: Prisma.StringNullableFilter<"User"> | string | null
   branch?: Prisma.StringNullableFilter<"User"> | string | null
+  points?: Prisma.IntFilter<"User"> | number
   created_at?: Prisma.DateTimeFilter<"User"> | Date | string
   tasks?: Prisma.TaskListRelationFilter
   attendance?: Prisma.AttendanceRecordListRelationFilter
@@ -347,10 +391,13 @@ export type UserOrderByWithAggregationInput = {
   cgpa?: Prisma.SortOrderInput | Prisma.SortOrder
   course?: Prisma.SortOrderInput | Prisma.SortOrder
   branch?: Prisma.SortOrderInput | Prisma.SortOrder
+  points?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
+  _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
+  _sum?: Prisma.UserSumOrderByAggregateInput
 }
 
 export type UserScalarWhereWithAggregatesInput = {
@@ -372,6 +419,7 @@ export type UserScalarWhereWithAggregatesInput = {
   cgpa?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   course?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   branch?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
+  points?: Prisma.IntWithAggregatesFilter<"User"> | number
   created_at?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
 
@@ -391,6 +439,7 @@ export type UserCreateInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
@@ -416,6 +465,7 @@ export type UserUncheckedCreateInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
@@ -441,6 +491,7 @@ export type UserUpdateInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
@@ -466,6 +517,7 @@ export type UserUncheckedUpdateInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
@@ -491,6 +543,7 @@ export type UserCreateManyInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
 }
 
@@ -510,6 +563,7 @@ export type UserUpdateManyMutationInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -529,6 +583,7 @@ export type UserUncheckedUpdateManyInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -548,7 +603,12 @@ export type UserCountOrderByAggregateInput = {
   cgpa?: Prisma.SortOrder
   course?: Prisma.SortOrder
   branch?: Prisma.SortOrder
+  points?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+}
+
+export type UserAvgOrderByAggregateInput = {
+  points?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -567,6 +627,7 @@ export type UserMaxOrderByAggregateInput = {
   cgpa?: Prisma.SortOrder
   course?: Prisma.SortOrder
   branch?: Prisma.SortOrder
+  points?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
 }
 
@@ -586,7 +647,12 @@ export type UserMinOrderByAggregateInput = {
   cgpa?: Prisma.SortOrder
   course?: Prisma.SortOrder
   branch?: Prisma.SortOrder
+  points?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
+}
+
+export type UserSumOrderByAggregateInput = {
+  points?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -604,6 +670,14 @@ export type EnumRoleFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -710,6 +784,7 @@ export type UserCreateWithoutTasksInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -734,6 +809,7 @@ export type UserUncheckedCreateWithoutTasksInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -774,6 +850,7 @@ export type UserUpdateWithoutTasksInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -798,6 +875,7 @@ export type UserUncheckedUpdateWithoutTasksInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -822,6 +900,7 @@ export type UserCreateWithoutAttendanceInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
@@ -846,6 +925,7 @@ export type UserUncheckedCreateWithoutAttendanceInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
@@ -886,6 +966,7 @@ export type UserUpdateWithoutAttendanceInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
@@ -910,6 +991,7 @@ export type UserUncheckedUpdateWithoutAttendanceInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -934,6 +1016,7 @@ export type UserCreateWithoutAssignmentsInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
@@ -958,6 +1041,7 @@ export type UserUncheckedCreateWithoutAssignmentsInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
@@ -998,6 +1082,7 @@ export type UserUpdateWithoutAssignmentsInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
@@ -1022,6 +1107,7 @@ export type UserUncheckedUpdateWithoutAssignmentsInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
@@ -1046,6 +1132,7 @@ export type UserCreateWithoutNotificationsInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
@@ -1070,6 +1157,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
@@ -1110,6 +1198,7 @@ export type UserUpdateWithoutNotificationsInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
@@ -1134,6 +1223,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
@@ -1158,6 +1248,7 @@ export type UserCreateWithoutGoalsInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
@@ -1182,6 +1273,7 @@ export type UserUncheckedCreateWithoutGoalsInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
@@ -1222,6 +1314,7 @@ export type UserUpdateWithoutGoalsInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
@@ -1246,6 +1339,7 @@ export type UserUncheckedUpdateWithoutGoalsInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
@@ -1270,6 +1364,7 @@ export type UserCreateWithoutChat_sessionsInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
@@ -1294,6 +1389,7 @@ export type UserUncheckedCreateWithoutChat_sessionsInput = {
   cgpa?: string | null
   course?: string | null
   branch?: string | null
+  points?: number
   created_at?: Date | string
   tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
   attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
@@ -1334,6 +1430,7 @@ export type UserUpdateWithoutChat_sessionsInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
@@ -1358,6 +1455,7 @@ export type UserUncheckedUpdateWithoutChat_sessionsInput = {
   cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
   attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
@@ -1458,6 +1556,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   cgpa?: boolean
   course?: boolean
   branch?: boolean
+  points?: boolean
   created_at?: boolean
   tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
   attendance?: boolean | Prisma.User$attendanceArgs<ExtArgs>
@@ -1484,6 +1583,7 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   cgpa?: boolean
   course?: boolean
   branch?: boolean
+  points?: boolean
   created_at?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -1503,6 +1603,7 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   cgpa?: boolean
   course?: boolean
   branch?: boolean
+  points?: boolean
   created_at?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -1522,10 +1623,11 @@ export type UserSelectScalar = {
   cgpa?: boolean
   course?: boolean
   branch?: boolean
+  points?: boolean
   created_at?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "college_id" | "phone" | "profile_photo" | "university_roll_no" | "student_id" | "year" | "section" | "cgpa" | "course" | "branch" | "created_at", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "college_id" | "phone" | "profile_photo" | "university_roll_no" | "student_id" | "year" | "section" | "cgpa" | "course" | "branch" | "points" | "created_at", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tasks?: boolean | Prisma.User$tasksArgs<ExtArgs>
   attendance?: boolean | Prisma.User$attendanceArgs<ExtArgs>
@@ -1564,6 +1666,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     cgpa: string | null
     course: string | null
     branch: string | null
+    points: number
     created_at: Date
   }, ExtArgs["result"]["user"]>
   composites: {}
@@ -2009,6 +2112,7 @@ export interface UserFieldRefs {
   readonly cgpa: Prisma.FieldRef<"User", 'String'>
   readonly course: Prisma.FieldRef<"User", 'String'>
   readonly branch: Prisma.FieldRef<"User", 'String'>
+  readonly points: Prisma.FieldRef<"User", 'Int'>
   readonly created_at: Prisma.FieldRef<"User", 'DateTime'>
 }
     

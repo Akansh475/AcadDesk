@@ -1,8 +1,9 @@
-import { Plus } from "lucide-react";
+import { Plus, Zap } from "lucide-react";
 import TaskCard from "./TaskCard";
 
 export default function GoalsColumn({
   tasks,
+  points,
   isLoading,
   isError,
   error,
@@ -13,17 +14,41 @@ export default function GoalsColumn({
   onDelete,
   isMutating,
 }) {
-  const allCompleted = tasks.length > 0 && tasks.every((t) => t.status === "Completed");
+  const allCompleted =
+    tasks.length > 0 &&
+    tasks.every((t) => t.status === "Completed" || t.status === "COMPLETED");
 
   return (
     <section className="w-full">
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-200">My Goals</h2>
+        <div className="flex items-center gap-2.5">
+          <h2 className="text-sm font-semibold text-slate-700 dark:text-slate-200">My Goals</h2>
+          {typeof points === "number" && (
+            <div
+              className={`flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-bold shadow-2xs border transition-all ${
+                points >= 0
+                  ? "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900/50 dark:bg-amber-950/40 dark:text-amber-300"
+                  : "border-rose-200 bg-rose-50 text-rose-700 dark:border-rose-900/50 dark:bg-rose-950/40 dark:text-rose-300"
+              }`}
+              title="Productivity Score: +5 pts per completed goal, -3 pts per overdue goal"
+            >
+              <Zap
+                size={13}
+                className={
+                  points >= 0
+                    ? "fill-amber-500 text-amber-500"
+                    : "fill-rose-500 text-rose-500"
+                }
+              />
+              <span>{points} pts</span>
+            </div>
+          )}
+        </div>
         <button
           type="button"
           onClick={onAddClick}
           disabled={isAtLimit}
-          className="flex items-center gap-1.5 rounded-lg bg-primary-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-primary-700 disabled:cursor-not-allowed disabled:bg-slate-300 dark:disabled:bg-slate-700"
+          className="flex items-center gap-1.5 rounded-lg bg-primary-600 px-3 py-1.5 text-xs font-medium text-white hover:bg-primary-700 disabled:cursor-not-allowed disabled:bg-slate-300 dark:disabled:bg-slate-700 cursor-pointer"
         >
           <Plus size={14} />
           Add Task

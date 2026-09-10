@@ -31,12 +31,22 @@ export function isPastDate(date) {
   return dayjs(date).startOf("day").isBefore(dayjs().startOf("day"));
 }
 
-export const PRIORITY_ORDER = { High: 0, Medium: 1, Low: 2 };
+export const PRIORITY_ORDER = {
+  High: 0,
+  Medium: 1,
+  Low: 2,
+  HIGH: 0,
+  MEDIUM: 1,
+  LOW: 2,
+};
 
 export const PRIORITY_DOT_CLASSES = {
   High: "bg-red-500",
   Medium: "bg-yellow-500",
   Low: "bg-green-500",
+  HIGH: "bg-red-500",
+  MEDIUM: "bg-yellow-500",
+  LOW: "bg-green-500",
 };
 
 export const CALENDAR_BADGE_CLASSES = {
@@ -46,17 +56,24 @@ export const CALENDAR_BADGE_CLASSES = {
   holiday: "bg-green-100 text-green-700 dark:bg-green-500/15 dark:text-green-400",
 };
 
+export function isTaskCompleted(status) {
+  return status === "Completed" || status === "COMPLETED";
+}
+
 /** Sorts tasks: pending first (by priority, then due date), completed last. */
 export function sortTasks(tasks) {
   return [...tasks].sort((a, b) => {
-    if (a.status !== b.status) {
-      return a.status === "Completed" ? 1 : -1;
+    const aComp = isTaskCompleted(a.status);
+    const bComp = isTaskCompleted(b.status);
+    if (aComp !== bComp) {
+      return aComp ? 1 : -1;
     }
-    if (a.status === "Completed") {
-      // most recently completed-feeling order isn't specified; fall back to due date
+    if (aComp) {
       return dayjs(a.due_date).diff(dayjs(b.due_date));
     }
-    const priorityDiff = PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority];
+    const aPrio = PRIORITY_ORDER[a.priority] ?? 1;
+    const bPrio = PRIORITY_ORDER[b.priority] ?? 1;
+    const priorityDiff = aPrio - bPrio;
     if (priorityDiff !== 0) return priorityDiff;
     return dayjs(a.due_date).diff(dayjs(b.due_date));
   });

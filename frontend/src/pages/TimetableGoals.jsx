@@ -18,7 +18,7 @@ const CURRENT_COLLEGE_ID = "c1";
 
 export default function TimetableGoals() {
   const {
-    tasks, isLoading: tasksLoading, isError: tasksError, error: tasksErrorObj,
+    tasks, points, isLoading: tasksLoading, isError: tasksError, error: tasksErrorObj,
     isAtLimit, addTask, isAdding, editTask, isEditing, toggleComplete, removeTask,
   } = useTasks(CURRENT_USER_ID);
 
@@ -58,6 +58,7 @@ export default function TimetableGoals() {
         <div className="lg:w-[40%]">
           <GoalsColumn
             tasks={tasks}
+            points={points}
             isLoading={tasksLoading}
             isError={tasksError}
             error={tasksErrorObj}

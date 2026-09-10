@@ -36,12 +36,15 @@ export function useTasks(userId) {
     onSuccess: invalidate,
   });
 
-  const tasks = tasksQuery.data ?? [];
-  const sortedTasks = sortTasks(tasks);
-  const isAtLimit = tasks.length >= TASK_LIMIT;
+  const rawData = tasksQuery.data;
+  const rawTasks = Array.isArray(rawData) ? rawData : (rawData?.tasks ?? []);
+  const points = typeof rawData?.points === "number" ? rawData.points : undefined;
+  const sortedTasks = sortTasks(rawTasks);
+  const isAtLimit = rawTasks.length >= TASK_LIMIT;
 
   return {
     tasks: sortedTasks,
+    points,
     isLoading: tasksQuery.isLoading,
     isError: tasksQuery.isError,
     error: tasksQuery.error,
@@ -53,11 +56,13 @@ export function useTasks(userId) {
     editTask: editTaskMutation.mutateAsync,
     isEditing: editTaskMutation.isPending,
 
-    toggleComplete: (id, currentStatus) =>
-      toggleCompleteMutation.mutateAsync({
+    toggleComplete: (id, currentStatus) => {
+      const isComp = currentStatus === "Completed" || currentStatus === "COMPLETED";
+      return toggleCompleteMutation.mutateAsync({
         id,
-        status: currentStatus === "Completed" ? "Pending" : "Completed",
-      }),
+        status: isComp ? "PENDING" : "COMPLETED",
+      });
+    },
 
     removeTask: removeTaskMutation.mutateAsync,
     isRemoving: removeTaskMutation.isPending,

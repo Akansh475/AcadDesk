@@ -1358,6 +1358,7 @@ export const UserScalarFieldEnum = {
   cgpa: 'cgpa',
   course: 'course',
   branch: 'branch',
+  points: 'points',
   created_at: 'created_at'
 } as const
 
@@ -1372,6 +1373,7 @@ export const TaskScalarFieldEnum = {
   due_date: 'due_date',
   priority: 'priority',
   status: 'status',
+  overdue_deducted: 'overdue_deducted',
   created_at: 'created_at'
 } as const
 
@@ -1407,6 +1409,9 @@ export const AssignmentScalarFieldEnum = {
   subject_id: 'subject_id',
   title: 'title',
   description: 'description',
+  file_url: 'file_url',
+  file_name: 'file_name',
+  file_size: 'file_size',
   due_date: 'due_date',
   status: 'status',
   marks: 'marks',
@@ -1562,6 +1567,20 @@ export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
+ * Reference to a field of type 'Int'
+ */
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+/**
+ * Reference to a field of type 'Int[]'
+ */
+export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+/**
  * Reference to a field of type 'DateTime'
  */
 export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -1604,6 +1623,13 @@ export type ListEnumTaskStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$P
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'AttendanceStatus'
  */
 export type EnumAttendanceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AttendanceStatus'>
@@ -1632,20 +1658,6 @@ export type ListEnumAssignmentStatusFieldRefInput<$PrismaModel> = FieldRefInputT
 
 
 /**
- * Reference to a field of type 'Int'
- */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
-
-/**
- * Reference to a field of type 'Int[]'
- */
-export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
-
-
-/**
  * Reference to a field of type 'NotificationSource'
  */
 export type EnumNotificationSourceFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationSource'>
@@ -1670,13 +1682,6 @@ export type EnumNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'NotificationType[]'
  */
 export type ListEnumNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationType[]'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

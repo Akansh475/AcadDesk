@@ -40,6 +40,9 @@ export type AssignmentMinAggregateOutputType = {
   subject_id: string | null
   title: string | null
   description: string | null
+  file_url: string | null
+  file_name: string | null
+  file_size: string | null
   due_date: Date | null
   status: $Enums.AssignmentStatus | null
   marks: number | null
@@ -52,6 +55,9 @@ export type AssignmentMaxAggregateOutputType = {
   subject_id: string | null
   title: string | null
   description: string | null
+  file_url: string | null
+  file_name: string | null
+  file_size: string | null
   due_date: Date | null
   status: $Enums.AssignmentStatus | null
   marks: number | null
@@ -64,6 +70,9 @@ export type AssignmentCountAggregateOutputType = {
   subject_id: number
   title: number
   description: number
+  file_url: number
+  file_name: number
+  file_size: number
   due_date: number
   status: number
   marks: number
@@ -86,6 +95,9 @@ export type AssignmentMinAggregateInputType = {
   subject_id?: true
   title?: true
   description?: true
+  file_url?: true
+  file_name?: true
+  file_size?: true
   due_date?: true
   status?: true
   marks?: true
@@ -98,6 +110,9 @@ export type AssignmentMaxAggregateInputType = {
   subject_id?: true
   title?: true
   description?: true
+  file_url?: true
+  file_name?: true
+  file_size?: true
   due_date?: true
   status?: true
   marks?: true
@@ -110,6 +125,9 @@ export type AssignmentCountAggregateInputType = {
   subject_id?: true
   title?: true
   description?: true
+  file_url?: true
+  file_name?: true
+  file_size?: true
   due_date?: true
   status?: true
   marks?: true
@@ -209,6 +227,9 @@ export type AssignmentGroupByOutputType = {
   subject_id: string
   title: string
   description: string | null
+  file_url: string | null
+  file_name: string | null
+  file_size: string | null
   due_date: Date
   status: $Enums.AssignmentStatus
   marks: number | null
@@ -244,6 +265,9 @@ export type AssignmentWhereInput = {
   subject_id?: Prisma.StringFilter<"Assignment"> | string
   title?: Prisma.StringFilter<"Assignment"> | string
   description?: Prisma.StringNullableFilter<"Assignment"> | string | null
+  file_url?: Prisma.StringNullableFilter<"Assignment"> | string | null
+  file_name?: Prisma.StringNullableFilter<"Assignment"> | string | null
+  file_size?: Prisma.StringNullableFilter<"Assignment"> | string | null
   due_date?: Prisma.DateTimeFilter<"Assignment"> | Date | string
   status?: Prisma.EnumAssignmentStatusFilter<"Assignment"> | $Enums.AssignmentStatus
   marks?: Prisma.IntNullableFilter<"Assignment"> | number | null
@@ -258,6 +282,9 @@ export type AssignmentOrderByWithRelationInput = {
   subject_id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  file_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  file_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  file_size?: Prisma.SortOrderInput | Prisma.SortOrder
   due_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
   marks?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -275,6 +302,9 @@ export type AssignmentWhereUniqueInput = Prisma.AtLeast<{
   subject_id?: Prisma.StringFilter<"Assignment"> | string
   title?: Prisma.StringFilter<"Assignment"> | string
   description?: Prisma.StringNullableFilter<"Assignment"> | string | null
+  file_url?: Prisma.StringNullableFilter<"Assignment"> | string | null
+  file_name?: Prisma.StringNullableFilter<"Assignment"> | string | null
+  file_size?: Prisma.StringNullableFilter<"Assignment"> | string | null
   due_date?: Prisma.DateTimeFilter<"Assignment"> | Date | string
   status?: Prisma.EnumAssignmentStatusFilter<"Assignment"> | $Enums.AssignmentStatus
   marks?: Prisma.IntNullableFilter<"Assignment"> | number | null
@@ -289,6 +319,9 @@ export type AssignmentOrderByWithAggregationInput = {
   subject_id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  file_url?: Prisma.SortOrderInput | Prisma.SortOrder
+  file_name?: Prisma.SortOrderInput | Prisma.SortOrder
+  file_size?: Prisma.SortOrderInput | Prisma.SortOrder
   due_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
   marks?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -309,6 +342,9 @@ export type AssignmentScalarWhereWithAggregatesInput = {
   subject_id?: Prisma.StringWithAggregatesFilter<"Assignment"> | string
   title?: Prisma.StringWithAggregatesFilter<"Assignment"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Assignment"> | string | null
+  file_url?: Prisma.StringNullableWithAggregatesFilter<"Assignment"> | string | null
+  file_name?: Prisma.StringNullableWithAggregatesFilter<"Assignment"> | string | null
+  file_size?: Prisma.StringNullableWithAggregatesFilter<"Assignment"> | string | null
   due_date?: Prisma.DateTimeWithAggregatesFilter<"Assignment"> | Date | string
   status?: Prisma.EnumAssignmentStatusWithAggregatesFilter<"Assignment"> | $Enums.AssignmentStatus
   marks?: Prisma.IntNullableWithAggregatesFilter<"Assignment"> | number | null
@@ -319,6 +355,9 @@ export type AssignmentCreateInput = {
   id?: string
   title: string
   description?: string | null
+  file_url?: string | null
+  file_name?: string | null
+  file_size?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
   marks?: number | null
@@ -333,6 +372,9 @@ export type AssignmentUncheckedCreateInput = {
   subject_id: string
   title: string
   description?: string | null
+  file_url?: string | null
+  file_name?: string | null
+  file_size?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
   marks?: number | null
@@ -343,6 +385,9 @@ export type AssignmentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
   marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -357,6 +402,9 @@ export type AssignmentUncheckedUpdateInput = {
   subject_id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
   marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -369,6 +417,9 @@ export type AssignmentCreateManyInput = {
   subject_id: string
   title: string
   description?: string | null
+  file_url?: string | null
+  file_name?: string | null
+  file_size?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
   marks?: number | null
@@ -379,6 +430,9 @@ export type AssignmentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
   marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -391,6 +445,9 @@ export type AssignmentUncheckedUpdateManyInput = {
   subject_id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
   marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -413,6 +470,9 @@ export type AssignmentCountOrderByAggregateInput = {
   subject_id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  file_url?: Prisma.SortOrder
+  file_name?: Prisma.SortOrder
+  file_size?: Prisma.SortOrder
   due_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
   marks?: Prisma.SortOrder
@@ -429,6 +489,9 @@ export type AssignmentMaxOrderByAggregateInput = {
   subject_id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  file_url?: Prisma.SortOrder
+  file_name?: Prisma.SortOrder
+  file_size?: Prisma.SortOrder
   due_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
   marks?: Prisma.SortOrder
@@ -441,6 +504,9 @@ export type AssignmentMinOrderByAggregateInput = {
   subject_id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  file_url?: Prisma.SortOrder
+  file_name?: Prisma.SortOrder
+  file_size?: Prisma.SortOrder
   due_date?: Prisma.SortOrder
   status?: Prisma.SortOrder
   marks?: Prisma.SortOrder
@@ -551,6 +617,9 @@ export type AssignmentCreateWithoutUserInput = {
   id?: string
   title: string
   description?: string | null
+  file_url?: string | null
+  file_name?: string | null
+  file_size?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
   marks?: number | null
@@ -563,6 +632,9 @@ export type AssignmentUncheckedCreateWithoutUserInput = {
   subject_id: string
   title: string
   description?: string | null
+  file_url?: string | null
+  file_name?: string | null
+  file_size?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
   marks?: number | null
@@ -604,6 +676,9 @@ export type AssignmentScalarWhereInput = {
   subject_id?: Prisma.StringFilter<"Assignment"> | string
   title?: Prisma.StringFilter<"Assignment"> | string
   description?: Prisma.StringNullableFilter<"Assignment"> | string | null
+  file_url?: Prisma.StringNullableFilter<"Assignment"> | string | null
+  file_name?: Prisma.StringNullableFilter<"Assignment"> | string | null
+  file_size?: Prisma.StringNullableFilter<"Assignment"> | string | null
   due_date?: Prisma.DateTimeFilter<"Assignment"> | Date | string
   status?: Prisma.EnumAssignmentStatusFilter<"Assignment"> | $Enums.AssignmentStatus
   marks?: Prisma.IntNullableFilter<"Assignment"> | number | null
@@ -614,6 +689,9 @@ export type AssignmentCreateWithoutSubjectInput = {
   id?: string
   title: string
   description?: string | null
+  file_url?: string | null
+  file_name?: string | null
+  file_size?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
   marks?: number | null
@@ -626,6 +704,9 @@ export type AssignmentUncheckedCreateWithoutSubjectInput = {
   user_id: string
   title: string
   description?: string | null
+  file_url?: string | null
+  file_name?: string | null
+  file_size?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
   marks?: number | null
@@ -663,6 +744,9 @@ export type AssignmentCreateManyUserInput = {
   subject_id: string
   title: string
   description?: string | null
+  file_url?: string | null
+  file_name?: string | null
+  file_size?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
   marks?: number | null
@@ -673,6 +757,9 @@ export type AssignmentUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
   marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -685,6 +772,9 @@ export type AssignmentUncheckedUpdateWithoutUserInput = {
   subject_id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
   marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -696,6 +786,9 @@ export type AssignmentUncheckedUpdateManyWithoutUserInput = {
   subject_id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
   marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -707,6 +800,9 @@ export type AssignmentCreateManySubjectInput = {
   user_id: string
   title: string
   description?: string | null
+  file_url?: string | null
+  file_name?: string | null
+  file_size?: string | null
   due_date: Date | string
   status?: $Enums.AssignmentStatus
   marks?: number | null
@@ -717,6 +813,9 @@ export type AssignmentUpdateWithoutSubjectInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
   marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -729,6 +828,9 @@ export type AssignmentUncheckedUpdateWithoutSubjectInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
   marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -740,6 +842,9 @@ export type AssignmentUncheckedUpdateManyWithoutSubjectInput = {
   user_id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_url?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  file_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   due_date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumAssignmentStatusFieldUpdateOperationsInput | $Enums.AssignmentStatus
   marks?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -754,6 +859,9 @@ export type AssignmentSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   subject_id?: boolean
   title?: boolean
   description?: boolean
+  file_url?: boolean
+  file_name?: boolean
+  file_size?: boolean
   due_date?: boolean
   status?: boolean
   marks?: boolean
@@ -768,6 +876,9 @@ export type AssignmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   subject_id?: boolean
   title?: boolean
   description?: boolean
+  file_url?: boolean
+  file_name?: boolean
+  file_size?: boolean
   due_date?: boolean
   status?: boolean
   marks?: boolean
@@ -782,6 +893,9 @@ export type AssignmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   subject_id?: boolean
   title?: boolean
   description?: boolean
+  file_url?: boolean
+  file_name?: boolean
+  file_size?: boolean
   due_date?: boolean
   status?: boolean
   marks?: boolean
@@ -796,13 +910,16 @@ export type AssignmentSelectScalar = {
   subject_id?: boolean
   title?: boolean
   description?: boolean
+  file_url?: boolean
+  file_name?: boolean
+  file_size?: boolean
   due_date?: boolean
   status?: boolean
   marks?: boolean
   created_at?: boolean
 }
 
-export type AssignmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "subject_id" | "title" | "description" | "due_date" | "status" | "marks" | "created_at", ExtArgs["result"]["assignment"]>
+export type AssignmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "user_id" | "subject_id" | "title" | "description" | "file_url" | "file_name" | "file_size" | "due_date" | "status" | "marks" | "created_at", ExtArgs["result"]["assignment"]>
 export type AssignmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
@@ -828,6 +945,9 @@ export type $AssignmentPayload<ExtArgs extends runtime.Types.Extensions.Internal
     subject_id: string
     title: string
     description: string | null
+    file_url: string | null
+    file_name: string | null
+    file_size: string | null
     due_date: Date
     status: $Enums.AssignmentStatus
     marks: number | null
@@ -1262,6 +1382,9 @@ export interface AssignmentFieldRefs {
   readonly subject_id: Prisma.FieldRef<"Assignment", 'String'>
   readonly title: Prisma.FieldRef<"Assignment", 'String'>
   readonly description: Prisma.FieldRef<"Assignment", 'String'>
+  readonly file_url: Prisma.FieldRef<"Assignment", 'String'>
+  readonly file_name: Prisma.FieldRef<"Assignment", 'String'>
+  readonly file_size: Prisma.FieldRef<"Assignment", 'String'>
   readonly due_date: Prisma.FieldRef<"Assignment", 'DateTime'>
   readonly status: Prisma.FieldRef<"Assignment", 'AssignmentStatus'>
   readonly marks: Prisma.FieldRef<"Assignment", 'Int'>

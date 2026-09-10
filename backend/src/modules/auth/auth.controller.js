@@ -35,6 +35,7 @@ export async function login(req, res) {
         name: user.name,
         role: user.role.toLowerCase(),
         college_id: user.college_id,
+        points: user.points ?? 0,
       },
     });
   } catch (err) {
