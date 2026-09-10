@@ -1,6 +1,7 @@
-import { useState, useRef, useCallback } from "react";
-import { Eye, EyeOff, Loader2, GraduationCap, BookOpen, CalendarCheck, Bell, AlertCircle } from "lucide-react";
+import { useState, useRef, useCallback, useEffect } from "react";
+import { Eye, EyeOff, Loader2, GraduationCap, BookOpen, CalendarCheck, Bell, AlertCircle, WifiOff } from "lucide-react";
 import { useAuth } from "../hooks/useAuth";
+import apiClient from "../utils/apiClient";
 
 const FEATURES = [
   { icon: CalendarCheck, text: "Track your academic calendar" },
@@ -29,6 +30,23 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [fieldErrors, setFieldErrors]   = useState({});
   const [shake, setShake]               = useState(false);
+  const [backendOffline, setBackendOffline] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+    const checkHealth = async () => {
+      try {
+        await apiClient.get("/api/health", { timeout: 3000 });
+        if (active) setBackendOffline(false);
+      } catch {
+        if (active) setBackendOffline(true);
+      }
+    };
+    checkHealth();
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const panelRef = useRef(null);
   const [blobOffset, setBlobOffset] = useState({ x: 0, y: 0 });
@@ -190,6 +208,22 @@ export default function LoginPage() {
             <h1 className="text-2xl font-semibold text-surface-800">Welcome back</h1>
             <p className="mt-1 text-sm text-surface-500">Sign in to continue to your dashboard.</p>
           </div>
+
+          {/* Backend offline indicator */}
+          {backendOffline && (
+            <div
+              className="mb-4 flex items-start gap-2.5 rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800 dark:border-amber-900/50 dark:bg-amber-950/40 dark:text-amber-300"
+              style={{ animation: "fade-in 0.3s ease-out both" }}
+            >
+              <WifiOff size={16} className="mt-0.5 shrink-0 text-amber-600 dark:text-amber-400" />
+              <div>
+                <span className="font-semibold">Backend server is offline.</span>
+                <p className="mt-0.5 text-amber-700 dark:text-amber-400">
+                  Run <code className="rounded bg-amber-100 px-1 py-0.5 font-mono text-[11px] font-bold dark:bg-amber-900/60">npm run dev</code> in the project root to start both backend &amp; frontend.
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Server error */}
           {error && (

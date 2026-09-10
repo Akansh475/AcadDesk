@@ -9,16 +9,29 @@ async function loginApi(email, password) {
   } catch (err) {
     if (err.response?.status === 404) throw { code: "NO_ACCOUNT" };
     if (err.response?.status === 401) throw { code: "WRONG_CREDENTIALS" };
-    if (!err.response) throw { code: "NETWORK_ERROR" };
+    // Check for network failure or proxy gateway error (e.g. Vite proxy 502/504 when backend is offline)
+    if (
+      !err.response ||
+      err.response?.status === 502 ||
+      err.response?.status === 503 ||
+      err.response?.status === 504 ||
+      err.code === "ERR_NETWORK" ||
+      err.code === "ECONNREFUSED"
+    ) {
+      throw { code: "NETWORK_ERROR" };
+    }
     const serverMsg = err.response?.data?.error;
-    throw { code: "SERVER_ERROR", message: serverMsg };
+    throw {
+      code: "SERVER_ERROR",
+      message: serverMsg || "Database or backend error. If running locally, please check your PostgreSQL connection.",
+    };
   }
 }
 
 const ERROR_MESSAGES = {
   NO_ACCOUNT: "No account found with this email.",
   WRONG_CREDENTIALS: "Invalid email or password.",
-  NETWORK_ERROR: "Cannot connect to the server. Please ensure the backend server is running on port 5000.",
+  NETWORK_ERROR: "Backend server is offline. Please start it using 'npm run dev' in the project root (or 'cd backend && npm run dev').",
   SERVER_ERROR: "Something went wrong. Please try again.",
   EMPTY_FIELDS: "Please fill in all fields.",
 };

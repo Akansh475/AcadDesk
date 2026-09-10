@@ -39,7 +39,14 @@ export async function login(req, res) {
     });
   } catch (err) {
     console.error("login error:", err);
-    res.status(500).json({ error: "Something went wrong, try again" });
+    const isDbError =
+      err?.message?.toLowerCase().includes("database") ||
+      err?.code?.startsWith?.("P") ||
+      err?.name?.includes("Prisma");
+    const errorMsg = isDbError
+      ? "Database connection failed. Please ensure PostgreSQL is running."
+      : "Something went wrong, try again";
+    res.status(500).json({ error: errorMsg });
   }
 }
 
