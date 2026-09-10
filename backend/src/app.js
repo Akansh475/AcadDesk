@@ -14,6 +14,7 @@ import goalRoutes from "./modules/goals/goals.routes.js";
 import chatRoutes from "./modules/chat/chat.routes.js";
 import adminRoutes from "./modules/admin/admin.routes.js";
 import questionRoutes from "./modules/questions/questions.routes.js";
+import prisma from "./config/prisma.js";
 
 dotenv.config();
 
@@ -38,8 +39,33 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/questions", questionRoutes);
 
 // Health check
-app.get("/api/health", (req, res) => {
-  res.json({ status: "ok", message: "AcadDesk API is running" });
+app.get("/api/health", async (req, res) => {
+  let dbStatus = "disconnected";
+  let dbHost = "none";
+  let dbError = null;
+
+  try {
+    const rawUrl = process.env.DATABASE_URL || "";
+    if (rawUrl) {
+      const match = rawUrl.match(/@([^/:?]+)/);
+      dbHost = match ? match[1] : "unknown";
+    }
+    await prisma.$queryRaw`SELECT 1`;
+    dbStatus = "connected";
+  } catch (err) {
+    dbStatus = "error";
+    dbError = err.message;
+  }
+
+  res.json({
+    status: "ok",
+    message: "AcadDesk API is running",
+    database: {
+      status: dbStatus,
+      host: dbHost,
+      error: dbError,
+    },
+  });
 });
 
 export default app;
