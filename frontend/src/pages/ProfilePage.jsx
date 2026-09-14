@@ -1,3 +1,4 @@
+import { useSearchParams, Link } from "react-router-dom";
 import { useProfile } from "../hooks/useProfile";
 import ProfileAvatar from "../components/profile/ProfileAvatar";
 import ProfileStats from "../components/profile/AcademicStats";
@@ -5,10 +6,23 @@ import ProfileInfoCard from "../components/profile/ProfileInfoCard";
 import DigitalIdCard from "../components/profile/DigitalIdCard";
 import AcademicShortcuts from "../components/profile/AcademicShortcuts";
 import ProfileSkeleton from "../components/profile/ProfileSkeleton";
+import StudentAdminMessages from "../components/profile/StudentAdminMessages";
 import Toast from "../components/shared/Toast";
-import { AlertTriangle, RefreshCw, HelpCircle, ShieldCheck, Mail } from "lucide-react";
+import { AlertTriangle, RefreshCw, HelpCircle, ShieldCheck, Mail, ArrowLeft, Shield } from "lucide-react";
 
 export default function ProfilePage() {
+  const [searchParams] = useSearchParams();
+  const targetStudentId = searchParams.get("studentId");
+
+  const loggedInUser = (() => {
+    try {
+      return JSON.parse(localStorage.getItem("user"));
+    } catch {
+      return null;
+    }
+  })();
+  const isAdmin = loggedInUser?.role?.toUpperCase() === "ADMIN";
+
   const {
     user,
     isLoading,
@@ -19,7 +33,7 @@ export default function ProfilePage() {
     savePhone,
     savePhoto,
     removePhoto,
-  } = useProfile();
+  } = useProfile(targetStudentId);
 
   if (isLoading) {
     return <ProfileSkeleton />;
@@ -51,6 +65,32 @@ export default function ProfilePage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 space-y-6">
+      {/* Admin Inspection Banner (If Admin is viewing a student's profile) */}
+      {isAdmin && targetStudentId && (
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-2xl border border-primary-300 bg-primary-50 p-4 dark:border-primary-800 dark:bg-primary-950/50 shadow-xs">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary-600 text-white shadow-xs">
+              <Shield size={20} />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-primary-950 dark:text-primary-100">
+                Administrator Profile View — {user?.name || "Student Record"}
+              </h3>
+              <p className="text-xs text-primary-800 dark:text-primary-300">
+                You are inspecting this student's official records. You can send direct profile messages and directives below.
+              </p>
+            </div>
+          </div>
+          <Link
+            to="/admin?tab=students"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-primary-300 bg-white px-3.5 py-2 text-xs font-semibold text-primary-700 hover:bg-primary-50 dark:border-primary-700 dark:bg-slate-900 dark:text-primary-300 dark:hover:bg-slate-800 transition-colors shadow-2xs self-start sm:self-auto"
+          >
+            <ArrowLeft size={14} />
+            <span>Return to Students Management</span>
+          </Link>
+        </div>
+      )}
+
       {/* 1. Hero Banner Card */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary-700 via-primary-600 to-emerald-800 dark:from-primary-900 dark:via-slate-900 dark:to-emerald-950 p-6 sm:p-8 shadow-lg border border-primary-500/20">
         {/* Background decorative atmospheric effects */}
@@ -84,6 +124,13 @@ export default function ProfilePage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
         {/* Left Column (2/3 width on desktop): Primary Records & Details */}
         <div className="space-y-6 lg:col-span-2">
+          {/* Direct Administration Messages & Directives (Admin can message, Student can read) */}
+          <StudentAdminMessages
+            studentId={user?.id}
+            studentName={user?.name}
+            isAdmin={isAdmin}
+          />
+
           {/* Academic Registry & Editable Phone */}
           <ProfileInfoCard
             user={user}
