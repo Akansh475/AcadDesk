@@ -11,14 +11,15 @@ function getStoredUserId() {
   }
 }
 
-export function useProfile() {
+export function useProfile(overrideUserId = null) {
   const queryClient = useQueryClient();
-  const userId = getStoredUserId();
+  const userId = overrideUserId || getStoredUserId();
   const queryKey = ["user", userId];
 
   const profileQuery = useQuery({
     queryKey,
     queryFn: () => fetchUser(userId),
+    enabled: Boolean(userId),
   });
 
   const [toast, setToast] = useState(null);
