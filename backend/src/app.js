@@ -14,6 +14,7 @@ import goalRoutes from "./modules/goals/goals.routes.js";
 import chatRoutes from "./modules/chat/chat.routes.js";
 import adminRoutes from "./modules/admin/admin.routes.js";
 import questionRoutes from "./modules/questions/questions.routes.js";
+import messageRoutes from "./modules/messages/messages.routes.js";
 import prisma from "./config/prisma.js";
 
 dotenv.config();
@@ -37,6 +38,7 @@ app.use("/api/goals", goalRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/questions", questionRoutes);
+app.use("/api/messages", messageRoutes);
 
 // Health check
 app.get("/api/health", async (req, res) => {
