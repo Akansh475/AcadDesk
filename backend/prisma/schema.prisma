@@ -26,12 +26,14 @@ model User {
   points             Int      @default(0)
   created_at         DateTime @default(now())
 
-  tasks         Task[]
-  attendance    AttendanceRecord[]
-  notifications Notification[]
-  assignments   Assignment[]
-  goals         Goal[]
-  chat_sessions ChatSession[]
+  tasks                   Task[]
+  attendance              AttendanceRecord[]
+  notifications           Notification[]
+  assignments             Assignment[]
+  goals                   Goal[]
+  chat_sessions           ChatSession[]
+  received_admin_messages AdminMessage[]     @relation("StudentReceivedMessages")
+  sent_admin_messages     AdminMessage[]     @relation("AdminSentMessages")
 
   @@map("users")
 }
@@ -213,6 +215,27 @@ model ChatMessage {
   @@map("chat_messages")
 }
 
+model AdminMessage {
+  id          String   @id @default(uuid())
+  student_id  String
+  sender_id   String
+  sender_name String?  @default("Administrator")
+  subject     String
+  message     String
+  category    String   @default("General")
+  priority    Priority @default(MEDIUM)
+  is_read     Boolean  @default(false)
+  created_at  DateTime @default(now())
+
+  student User @relation("StudentReceivedMessages", fields: [student_id], references: [id], onDelete: Cascade)
+  sender  User @relation("AdminSentMessages", fields: [sender_id], references: [id], onDelete: Cascade)
+
+  @@index([student_id])
+  @@index([sender_id])
+  @@index([created_at])
+  @@map("admin_messages")
+}
+
 enum Role {
   STUDENT
   ADMIN
@@ -257,6 +280,7 @@ enum NotificationType {
   EVENT
   ANNOUNCEMENT
   ATTENDANCE
+  ADMIN_MESSAGE
 }
 
 enum MessageRole {
