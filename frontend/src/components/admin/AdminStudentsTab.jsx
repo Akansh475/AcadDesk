@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   Plus,
   Search,
@@ -12,11 +13,14 @@ import {
   Hash,
   Phone,
   BookOpen,
+  MessageSquare,
+  ExternalLink,
 } from "lucide-react";
 import useAdminStudents from "../../hooks/admin/useAdminStudents";
 import AdminModal from "./AdminModal";
 import AdminConfirmDialog from "./AdminConfirmDialog";
 import AdminPagination from "./AdminPagination";
+import StudentAdminMessages from "../profile/StudentAdminMessages";
 
 const INITIAL_FORM = {
   name: "",
@@ -67,6 +71,7 @@ export default function AdminStudentsTab() {
   const [formData, setFormData] = useState(INITIAL_FORM);
   const [formErrors, setFormErrors] = useState({});
   const [submitError, setSubmitError] = useState("");
+  const [messagingStudent, setMessagingStudent] = useState(null);
 
   // Sync form data when modal opens
   useEffect(() => {
@@ -321,7 +326,16 @@ export default function AdminStudentsTab() {
                       {student.phone || "—"}
                     </td>
                     <td className="px-4 py-3.5 text-right" onClick={(e) => e.stopPropagation()}>
-                      <div className="flex items-center justify-end gap-1">
+                      <div className="flex items-center justify-end gap-1.5">
+                        <button
+                          type="button"
+                          onClick={() => setMessagingStudent(student)}
+                          className="flex items-center gap-1 rounded-lg border border-primary-200 bg-primary-50/80 px-2 py-1 text-xs font-semibold text-primary-700 hover:bg-primary-100 dark:border-primary-800/80 dark:bg-primary-950/60 dark:text-primary-300 dark:hover:bg-primary-900/60 transition-colors cursor-pointer"
+                          title="Message student in profile section"
+                        >
+                          <MessageSquare size={13} />
+                          <span>Message</span>
+                        </button>
                         <button
                           type="button"
                           onClick={() => openEditModal(student)}
@@ -558,6 +572,63 @@ export default function AdminStudentsTab() {
             </button>
           </div>
         </form>
+      </AdminModal>
+
+      {/* Student Profile & Direct Notice Modal */}
+      <AdminModal
+        isOpen={Boolean(messagingStudent)}
+        onClose={() => setMessagingStudent(null)}
+        title={`Student Profile & Direct Notice — ${messagingStudent?.name || "Student"}`}
+        maxWidth="max-w-3xl"
+      >
+        {messagingStudent && (
+          <div className="space-y-4">
+            {/* Student Profile Header Strip */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50/80 p-4 dark:border-slate-800 dark:bg-slate-800/50">
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-base font-bold text-slate-900 dark:text-slate-100">
+                    {messagingStudent.name}
+                  </span>
+                  <span className="rounded-md bg-primary-100 px-2 py-0.5 text-xs font-semibold text-primary-700 dark:bg-primary-950 dark:text-primary-300">
+                    {messagingStudent.branch || "Computer Science"} • {messagingStudent.year || "3rd Year"}
+                  </span>
+                  <span className="rounded-md bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+                    Sec {messagingStudent.section || "A"}
+                  </span>
+                </div>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500 dark:text-slate-400">
+                  <span>Roll: <strong className="font-mono text-slate-700 dark:text-slate-200">{messagingStudent.university_roll_no}</strong></span>
+                  <span>ID: <strong className="font-mono text-slate-700 dark:text-slate-200">{messagingStudent.student_id}</strong></span>
+                  <span>Email: <strong className="text-slate-700 dark:text-slate-200">{messagingStudent.email}</strong></span>
+                  {messagingStudent.cgpa && (
+                    <span>CGPA: <strong className="text-emerald-600 dark:text-emerald-400">{messagingStudent.cgpa}</strong></span>
+                  )}
+                  {messagingStudent.phone && (
+                    <span>Phone: <strong className="text-slate-700 dark:text-slate-200">{messagingStudent.phone}</strong></span>
+                  )}
+                </div>
+              </div>
+
+              <Link
+                to={`/profile?studentId=${messagingStudent.id}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800 transition-colors self-start sm:self-auto shrink-0 shadow-2xs"
+              >
+                <span>Full Profile Page</span>
+                <ExternalLink size={13} />
+              </Link>
+            </div>
+
+            {/* Embedded Profile Messaging Component */}
+            <StudentAdminMessages
+              studentId={messagingStudent.id}
+              studentName={messagingStudent.name}
+              isAdmin={true}
+            />
+          </div>
+        )}
       </AdminModal>
 
       {/* Delete Student Confirmation Dialog */}
