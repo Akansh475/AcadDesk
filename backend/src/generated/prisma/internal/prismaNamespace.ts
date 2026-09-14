@@ -395,7 +395,8 @@ export const ModelName = {
   Goal: 'Goal',
   RoadmapWeek: 'RoadmapWeek',
   ChatSession: 'ChatSession',
-  ChatMessage: 'ChatMessage'
+  ChatMessage: 'ChatMessage',
+  AdminMessage: 'AdminMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -411,7 +412,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "task" | "subject" | "attendanceRecord" | "assignment" | "exam" | "notification" | "academicCalendarEvent" | "goal" | "roadmapWeek" | "chatSession" | "chatMessage"
+    modelProps: "user" | "task" | "subject" | "attendanceRecord" | "assignment" | "exam" | "notification" | "academicCalendarEvent" | "goal" | "roadmapWeek" | "chatSession" | "chatMessage" | "adminMessage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1303,6 +1304,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AdminMessage: {
+      payload: Prisma.$AdminMessagePayload<ExtArgs>
+      fields: Prisma.AdminMessageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AdminMessageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminMessagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AdminMessageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminMessagePayload>
+        }
+        findFirst: {
+          args: Prisma.AdminMessageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminMessagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AdminMessageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminMessagePayload>
+        }
+        findMany: {
+          args: Prisma.AdminMessageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminMessagePayload>[]
+        }
+        create: {
+          args: Prisma.AdminMessageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminMessagePayload>
+        }
+        createMany: {
+          args: Prisma.AdminMessageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AdminMessageCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminMessagePayload>[]
+        }
+        delete: {
+          args: Prisma.AdminMessageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminMessagePayload>
+        }
+        update: {
+          args: Prisma.AdminMessageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminMessagePayload>
+        }
+        deleteMany: {
+          args: Prisma.AdminMessageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AdminMessageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AdminMessageUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminMessagePayload>[]
+        }
+        upsert: {
+          args: Prisma.AdminMessageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AdminMessagePayload>
+        }
+        aggregate: {
+          args: Prisma.AdminMessageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAdminMessage>
+        }
+        groupBy: {
+          args: Prisma.AdminMessageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdminMessageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AdminMessageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AdminMessageCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1506,6 +1581,22 @@ export const ChatMessageScalarFieldEnum = {
 } as const
 
 export type ChatMessageScalarFieldEnum = (typeof ChatMessageScalarFieldEnum)[keyof typeof ChatMessageScalarFieldEnum]
+
+
+export const AdminMessageScalarFieldEnum = {
+  id: 'id',
+  student_id: 'student_id',
+  sender_id: 'sender_id',
+  sender_name: 'sender_name',
+  subject: 'subject',
+  message: 'message',
+  category: 'category',
+  priority: 'priority',
+  is_read: 'is_read',
+  created_at: 'created_at'
+} as const
+
+export type AdminMessageScalarFieldEnum = (typeof AdminMessageScalarFieldEnum)[keyof typeof AdminMessageScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1848,6 +1939,7 @@ export type GlobalOmitConfig = {
   roadmapWeek?: Prisma.RoadmapWeekOmit
   chatSession?: Prisma.ChatSessionOmit
   chatMessage?: Prisma.ChatMessageOmit
+  adminMessage?: Prisma.AdminMessageOmit
 }
 
 /* Types for Logging */

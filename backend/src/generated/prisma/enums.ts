@@ -73,7 +73,8 @@ export const NotificationType = {
   HOLIDAY: 'HOLIDAY',
   EVENT: 'EVENT',
   ANNOUNCEMENT: 'ANNOUNCEMENT',
-  ATTENDANCE: 'ATTENDANCE'
+  ATTENDANCE: 'ATTENDANCE',
+  ADMIN_MESSAGE: 'ADMIN_MESSAGE'
 } as const
 
 export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]

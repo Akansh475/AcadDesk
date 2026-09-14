@@ -101,3 +101,8 @@ export type ChatSession = Prisma.ChatSessionModel
  * 
  */
 export type ChatMessage = Prisma.ChatMessageModel
+/**
+ * Model AdminMessage
+ * 
+ */
+export type AdminMessage = Prisma.AdminMessageModel

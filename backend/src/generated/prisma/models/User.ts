@@ -318,6 +318,8 @@ export type UserWhereInput = {
   assignments?: Prisma.AssignmentListRelationFilter
   goals?: Prisma.GoalListRelationFilter
   chat_sessions?: Prisma.ChatSessionListRelationFilter
+  received_admin_messages?: Prisma.AdminMessageListRelationFilter
+  sent_admin_messages?: Prisma.AdminMessageListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -344,6 +346,8 @@ export type UserOrderByWithRelationInput = {
   assignments?: Prisma.AssignmentOrderByRelationAggregateInput
   goals?: Prisma.GoalOrderByRelationAggregateInput
   chat_sessions?: Prisma.ChatSessionOrderByRelationAggregateInput
+  received_admin_messages?: Prisma.AdminMessageOrderByRelationAggregateInput
+  sent_admin_messages?: Prisma.AdminMessageOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -373,6 +377,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   assignments?: Prisma.AssignmentListRelationFilter
   goals?: Prisma.GoalListRelationFilter
   chat_sessions?: Prisma.ChatSessionListRelationFilter
+  received_admin_messages?: Prisma.AdminMessageListRelationFilter
+  sent_admin_messages?: Prisma.AdminMessageListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -447,6 +453,8 @@ export type UserCreateInput = {
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutSenderInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -473,6 +481,8 @@ export type UserUncheckedCreateInput = {
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutSenderInput
 }
 
 export type UserUpdateInput = {
@@ -499,6 +509,8 @@ export type UserUpdateInput = {
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUpdateManyWithoutSenderNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -525,6 +537,8 @@ export type UserUncheckedUpdateInput = {
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutSenderNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -768,6 +782,34 @@ export type UserUpdateOneRequiredWithoutChat_sessionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutChat_sessionsInput, Prisma.UserUpdateWithoutChat_sessionsInput>, Prisma.UserUncheckedUpdateWithoutChat_sessionsInput>
 }
 
+export type UserCreateNestedOneWithoutReceived_admin_messagesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReceived_admin_messagesInput, Prisma.UserUncheckedCreateWithoutReceived_admin_messagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceived_admin_messagesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutSent_admin_messagesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSent_admin_messagesInput, Prisma.UserUncheckedCreateWithoutSent_admin_messagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSent_admin_messagesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutReceived_admin_messagesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutReceived_admin_messagesInput, Prisma.UserUncheckedCreateWithoutReceived_admin_messagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutReceived_admin_messagesInput
+  upsert?: Prisma.UserUpsertWithoutReceived_admin_messagesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReceived_admin_messagesInput, Prisma.UserUpdateWithoutReceived_admin_messagesInput>, Prisma.UserUncheckedUpdateWithoutReceived_admin_messagesInput>
+}
+
+export type UserUpdateOneRequiredWithoutSent_admin_messagesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSent_admin_messagesInput, Prisma.UserUncheckedCreateWithoutSent_admin_messagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSent_admin_messagesInput
+  upsert?: Prisma.UserUpsertWithoutSent_admin_messagesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSent_admin_messagesInput, Prisma.UserUpdateWithoutSent_admin_messagesInput>, Prisma.UserUncheckedUpdateWithoutSent_admin_messagesInput>
+}
+
 export type UserCreateWithoutTasksInput = {
   id?: string
   name: string
@@ -791,6 +833,8 @@ export type UserCreateWithoutTasksInput = {
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutSenderInput
 }
 
 export type UserUncheckedCreateWithoutTasksInput = {
@@ -816,6 +860,8 @@ export type UserUncheckedCreateWithoutTasksInput = {
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutSenderInput
 }
 
 export type UserCreateOrConnectWithoutTasksInput = {
@@ -857,6 +903,8 @@ export type UserUpdateWithoutTasksInput = {
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUpdateManyWithoutSenderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTasksInput = {
@@ -882,6 +930,8 @@ export type UserUncheckedUpdateWithoutTasksInput = {
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutSenderNestedInput
 }
 
 export type UserCreateWithoutAttendanceInput = {
@@ -907,6 +957,8 @@ export type UserCreateWithoutAttendanceInput = {
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutSenderInput
 }
 
 export type UserUncheckedCreateWithoutAttendanceInput = {
@@ -932,6 +984,8 @@ export type UserUncheckedCreateWithoutAttendanceInput = {
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutSenderInput
 }
 
 export type UserCreateOrConnectWithoutAttendanceInput = {
@@ -973,6 +1027,8 @@ export type UserUpdateWithoutAttendanceInput = {
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUpdateManyWithoutSenderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAttendanceInput = {
@@ -998,6 +1054,8 @@ export type UserUncheckedUpdateWithoutAttendanceInput = {
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutSenderNestedInput
 }
 
 export type UserCreateWithoutAssignmentsInput = {
@@ -1023,6 +1081,8 @@ export type UserCreateWithoutAssignmentsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutSenderInput
 }
 
 export type UserUncheckedCreateWithoutAssignmentsInput = {
@@ -1048,6 +1108,8 @@ export type UserUncheckedCreateWithoutAssignmentsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutSenderInput
 }
 
 export type UserCreateOrConnectWithoutAssignmentsInput = {
@@ -1089,6 +1151,8 @@ export type UserUpdateWithoutAssignmentsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUpdateManyWithoutSenderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAssignmentsInput = {
@@ -1114,6 +1178,8 @@ export type UserUncheckedUpdateWithoutAssignmentsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutSenderNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -1139,6 +1205,8 @@ export type UserCreateWithoutNotificationsInput = {
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutSenderInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -1164,6 +1232,8 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutSenderInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -1205,6 +1275,8 @@ export type UserUpdateWithoutNotificationsInput = {
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUpdateManyWithoutSenderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -1230,6 +1302,8 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutSenderNestedInput
 }
 
 export type UserCreateWithoutGoalsInput = {
@@ -1255,6 +1329,8 @@ export type UserCreateWithoutGoalsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutSenderInput
 }
 
 export type UserUncheckedCreateWithoutGoalsInput = {
@@ -1280,6 +1356,8 @@ export type UserUncheckedCreateWithoutGoalsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutSenderInput
 }
 
 export type UserCreateOrConnectWithoutGoalsInput = {
@@ -1321,6 +1399,8 @@ export type UserUpdateWithoutGoalsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUpdateManyWithoutSenderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutGoalsInput = {
@@ -1346,6 +1426,8 @@ export type UserUncheckedUpdateWithoutGoalsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutSenderNestedInput
 }
 
 export type UserCreateWithoutChat_sessionsInput = {
@@ -1371,6 +1453,8 @@ export type UserCreateWithoutChat_sessionsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutSenderInput
 }
 
 export type UserUncheckedCreateWithoutChat_sessionsInput = {
@@ -1396,6 +1480,8 @@ export type UserUncheckedCreateWithoutChat_sessionsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
   goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutStudentInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutSenderInput
 }
 
 export type UserCreateOrConnectWithoutChat_sessionsInput = {
@@ -1437,6 +1523,8 @@ export type UserUpdateWithoutChat_sessionsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUpdateManyWithoutSenderNestedInput
 }
 
 export type UserUncheckedUpdateWithoutChat_sessionsInput = {
@@ -1462,6 +1550,256 @@ export type UserUncheckedUpdateWithoutChat_sessionsInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
   goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutStudentNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutSenderNestedInput
+}
+
+export type UserCreateWithoutReceived_admin_messagesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  college_id: string
+  phone?: string | null
+  profile_photo?: string | null
+  university_roll_no?: string | null
+  student_id?: string | null
+  year?: string | null
+  section?: string | null
+  cgpa?: string | null
+  course?: string | null
+  branch?: string | null
+  points?: number
+  created_at?: Date | string
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  sent_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutSenderInput
+}
+
+export type UserUncheckedCreateWithoutReceived_admin_messagesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  college_id: string
+  phone?: string | null
+  profile_photo?: string | null
+  university_roll_no?: string | null
+  student_id?: string | null
+  year?: string | null
+  section?: string | null
+  cgpa?: string | null
+  course?: string | null
+  branch?: string | null
+  points?: number
+  created_at?: Date | string
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutSenderInput
+}
+
+export type UserCreateOrConnectWithoutReceived_admin_messagesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutReceived_admin_messagesInput, Prisma.UserUncheckedCreateWithoutReceived_admin_messagesInput>
+}
+
+export type UserCreateWithoutSent_admin_messagesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  college_id: string
+  phone?: string | null
+  profile_photo?: string | null
+  university_roll_no?: string | null
+  student_id?: string | null
+  year?: string | null
+  section?: string | null
+  cgpa?: string | null
+  course?: string | null
+  branch?: string | null
+  points?: number
+  created_at?: Date | string
+  tasks?: Prisma.TaskCreateNestedManyWithoutUserInput
+  attendance?: Prisma.AttendanceRecordCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalCreateNestedManyWithoutUserInput
+  chat_sessions?: Prisma.ChatSessionCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageCreateNestedManyWithoutStudentInput
+}
+
+export type UserUncheckedCreateWithoutSent_admin_messagesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  college_id: string
+  phone?: string | null
+  profile_photo?: string | null
+  university_roll_no?: string | null
+  student_id?: string | null
+  year?: string | null
+  section?: string | null
+  cgpa?: string | null
+  course?: string | null
+  branch?: string | null
+  points?: number
+  created_at?: Date | string
+  tasks?: Prisma.TaskUncheckedCreateNestedManyWithoutUserInput
+  attendance?: Prisma.AttendanceRecordUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutUserInput
+  goals?: Prisma.GoalUncheckedCreateNestedManyWithoutUserInput
+  chat_sessions?: Prisma.ChatSessionUncheckedCreateNestedManyWithoutUserInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedCreateNestedManyWithoutStudentInput
+}
+
+export type UserCreateOrConnectWithoutSent_admin_messagesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSent_admin_messagesInput, Prisma.UserUncheckedCreateWithoutSent_admin_messagesInput>
+}
+
+export type UserUpsertWithoutReceived_admin_messagesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutReceived_admin_messagesInput, Prisma.UserUncheckedUpdateWithoutReceived_admin_messagesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutReceived_admin_messagesInput, Prisma.UserUncheckedCreateWithoutReceived_admin_messagesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutReceived_admin_messagesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutReceived_admin_messagesInput, Prisma.UserUncheckedUpdateWithoutReceived_admin_messagesInput>
+}
+
+export type UserUpdateWithoutReceived_admin_messagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  chat_sessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUpdateManyWithoutSenderNestedInput
+}
+
+export type UserUncheckedUpdateWithoutReceived_admin_messagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  sent_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutSenderNestedInput
+}
+
+export type UserUpsertWithoutSent_admin_messagesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSent_admin_messagesInput, Prisma.UserUncheckedUpdateWithoutSent_admin_messagesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSent_admin_messagesInput, Prisma.UserUncheckedCreateWithoutSent_admin_messagesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSent_admin_messagesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSent_admin_messagesInput, Prisma.UserUncheckedUpdateWithoutSent_admin_messagesInput>
+}
+
+export type UserUpdateWithoutSent_admin_messagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUpdateManyWithoutUserNestedInput
+  attendance?: Prisma.AttendanceRecordUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUpdateManyWithoutUserNestedInput
+  chat_sessions?: Prisma.ChatSessionUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUpdateManyWithoutStudentNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSent_admin_messagesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  college_id?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  profile_photo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  university_roll_no?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  student_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  section?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  cgpa?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  course?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  branch?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  points?: Prisma.IntFieldUpdateOperationsInput | number
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tasks?: Prisma.TaskUncheckedUpdateManyWithoutUserNestedInput
+  attendance?: Prisma.AttendanceRecordUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutUserNestedInput
+  goals?: Prisma.GoalUncheckedUpdateManyWithoutUserNestedInput
+  chat_sessions?: Prisma.ChatSessionUncheckedUpdateManyWithoutUserNestedInput
+  received_admin_messages?: Prisma.AdminMessageUncheckedUpdateManyWithoutStudentNestedInput
 }
 
 
@@ -1476,6 +1814,8 @@ export type UserCountOutputType = {
   assignments: number
   goals: number
   chat_sessions: number
+  received_admin_messages: number
+  sent_admin_messages: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1485,6 +1825,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   assignments?: boolean | UserCountOutputTypeCountAssignmentsArgs
   goals?: boolean | UserCountOutputTypeCountGoalsArgs
   chat_sessions?: boolean | UserCountOutputTypeCountChat_sessionsArgs
+  received_admin_messages?: boolean | UserCountOutputTypeCountReceived_admin_messagesArgs
+  sent_admin_messages?: boolean | UserCountOutputTypeCountSent_admin_messagesArgs
 }
 
 /**
@@ -1539,6 +1881,20 @@ export type UserCountOutputTypeCountChat_sessionsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.ChatSessionWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountReceived_admin_messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdminMessageWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSent_admin_messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AdminMessageWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1564,6 +1920,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   assignments?: boolean | Prisma.User$assignmentsArgs<ExtArgs>
   goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
   chat_sessions?: boolean | Prisma.User$chat_sessionsArgs<ExtArgs>
+  received_admin_messages?: boolean | Prisma.User$received_admin_messagesArgs<ExtArgs>
+  sent_admin_messages?: boolean | Prisma.User$sent_admin_messagesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1635,6 +1993,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   assignments?: boolean | Prisma.User$assignmentsArgs<ExtArgs>
   goals?: boolean | Prisma.User$goalsArgs<ExtArgs>
   chat_sessions?: boolean | Prisma.User$chat_sessionsArgs<ExtArgs>
+  received_admin_messages?: boolean | Prisma.User$received_admin_messagesArgs<ExtArgs>
+  sent_admin_messages?: boolean | Prisma.User$sent_admin_messagesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1649,6 +2009,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     assignments: Prisma.$AssignmentPayload<ExtArgs>[]
     goals: Prisma.$GoalPayload<ExtArgs>[]
     chat_sessions: Prisma.$ChatSessionPayload<ExtArgs>[]
+    received_admin_messages: Prisma.$AdminMessagePayload<ExtArgs>[]
+    sent_admin_messages: Prisma.$AdminMessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -2068,6 +2430,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   assignments<T extends Prisma.User$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   goals<T extends Prisma.User$goalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$goalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$GoalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   chat_sessions<T extends Prisma.User$chat_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$chat_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatSessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  received_admin_messages<T extends Prisma.User$received_admin_messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$received_admin_messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdminMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sent_admin_messages<T extends Prisma.User$sent_admin_messagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sent_admin_messagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AdminMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2648,6 +3012,54 @@ export type User$chat_sessionsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.ChatSessionScalarFieldEnum | Prisma.ChatSessionScalarFieldEnum[]
+}
+
+/**
+ * User.received_admin_messages
+ */
+export type User$received_admin_messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AdminMessage
+   */
+  select?: Prisma.AdminMessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AdminMessage
+   */
+  omit?: Prisma.AdminMessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdminMessageInclude<ExtArgs> | null
+  where?: Prisma.AdminMessageWhereInput
+  orderBy?: Prisma.AdminMessageOrderByWithRelationInput | Prisma.AdminMessageOrderByWithRelationInput[]
+  cursor?: Prisma.AdminMessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AdminMessageScalarFieldEnum | Prisma.AdminMessageScalarFieldEnum[]
+}
+
+/**
+ * User.sent_admin_messages
+ */
+export type User$sent_admin_messagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AdminMessage
+   */
+  select?: Prisma.AdminMessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AdminMessage
+   */
+  omit?: Prisma.AdminMessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AdminMessageInclude<ExtArgs> | null
+  where?: Prisma.AdminMessageWhereInput
+  orderBy?: Prisma.AdminMessageOrderByWithRelationInput | Prisma.AdminMessageOrderByWithRelationInput[]
+  cursor?: Prisma.AdminMessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AdminMessageScalarFieldEnum | Prisma.AdminMessageScalarFieldEnum[]
 }
 
 /**
